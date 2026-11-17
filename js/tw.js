@@ -18,6 +18,6 @@ tailwind.config = {
       mute: '#5F5851',
       line: '#F2E3C9'
     },
-    fontFamily: { head: ['"Cormorant Garamond"', 'serif'], sans: ['Poppins', 'sans-serif'] }
+    fontFamily: { brandname: ['"Playfair Display"', 'serif'], head: ['"Cormorant Garamond"', 'serif'], sans: ['Poppins', 'sans-serif'] }
   } }
 };
