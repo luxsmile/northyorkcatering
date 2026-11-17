@@ -34,10 +34,14 @@
     <form id="area" class="flex gap-3 flex-wrap"><input id="pc" class="field flex-1 min-w-[160px]" placeholder="Postal code" aria-label="Postal code" required><button class="btn btn-coral" type="submit">Check</button></form>
     <p id="area-msg" class="mt-4 text-sm text-branddk font-medium"></p>
   </div>
-  <div class="bg-ink text-white p-8 border border-sun/60">
+  <div class="relative overflow-hidden text-white p-8 border border-sun/60">
+    <img src="images/slide-coffee.jpg" alt="" class="absolute inset-0 w-full h-full object-cover " loading="lazy"><div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/90"></div>
+    <div class="pointer-events-none absolute inset-2 border border-sun/30"></div>
+    <div class="relative">
     <p class="label !text-sun mb-2">Get in touch</p>
     <h2 class="font-head uppercase font-semibold text-3xl tracking-wide mb-4">Visit or call</h2>
     <dl class="space-y-3 text-white/90 [&_dt]:text-sun"><div><dt class="font-semibold">Phone</dt><dd>[Phone number]</dd></div><div><dt class="font-semibold">Email</dt><dd>[Email address]</dd></div><div><dt class="font-semibold">Address</dt><dd>[Address to be added]</dd></div><div><dt class="font-semibold">Hours</dt><dd>[Opening hours to be added]</dd></div></dl>
+    </div>
   </div>
 </section>
 <section class="bg-white border-y border-line"><div class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-6 text-center">

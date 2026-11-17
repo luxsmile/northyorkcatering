@@ -114,12 +114,12 @@
   }
   function footer() {
     return '' +
-    '<div class="bg-navy text-white"><div class="max-w-7xl mx-auto px-6 py-14 grid gap-10 md:grid-cols-4">' +
+    '<div class="relative overflow-hidden bg-navy text-white"><img src="images/slide-brunch.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy"><div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/88 to-black"></div><div class="relative h-px bg-gradient-to-r from-transparent via-sun to-transparent"></div><div class="relative max-w-7xl mx-auto px-6 py-14 grid gap-10 md:grid-cols-4">' +
       '<div class="md:col-span-2"><div class="flex items-center gap-3"><img src="images/logo-mark-light.svg" alt="" class="h-14 w-auto"><div><p class="font-head font-semibold text-2xl md:text-3xl tracking-[.2em] uppercase leading-none">North York</p><p class="font-head font-semibold text-xs tracking-[.4em] uppercase text-sun mt-2">Fine Catering</p></div></div>' +
         '<p class="text-white/70 text-sm mt-5 max-w-sm">Exceptional food for offices, celebrations and private events. Thoughtfully designed around you and delivered across North York, Toronto and the GTA.</p></div>' +
       '<div><p class="font-head uppercase tracking-[.15em] text-sun mb-3">Order</p><ul class="space-y-2 text-sm text-white/80"><li><a class="hover:text-sun" href="catering.html">Catering</a></li><li><a class="hover:text-sun" href="takeout.html">Signature Lunch</a></li><li><a class="hover:text-sun" href="index.html#design">Design Your Order</a></li><li><a class="hover:text-sun" href="cart.html">Your Cart</a></li></ul></div>' +
       '<div><p class="font-head uppercase tracking-[.15em] text-sun mb-3">Help</p><ul class="space-y-2 text-sm text-white/80"><li><a class="hover:text-sun" href="locations.html">Locations &amp; Delivery</a></li><li><a class="hover:text-sun" href="index.html#faq">Questions</a></li><li><a class="hover:text-sun" href="login.html">Login</a></li><li><a class="hover:text-sun" href="index.html#space">Event Space</a></li></ul></div>' +
-    '</div><div class="border-t border-white/10 text-center text-xs text-white/50 py-5 px-4">&copy; 2026 North York Catering &nbsp;·&nbsp; Prices and checkout on this preview are for demonstration only.</div></div>';
+    '</div><div class="relative border-t border-white/10 text-center text-xs text-white/50 py-5 px-4">&copy; 2026 North York Catering &nbsp;·&nbsp; Prices and checkout on this preview are for demonstration only.</div></div>';
   }
 
 
