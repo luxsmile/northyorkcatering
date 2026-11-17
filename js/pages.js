@@ -57,7 +57,7 @@
     app.innerHTML =
       banner(isL ? 'bg-ink' : 'bg-brand', isL ? 'Signature Lunch' : 'Catering',
         isL ? 'Individually presented lunches for private tables and close-knit teams, effortless to order.' : 'Boardroom luncheons, celebrations and private events, with beautifully presented trays and platters delivered to your door.',
-        '<ol class="mt-10 grid sm:grid-cols-3 gap-4 text-sm text-white/95">' + how.map(function (h, i) { return '<li class="flex gap-3 items-start text-left border border-white/25 bg-white/10 backdrop-blur-sm p-4"><span class="shrink-0 w-7 h-7 rounded-full bg-sun text-ink font-bold flex items-center justify-center">' + (i + 1) + '</span><span>' + h + '</span></li>'; }).join('') + '</ol>', isL ? 'slide-boxed.jpg' : 'slide-office.jpg', isL ? 'For intimate gatherings' : 'For grand occasions') +
+        '<ol class="mt-10 grid sm:grid-cols-3 gap-4 text-sm text-white/95">' + how.map(function (h, i) { return '<li class="flex gap-3 items-start text-left border border-white/25 bg-white/10 backdrop-blur-sm p-4"><span class="shrink-0 w-7 h-7 rounded-full bg-sun text-ink font-bold flex items-center justify-center">' + (i + 1) + '</span><span>' + h + '</span></li>'; }).join('') + '</ol>', isL ? 'slide-lunch.jpg' : 'slide-office.jpg', isL ? 'For intimate gatherings' : 'For grand occasions') +
       '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'index.html'], [modeName(mode)]]) + '</section>' +
       '<section class="max-w-7xl mx-auto px-6 py-10"><h2 class="font-head uppercase font-semibold text-3xl tracking-wide mb-6">Browse the collections</h2>' +
         '<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">' + cats.map(function (c) {

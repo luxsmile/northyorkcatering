@@ -138,7 +138,7 @@
       cta: [['Explore Catering', 'catering.html', 'btn-coral'], ['Request a Quote', 'index.html#design', 'btn-line']]
     },
     lunch: {
-      kicker: 'For intimate gatherings', title: 'The Signature Lunch Experience', image: 'images/slide-boxed.jpg',
+      kicker: 'For intimate gatherings', title: 'The Signature Lunch Experience', image: 'images/slide-lunch.jpg',
       lead: 'Individually presented lunches for private tables and close-knit teams.',
       steps: [
         ['Select your dishes', 'Choose from salads, salmon, sandwiches, wraps and more, one portion or several.'],
