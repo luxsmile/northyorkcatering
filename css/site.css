@@ -45,3 +45,7 @@ details summary::-webkit-details-marker { display: none; }
 .pop { animation: pop .35s ease; }
 @keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 .toast { animation: slideIn .3s ease; }
+
+/* Elegant page banners */
+.lux-plain { background: radial-gradient(ellipse at 50% -20%, #4a3a1c 0%, #1b150d 55%, #0a0a0a 100%); }
+.lux-banner h1 { text-shadow: 0 2px 24px rgba(0,0,0,.45); }

@@ -13,8 +13,19 @@
     return '<nav class="text-xs sm:text-sm text-mute flex flex-wrap gap-2 items-center" aria-label="Breadcrumb">' +
       list.map(function (c, i) { return c[1] ? '<a class="hover:text-coral underline-offset-2 hover:underline" href="' + c[1] + '">' + c[0] + '</a>' : '<span class="text-ink font-semibold">' + c[0] + '</span>'; }).join('<span>&rsaquo;</span>') + '</nav>';
   }
-  function banner(color, title, sub, extra) {
-    return '<section class="' + color + ' text-white"><div class="max-w-7xl mx-auto px-6 py-12 md:py-16"><h1 class="font-head uppercase font-semibold text-4xl md:text-6xl tracking-wide">' + title + '</h1><p class="mt-3 max-w-2xl text-white/90 text-lg">' + sub + '</p>' + (extra || '') + '</div></section>';
+  var CAT_BANNER = { breakfast: 'slide-brunch.jpg', salads: 'slide-salads.jpg', sandwiches: 'slide-burger.jpg', hot: 'slide-salmon.jpg', platters: 'slide-platter.jpg', drinks: 'champagne.jpg' };
+  // Elegant page banner: photo (optional), soft dark veil, thin gold frame, ornament line.
+  function banner(color, title, sub, extra, image, kicker) {
+    return '<section class="lux-banner ' + (image ? '' : 'lux-plain') + ' relative overflow-hidden text-white">' +
+      (image ? '<img src="images/' + image + '" alt="" class="absolute inset-0 w-full h-full object-cover">' +
+        '<div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/55 to-black/85"></div>' : '') +
+      '<div class="pointer-events-none absolute inset-3 sm:inset-5 border border-sun/60"></div>' +
+      '<div class="pointer-events-none absolute inset-4 sm:inset-7 border border-sun/20"></div>' +
+      '<div class="relative max-w-5xl mx-auto px-8 sm:px-12 py-16 md:py-24 text-center">' +
+        '<p class="label !text-sun mb-4">' + (kicker || 'North York Catering') + '</p>' +
+        '<h1 class="font-head font-semibold uppercase text-5xl md:text-7xl tracking-[.08em] leading-tight">' + title + '</h1>' +
+        '<div class="flex items-center justify-center gap-3 my-6"><span class="h-px w-16 sm:w-24 bg-sun"></span><span class="text-sun text-sm">&#9670;</span><span class="h-px w-16 sm:w-24 bg-sun"></span></div>' +
+        '<p class="max-w-2xl mx-auto font-head italic text-2xl md:text-3xl text-white/90 leading-snug">' + sub + '</p>' + (extra || '') + '</div></section>';
   }
 
   // =================== SHOP (catering / signature lunch) ===================
@@ -45,8 +56,8 @@
     var state = { cat: 'all' };
     app.innerHTML =
       banner(isL ? 'bg-ink' : 'bg-brand', isL ? 'Signature Lunch' : 'Catering',
-        isL ? 'For intimate gatherings and private lunches. Individually presented and effortless to order.' : 'For grand occasions: boardroom luncheons, celebrations and private events. Beautifully presented trays and platters, delivered to your door.',
-        '<ol class="mt-6 grid sm:grid-cols-3 gap-4 text-sm">' + how.map(function (h, i) { return '<li class="flex gap-3 items-start bg-white/15 rounded-2xl p-4"><span class="shrink-0 w-7 h-7 rounded-full bg-sun text-ink font-bold flex items-center justify-center">' + (i + 1) + '</span><span>' + h + '</span></li>'; }).join('') + '</ol>') +
+        isL ? 'Individually presented lunches for private tables and close-knit teams, effortless to order.' : 'Boardroom luncheons, celebrations and private events, with beautifully presented trays and platters delivered to your door.',
+        '<ol class="mt-10 grid sm:grid-cols-3 gap-4 text-sm text-white/95">' + how.map(function (h, i) { return '<li class="flex gap-3 items-start text-left border border-white/25 bg-white/10 backdrop-blur-sm p-4"><span class="shrink-0 w-7 h-7 rounded-full bg-sun text-ink font-bold flex items-center justify-center">' + (i + 1) + '</span><span>' + h + '</span></li>'; }).join('') + '</ol>', isL ? 'slide-boxed.jpg' : 'slide-office.jpg', isL ? 'For intimate gatherings' : 'For grand occasions') +
       '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'index.html'], [modeName(mode)]]) + '</section>' +
       '<section class="max-w-7xl mx-auto px-6 py-10"><h2 class="font-head uppercase font-semibold text-3xl tracking-wide mb-6">Browse the collections</h2>' +
         '<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">' + cats.map(function (c) {
@@ -108,7 +119,7 @@
     var groups = cat.groups.filter(function (g) { return items.some(function (i) { return i.group === g[0]; }); });
     var others = CATALOG.categories.filter(function (c) { return c.id !== cat.id; });
     app.innerHTML =
-      banner('bg-brand', cat.name, cat.blurb) +
+      banner('', cat.name, cat.blurb, '', CAT_BANNER[cat.id], 'A collection') +
       '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'index.html'], [modeName(mode), modeHref(mode)], [cat.name]]) + '</section>' +
       '<section class="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-[260px_1fr] gap-8"><div id="side"></div><div id="results"></div></section>';
     $('#side').innerHTML = panel(
