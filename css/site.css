@@ -49,3 +49,8 @@ details summary::-webkit-details-marker { display: none; }
 /* Elegant page banners */
 .lux-plain { background: radial-gradient(ellipse at 50% -20%, #4a3a1c 0%, #1b150d 55%, #0a0a0a 100%); }
 .lux-banner h1 { text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+
+/* Gentle fade when a page opens */
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+body { animation: pageIn .5s ease; }
+@media (prefers-reduced-motion: reduce) { body { animation: none; } }
