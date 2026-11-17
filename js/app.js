@@ -122,11 +122,65 @@
     '</div><div class="border-t border-white/10 text-center text-xs text-white/50 py-5 px-4">&copy; 2026 North York Catering &nbsp;·&nbsp; Prices and checkout on this preview are for demonstration only.</div></div>';
   }
 
+
+  // ---------- "The experience" large pop-up ----------
+  var EXPERIENCE = {
+    catering: {
+      kicker: 'For grand occasions', title: 'The Catering Experience', image: 'images/slide-office.jpg',
+      lead: 'Boardroom luncheons, celebrations and private events, prepared fresh and presented with care.',
+      steps: [
+        ['Select your menu', 'Browse our collections or ask for something bespoke. Choose a tray size and finishing touches such as fruit cups and beverages.'],
+        ['Confirm the details', 'Tell us the date, delivery window, number of guests and any dietary needs. We confirm everything with you.'],
+        ['We prepare with care', 'Everything is prepared fresh and arranged beautifully. Dietary requests are packed and labelled separately.'],
+        ['Delivered to your door', 'We deliver to your office or venue across North York and Toronto. Ask us about options for larger events.']
+      ],
+      notes: ['Standing weekly arrangements are available. Just ask.', 'A tasting beforehand can be arranged for special events.', 'Dietary needs are always welcome.'],
+      cta: [['Explore Catering', 'catering.html', 'btn-coral'], ['Request a Quote', 'index.html#design', 'btn-line']]
+    },
+    lunch: {
+      kicker: 'For intimate gatherings', title: 'The Signature Lunch Experience', image: 'images/slide-boxed.jpg',
+      lead: 'Individually presented lunches for private tables and close-knit teams.',
+      steps: [
+        ['Select your dishes', 'Choose from salads, salmon, sandwiches, wraps and more, one portion or several.'],
+        ['Tell us where and when', 'Share your address and the time you would like to dine. We confirm the details with you.'],
+        ['Packed with care', 'Each lunch is individually packed and can be labelled with a name and dietary needs.'],
+        ['Savour it', 'Your lunches arrive fresh and ready to enjoy. Ask us about delivery or pickup.']
+      ],
+      notes: ['Labelled with names on request.', 'Perfect for desks, meeting rooms and small tables.', 'Set up a weekly arrangement and we will take care of it.'],
+      cta: [['Explore Signature Lunch', 'takeout.html', 'btn-coral'], ['Request a Quote', 'index.html#design', 'btn-line']]
+    }
+  };
+  NYC.experience = function (kind) {
+    var e = EXPERIENCE[kind]; if (!e) return;
+    var prev = document.activeElement;
+    var wrap = document.createElement('div');
+    wrap.className = 'fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6';
+    wrap.setAttribute('role', 'dialog'); wrap.setAttribute('aria-modal', 'true'); wrap.setAttribute('aria-label', e.title);
+    wrap.innerHTML =
+      '<div data-close class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>' +
+      '<div class="pop relative bg-white w-full max-w-5xl max-h-[94vh] overflow-y-auto rounded-t-3xl sm:rounded-3xl shadow-2xl grid md:grid-cols-[2fr_3fr]">' +
+        '<button type="button" data-close aria-label="Close" class="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-white border border-line text-2xl leading-none hover:bg-ink hover:text-white">&times;</button>' +
+        '<div class="relative min-h-[200px] md:min-h-full"><img src="' + e.image + '" alt="" class="absolute inset-0 w-full h-full object-cover"><div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>' +
+          '<p class="absolute bottom-5 left-6 right-6 text-white font-head text-2xl italic">' + e.lead + '</p></div>' +
+        '<div class="p-7 sm:p-10"><p class="label mb-2">' + e.kicker + '</p><h2 class="font-head font-bold text-3xl sm:text-4xl uppercase tracking-wide leading-tight">' + e.title + '</h2><div class="rule my-5"></div>' +
+          '<ol class="space-y-5">' + e.steps.map(function (s, i) { return '<li class="flex gap-4"><span class="shrink-0 font-head text-4xl text-coral leading-none w-10">0' + (i + 1) + '</span><span><b class="block font-head uppercase tracking-wide text-xl">' + s[0] + '</b><span class="text-mute text-sm leading-relaxed">' + s[1] + '</span></span></li>'; }).join('') + '</ol>' +
+          '<ul class="mt-7 grid gap-2 text-sm border-t border-line pt-5">' + e.notes.map(function (n) { return '<li class="flex gap-2"><span class="text-coral">&#10003;</span><span>' + n + '</span></li>'; }).join('') + '</ul>' +
+          '<p class="mt-5 text-sm">Questions? Call <b>[Phone number]</b></p>' +
+          '<div class="mt-6 flex flex-wrap gap-3">' + e.cta.map(function (c) { return '<a href="' + c[1] + '" class="btn ' + c[2] + '">' + c[0] + '</a>'; }).join('') + '</div></div></div>';
+    document.body.appendChild(wrap); document.body.style.overflow = 'hidden';
+    function close() { wrap.remove(); document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); if (prev && prev.focus) prev.focus(); }
+    function onKey(ev) { if (ev.key === 'Escape') close(); }
+    document.addEventListener('keydown', onKey);
+    wrap.addEventListener('click', function (ev) { if (ev.target.closest('[data-close]')) close(); else if (ev.target.closest('a')) { close(); } });
+    wrap.querySelector('button[data-close]').focus();
+  };
+
   document.addEventListener('DOMContentLoaded', function () {
     var h = document.getElementById('site-header'), f = document.getElementById('site-footer');
     if (h) { h.innerHTML = header(); h.className = 'fixed top-0 inset-x-0 z-30'; }
     if (f) f.innerHTML = footer();
     NYC.badge();
+    document.addEventListener('click', function (ev) { var b = ev.target.closest('[data-experience]'); if (b) { ev.preventDefault(); NYC.experience(b.getAttribute('data-experience')); } });
     var mb = document.getElementById('menu-btn');
     if (mb) mb.addEventListener('click', function () {
       var m = document.getElementById('mobile-menu'); var open = m.classList.toggle('hidden') === false;
