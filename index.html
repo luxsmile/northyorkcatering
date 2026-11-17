@@ -354,7 +354,7 @@
         });
       }
       function go(n) { i = (n + slides.length) % slides.length; show(); }
-      function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!paused) go(i + 1); }, 1800); }
+      function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!paused) go(i + 1); }, 2800); }
       document.getElementById('hero-prev').addEventListener('click', function () { go(i - 1); restart(); });
       document.getElementById('hero-next').addEventListener('click', function () { go(i + 1); restart(); });
       hero.addEventListener('mouseenter', function () { paused = true; });
