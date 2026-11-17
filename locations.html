@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Locations & Delivery | North York Catering</title>
+  <meta name="description" content="Where North York Catering delivers: North York, Toronto and the GTA.">
+  <link rel="icon" type="image/svg+xml" href="logo-mark.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/tw.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body class="bg-cream text-ink antialiased" data-page="static" data-nav="locations">
+  <div id="site-header"></div>
+  <main id="app" class="pt-[104px]">
+<section class="bg-brand text-white"><div class="max-w-7xl mx-auto px-6 py-12 md:py-16"><h1 class="font-head uppercase font-semibold text-4xl md:text-6xl tracking-wide">Locations &amp; Delivery</h1><p class="mt-3 max-w-2xl text-white/90 text-lg">We deliver fresh, beautifully presented catering to offices and private events across North York, Toronto and the GTA.</p></div></section>
+<section class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-2 gap-8">
+  <div class="bg-white rounded-3xl shadow-sm p-8">
+    <p class="label mb-2">Where we deliver</p>
+    <h2 class="font-head uppercase font-semibold text-3xl tracking-wide mb-4">North York · Toronto · the GTA</h2>
+    <p class="text-mute mb-6">Share your postal code and we will gladly confirm delivery to your office.</p>
+    <form id="area" class="flex gap-3 flex-wrap"><input id="pc" class="field flex-1 min-w-[160px]" placeholder="Postal code" aria-label="Postal code" required><button class="btn btn-coral" type="submit">Check</button></form>
+    <p id="area-msg" class="mt-4 text-sm text-branddk font-medium"></p>
+  </div>
+  <div class="bg-sun rounded-3xl p-8">
+    <p class="label !text-ink mb-2">Get in touch</p>
+    <h2 class="font-head uppercase font-semibold text-3xl tracking-wide mb-4">Visit or call</h2>
+    <dl class="space-y-3 text-ink/90"><div><dt class="font-semibold">Phone</dt><dd>[Phone number]</dd></div><div><dt class="font-semibold">Email</dt><dd>[Email address]</dd></div><div><dt class="font-semibold">Address</dt><dd>[Address to be added]</dd></div><div><dt class="font-semibold">Hours</dt><dd>[Opening hours to be added]</dd></div></dl>
+  </div>
+</section>
+<section class="bg-white border-y border-line"><div class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-3 gap-6 text-center">
+  <div><p class="text-4xl mb-2">🚚</p><h3 class="font-head uppercase font-medium text-xl tracking-wide">Delivery</h3><p class="text-mute text-sm mt-1">Select a delivery window at checkout. Fees and minimums are confirmed with your order.</p></div>
+  <div><p class="text-4xl mb-2">🏢</p><h3 class="font-head uppercase font-medium text-xl tracking-wide">Made for the office</h3><p class="text-mute text-sm mt-1">Personally labelled meals, standing weekly arrangements and effortless reordering.</p></div>
+  <div><p class="text-4xl mb-2">🎉</p><h3 class="font-head uppercase font-medium text-xl tracking-wide">Event space</h3><p class="text-mute text-sm mt-1">Celebrate with us. <a class="text-coral underline" href="index.html#space">Ask about the space</a>.</p></div>
+</div></section>
+<section class="max-w-3xl mx-auto px-6 py-14 text-center"><h2 class="font-head uppercase font-semibold text-3xl tracking-wide">Ready to dine?</h2><div class="mt-6 flex flex-wrap gap-3 justify-center"><a href="catering.html" class="btn btn-coral">Explore Catering</a><a href="takeout.html" class="btn btn-line">Signature Lunch</a></div></section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('area').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = document.getElementById('pc').value.trim().toUpperCase().replace(/[^A-Z0-9 ]/g, '');
+      document.getElementById('area-msg').textContent = 'Thanks! We will confirm delivery to ' + v + ' when you place your order or call us.';
+    });
+  });
+</script>
+</main>
+  <div id="site-footer"></div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

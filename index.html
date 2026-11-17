@@ -3,453 +3,231 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>North York Catering | Pizza, Pasta, Brunch, Platters &amp; More. Catering in Toronto</title>
-  <meta name="description" content="North York Catering: Italian, French and English favourites, pizza, wings, burgers, brunch, meze, cheese and sharing platters for offices and events in North York and across Toronto.">
+  <title>North York Catering | Fine Catering for Offices &amp; Private Events in Toronto</title>
+  <meta name="description" content="North York Catering: fine catering for offices and private events in North York and across Toronto. Salads, salmon, sandwiches, breakfast, pizza, platters and more, thoughtfully designed around you and delivered.">
   <link rel="icon" type="image/svg+xml" href="logo-mark.svg">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        colors: {
-          cream: '#FFEE9E',   /* page background: butter yellow */
-          sun: '#FFCB3D',     /* sunny yellow */
-          suncream: '#FFE066',
-          tomato: '#E4472C',  /* lively red */
-          basil: '#2F8F5B',   /* fresh green */
-          teal: '#1FA39A',
-          peach: '#FFBF9B',
-          mint: '#A6E7C0',
-          sky: '#97DCE4',
-          ink: '#2B2825',
-          mute: '#675F55',
-          line: '#F0CC5E'
-        },
-        fontFamily: { serif: ['"Cormorant Garamond"', 'serif'], sans: ['Montserrat', 'sans-serif'] }
-      } }
-    }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    section[id] { scroll-margin-top: 110px; }
-    .label { font-family: Montserrat, sans-serif; text-transform: uppercase; letter-spacing: .28em; font-size: .72rem; color: #E4472C; font-weight: 700; }
-    .rule { width: 56px; height: 4px; background: #FFCB3D; border-radius: 4px; }
-    .btn-red { background: #E4472C; color: #fff; letter-spacing: .16em; text-transform: uppercase; font-size: .75rem; font-weight: 700; padding: 1rem 2rem; border-radius: 999px; transition: transform .2s, background .2s; display: inline-block; cursor: pointer; border: 0; }
-    .btn-red:hover { background: #c93a21; transform: translateY(-2px); }
-    .btn-ink { background: #2B2825; color: #fff; letter-spacing: .16em; text-transform: uppercase; font-size: .75rem; font-weight: 700; padding: 1rem 2rem; border-radius: 999px; transition: transform .2s, background .2s; display: inline-block; }
-    .btn-ink:hover { background: #E4472C; transform: translateY(-2px); }
-    .btn-line { border: 2px solid #2B2825; color: #2B2825; letter-spacing: .16em; text-transform: uppercase; font-size: .75rem; font-weight: 700; padding: calc(1rem - 2px) 2rem; border-radius: 999px; transition: all .2s; display: inline-block; }
-    .btn-line:hover { background: #2B2825; color: #fff; }
-    .zoom img { transition: transform .8s ease; }
-    .zoom:hover img { transform: scale(1.07); }
-    .card { transition: transform .25s, box-shadow .25s; }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 30px -12px rgba(43,40,37,.25); }
-    details summary::-webkit-details-marker { display: none; }
-    .chip { display: inline-block; cursor: pointer; }
-    .chip input { position: absolute; opacity: 0; pointer-events: none; }
-    .chip span { display: inline-block; border: 2px solid #F0CC5E; background: #fff; padding: .5rem 1.1rem; font-size: .8rem; font-weight: 600; border-radius: 999px; transition: all .15s; }
-    .chip:hover span { border-color: #E4472C; }
-    .chip input:checked + span { background: #E4472C; color: #fff; border-color: #E4472C; }
-    .chip input:focus-visible + span { outline: 3px solid #FFCB3D; outline-offset: 2px; }
-    .filter { border: 2px solid #2B2825; background: transparent; padding: .6rem 1.3rem; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; border-radius: 999px; cursor: pointer; transition: all .15s; }
-    .filter:hover { background: #FFCB3D; }
-    .filter.active { background: #E4472C; border-color: #E4472C; color: #fff; }
-    .field { width: 100%; border: 2px solid #F0CC5E; background: #fff; padding: .8rem 1rem; font-size: .9rem; border-radius: 12px; }
-    .field:focus { outline: 3px solid #FFCB3D; outline-offset: 0; border-color: #FFCB3D; }
-    @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
-    .pop { animation: pop .35s ease; }
-  </style>
+  <script src="js/tw.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
 </head>
-<body class="bg-cream text-ink font-sans antialiased">
+<body class="bg-cream text-ink antialiased" data-page="home" data-nav="home">
+  <div id="site-header"></div>
 
-  <!-- Header -->
-  <header class="fixed top-0 inset-x-0 z-30">
-    <div class="bg-tomato text-white text-center text-xs sm:text-sm font-semibold py-2 px-4 tracking-wide">
-      Planning a holiday party? Ask us about festive menus, platters and drinks.
-    </div>
-    <div class="bg-white/95 backdrop-blur shadow-sm">
-      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        <a href="#" class="flex items-center gap-3" aria-label="North York Catering, home">
-          <img src="logo-mark.svg" alt="" class="h-11 w-auto">
-          <span class="leading-none">
-            <span class="block font-serif font-semibold text-xl md:text-2xl tracking-[.2em] uppercase">North York</span>
-            <span class="block label !text-[.55rem] !tracking-[.45em] mt-1.5">Fine Catering</span>
-          </span>
-        </a>
-        <nav class="hidden lg:flex gap-7 text-[.72rem] uppercase tracking-[.18em] font-bold">
-          <a href="#menu" class="hover:text-tomato">Menus</a>
-          <a href="#salads" class="hover:text-tomato">Salads</a>
-          <a href="#design" class="hover:text-tomato">Design Your Order</a>
-          <a href="#occasions" class="hover:text-tomato">Occasions</a>
-          <a href="#drinks" class="hover:text-tomato">Drinks</a>
-          <a href="#space" class="hover:text-tomato">Event Space</a>
-          <a href="#faq" class="hover:text-tomato">FAQ</a>
-        </nav>
-        <a href="#design" class="btn-red hidden sm:inline-block !py-3 !px-6">Request a Quote</a>
-      </div>
-    </div>
-  </header>
+  <main class="pt-[104px]">
 
-  <!-- Hero slideshow -->
-  <section class="pt-[104px] bg-cream" aria-roledescription="carousel" aria-label="Featured catering">
-    <div id="hero" class="relative overflow-hidden h-[520px] sm:h-[600px] lg:h-[calc(100vh-104px)] lg:min-h-[560px] lg:max-h-[780px]">
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-100" role="group" aria-roledescription="slide" aria-label="1 of 10">
-        <img src="images/slide-pizza.jpg" alt="Colourful loaded pizza on a table" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Hot &amp; fresh</p>
-          <h1 class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Good food, <em class="text-tomato">fresh</em> and on time.</h1>
-          <p class="text-mute text-sm sm:text-base mt-3">Pizza, pasta, burgers, wings, brunch, meze and platters, delivered to you.</p>
-          <a href="#menu" class="btn-red mt-5 !py-3 !px-6">Explore Menus</a>
+  <!-- Hero: fast slideshow + two side panels -->
+  <section aria-roledescription="carousel" aria-label="Featured catering">
+    <div class="grid lg:grid-cols-[1fr_340px] lg:h-[calc(100vh-104px)] lg:min-h-[560px] lg:max-h-[720px]">
+      <div id="hero" class="relative overflow-hidden h-[500px] sm:h-[560px] lg:h-auto bg-navy">
+        <div id="slides"></div>
+        <button type="button" id="hero-prev" class="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 hover:bg-sun shadow flex items-center justify-center text-xl font-bold" aria-label="Previous slide">&#8249;</button>
+        <button type="button" id="hero-next" class="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 hover:bg-sun shadow flex items-center justify-center text-xl font-bold" aria-label="Next slide">&#8250;</button>
+        <div id="hero-dots" class="absolute bottom-4 inset-x-0 flex justify-center flex-wrap gap-1.5 px-4"></div>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-1 lg:grid-rows-2">
+        <div class="reveal-box zoom relative overflow-hidden bg-mint p-5 sm:p-6 flex flex-col justify-between min-h-[200px]">
+          <a href="catering.html" class="font-head uppercase font-semibold text-3xl text-branddk leading-tight hover:underline">&rsaquo; Catering</a>
+          <p class="text-sm text-ink/75 mt-1">Grand occasions</p>
+          <div class="overflow-hidden rounded-xl mt-2 h-24 lg:h-28"><img src="images/office-desk.jpg" alt="Boxed salad lunch on an office desk" class="w-full h-full object-cover"></div>
+          <button type="button" data-reveal-btn aria-expanded="false" class="absolute right-3 bottom-3 z-10 bg-white/90 hover:bg-sun text-ink text-[.65rem] font-semibold uppercase tracking-[.12em] rounded-full px-3 py-1.5 shadow">The experience</button>
+          <div class="reveal absolute inset-0 bg-navy/95 text-white p-6 flex flex-col justify-center">
+            <p class="font-head uppercase tracking-[.15em] text-sun text-sm mb-3">The experience</p>
+            <ol class="space-y-2 text-sm">
+              <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-sun text-ink text-xs font-bold flex items-center justify-center">1</span><span>Select your menu and finishing touches.</span></li>
+              <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-sun text-ink text-xs font-bold flex items-center justify-center">2</span><span>Confirm your date, time and guest count.</span></li>
+              <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-sun text-ink text-xs font-bold flex items-center justify-center">3</span><span>We prepare it fresh and deliver with care.</span></li>
+            </ol>
+            <p class="mt-4 text-sm">Questions? Call <span class="font-semibold text-sun">[Phone number]</span></p>
+          </div>
+        </div>
+        <div class="reveal-box zoom relative overflow-hidden bg-peach p-5 sm:p-6 flex flex-col justify-between min-h-[200px]">
+          <a href="takeout.html" class="font-head uppercase font-semibold text-3xl text-coraldk leading-tight hover:underline">&rsaquo; Signature Lunch</a>
+          <p class="text-sm text-ink/75 mt-1">Intimate gatherings</p>
+          <div class="overflow-hidden rounded-xl mt-2 h-24 lg:h-28"><img src="images/wraps.jpg" alt="Fresh wrap for a quick lunch" class="w-full h-full object-cover"></div>
+          <button type="button" data-reveal-btn aria-expanded="false" class="absolute right-3 bottom-3 z-10 bg-white/90 hover:bg-sun text-ink text-[.65rem] font-semibold uppercase tracking-[.12em] rounded-full px-3 py-1.5 shadow">The experience</button>
+          <div class="reveal absolute inset-0 bg-navy/95 text-white p-6 flex flex-col justify-center">
+            <p class="font-head uppercase tracking-[.15em] text-sun text-sm mb-3">The experience</p>
+            <ol class="space-y-2 text-sm">
+              <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-sun text-ink text-xs font-bold flex items-center justify-center">1</span><span>Select the dishes you desire.</span></li>
+              <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-sun text-ink text-xs font-bold flex items-center justify-center">2</span><span>Tell us where and when to arrive.</span></li>
+              <li class="flex gap-3"><span class="shrink-0 w-6 h-6 rounded-full bg-sun text-ink text-xs font-bold flex items-center justify-center">3</span><span>Savour a beautifully packed lunch.</span></li>
+            </ol>
+            <p class="mt-4 text-sm">Questions? Call <span class="font-semibold text-sun">[Phone number]</span></p>
+          </div>
         </div>
       </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="2 of 10">
-        <img src="images/slide-office.jpg" alt="Catered buffet in a bright office with city views" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Office Catering</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Lunch your team will <em class="text-tomato">look forward</em> to.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">Fresh platters, boxed lunches and hot dishes delivered to your office.</p>
-          <a href="#design" class="btn-red mt-5 !py-3 !px-6">Plan Your Order</a>
-        </div>
-      </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="3 of 10">
-        <img src="images/slide-salads.jpg" alt="Bright rainbow salad with fresh vegetables" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Salads</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Salads that are <em class="text-tomato">anything but</em> boring.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">Caesar, Greek, grain bowls, Cobb and many more. Add salmon or chicken to any salad.</p>
-          <a href="#salads" class="btn-red mt-5 !py-3 !px-6">See All Salads</a>
-        </div>
-      </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="4 of 10">
-        <img src="images/slide-salmon.jpg" alt="Lemon herb salmon fillet on pasta" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Salmon</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Lemon &amp; herb <em class="text-tomato">salmon</em>.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">A light, fresh and filling main for working lunches.</p>
-          <a href="#menu" class="btn-red mt-5 !py-3 !px-6">See Hot Dishes</a>
-        </div>
-      </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="5 of 10">
-        <img src="images/slide-brunch.jpg" alt="Colourful brunch table with waffles, eggs and fruit" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Breakfast &amp; Brunch</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Mornings made <em class="text-tomato">delicious</em>.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">English breakfast, bagels, pastries and fruit, ready for your first meeting.</p>
-          <a href="#menu" class="btn-red mt-5 !py-3 !px-6">See Breakfast Menus</a>
-        </div>
-      </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="6 of 10">
-        <img src="images/slide-platter.jpg" alt="Large colourful grazing platter" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Platters &amp; Grazing</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Platters that make the <em class="text-tomato">party</em>.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">Sharing boards, cheese platters and fruit platters for any size of group.</p>
-          <a href="#menu" class="btn-red mt-5 !py-3 !px-6">See Platters</a>
-        </div>
-      </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="7 of 10">
-        <img src="images/slide-burger.jpg" alt="Juicy burger with fries" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Lunch Favourites</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Burgers, wings and <em class="text-tomato">more</em>.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">Crowd-pleasers for team lunches, game days and everything in between.</p>
-          <a href="#menu" class="btn-red mt-5 !py-3 !px-6">See Lunch Menus</a>
-        </div>
-      </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="8 of 10">
-        <img src="images/slide-pasta.jpg" alt="Fresh Italian pasta" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Italian &amp; French</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Classic dishes, <em class="text-tomato">beautifully</em> made.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">Pasta, lasagna, quiche and favourites cooked with great ingredients.</p>
-          <a href="#menu" class="btn-red mt-5 !py-3 !px-6">Explore Italian &amp; French</a>
-        </div>
-      </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="9 of 10">
-        <img src="images/slide-meze.jpg" alt="Colourful meze spread with dips and salads" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Meze</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Small plates, <em class="text-tomato">big</em> flavour.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">Dips, salads and shareable plates, perfect for gatherings.</p>
-          <a href="#menu" class="btn-red mt-5 !py-3 !px-6">See Meze</a>
-        </div>
-      </div>
-      <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0 pointer-events-none" role="group" aria-roledescription="slide" aria-label="10 of 10">
-        <img src="images/slide-cheese.jpg" alt="Cheese and charcuterie platter with honey" class="w-full h-full object-cover" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent"></div>
-        <div class="absolute left-4 right-4 sm:left-10 bottom-16 sm:bottom-20 max-w-md bg-white rounded-3xl shadow-xl p-6 sm:p-8">
-          <p class="label mb-2">Cheese Platters</p>
-          <p class="font-serif font-bold text-3xl sm:text-4xl leading-tight">Cheese, honey and <em class="text-tomato">everything</em> nice.</p>
-          <p class="text-mute text-sm sm:text-base mt-3">Cheeses, cured meats and fresh fruit, arranged beautifully.</p>
-          <a href="#design" class="btn-red mt-5 !py-3 !px-6">Design Your Order</a>
-        </div>
-      </div>
-      <button type="button" id="hero-prev" class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 hover:bg-sun shadow flex items-center justify-center text-xl font-bold" aria-label="Previous slide">&#8249;</button>
-      <button type="button" id="hero-next" class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 hover:bg-sun shadow flex items-center justify-center text-xl font-bold" aria-label="Next slide">&#8250;</button>
-      <div id="hero-dots" class="absolute bottom-5 inset-x-0 flex justify-center gap-2"></div>
     </div>
   </section>
 
-  <!-- Intro strip -->
-  <section class="bg-tomato text-white">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-3 text-center divide-y md:divide-y-0 md:divide-x divide-white/30">
-      <div class="py-9 px-6"><p class="text-[.72rem] uppercase tracking-[.28em] font-bold text-suncream mb-2">Quality ingredients</p><p class="font-serif font-semibold text-2xl">Real food, done properly</p></div>
-      <div class="py-9 px-6"><p class="text-[.72rem] uppercase tracking-[.28em] font-bold text-suncream mb-2">No limits</p><p class="font-serif font-semibold text-2xl">Any dish you can imagine</p></div>
-      <div class="py-9 px-6"><p class="text-[.72rem] uppercase tracking-[.28em] font-bold text-suncream mb-2">Delivered to you</p><p class="font-serif font-semibold text-2xl">North York &amp; across Toronto</p></div>
+  <!-- Two ways to dine -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="font-head uppercase text-center tracking-[.2em] text-xl sm:text-2xl font-medium mb-10">Two ways to dine</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-mint rounded-3xl p-8 md:p-10">
+        <p class="label !text-branddk mb-2">Our signature</p>
+        <h3 class="font-head uppercase font-semibold text-3xl md:text-4xl text-branddk mb-1">Catering</h3>
+        <p class="italic text-ink/80 mb-5">Grand occasions: boardroom luncheons, celebrations and events</p>
+        <ul class="space-y-2 mb-7 text-sm md:text-base">
+          <li>&#10003; &nbsp;Elegant trays, platters and hot entrées</li>
+          <li>&#10003; &nbsp;Salads, salmon, sandwiches and breakfast, finely prepared</li>
+          <li>&#10003; &nbsp;Complement with fruit, beverages and more</li>
+          <li>&#10003; &nbsp;Delivered with care across North York and Toronto</li>
+        </ul>
+        <a href="catering.html" class="btn btn-navy">Explore Catering</a>
+      </div>
+      <div class="bg-peach rounded-3xl p-8 md:p-10">
+        <p class="label mb-2">Effortless elegance</p>
+        <h3 class="font-head uppercase font-semibold text-3xl md:text-4xl text-coraldk mb-1">Signature Lunch</h3>
+        <p class="italic text-ink/80 mb-5">Intimate gatherings: private lunches and close-knit teams</p>
+        <ul class="space-y-2 mb-7 text-sm md:text-base">
+          <li>&#10003; &nbsp;Individually presented salads, wraps and sandwiches</li>
+          <li>&#10003; &nbsp;Ideal for small tables and private lunches</li>
+          <li>&#10003; &nbsp;Fresh, refined and simple to order</li>
+          <li>&#10003; &nbsp;Ask us about delivery or pickup</li>
+        </ul>
+        <a href="takeout.html" class="btn btn-coral">Explore Signature Lunch</a>
+      </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="max-w-7xl mx-auto px-6 py-24">
-    <div class="text-center mb-14">
-      <p class="label mb-4">Two Ways to Celebrate</p>
-      <h2 class="font-serif font-bold text-4xl md:text-5xl">Catering, crafted for the occasion</h2>
-      <div class="rule mx-auto mt-6"></div>
-    </div>
-    <div class="grid md:grid-cols-2 gap-8">
-      <a href="#design" class="zoom card block bg-white rounded-3xl overflow-hidden shadow">
-        <div class="overflow-hidden h-[380px]"><img src="images/group.jpg" alt="Boxed catering lunches and pastries ready for delivery" class="w-full h-full object-cover"></div>
-        <div class="p-8">
-          <span class="inline-block bg-sun text-ink text-[.65rem] font-bold uppercase tracking-[.2em] px-3 py-1 rounded-full mb-3">Corporate</span>
-          <h3 class="font-serif font-bold text-3xl md:text-4xl mb-2">Office &amp; Group Catering</h3>
-          <p class="text-mute mb-4">Platters, buffets and boxed meals for meetings, team lunches and gatherings.</p>
-          <span class="text-tomato text-xs uppercase tracking-[.2em] font-bold">Design Your Order &rarr;</span>
+  <!-- Popular picks scroller -->
+  <section class="bg-white py-16 border-y border-line">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-end justify-between mb-8">
+        <div><p class="label mb-1">Most requested</p><h2 class="font-head uppercase font-semibold text-3xl sm:text-4xl">Guest favourites</h2></div>
+        <div class="flex gap-2">
+          <button type="button" id="pop-prev" class="w-11 h-11 rounded-full border-2 border-navy hover:bg-sun font-bold text-xl" aria-label="Scroll left">&#8249;</button>
+          <button type="button" id="pop-next" class="w-11 h-11 rounded-full border-2 border-navy hover:bg-sun font-bold text-xl" aria-label="Scroll right">&#8250;</button>
         </div>
+      </div>
+      <div id="pop-row" class="flex gap-5 overflow-x-auto no-bar snap-x snap-mandatory pb-4 -mx-6 px-6"></div>
+    </div>
+  </section>
+
+  <!-- Three big promo cards -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="grid md:grid-cols-3 gap-6">
+      <a href="category.html?c=breakfast" class="peek-wrap zoom card rounded-3xl overflow-hidden bg-sun block">
+        <div class="p-7"><h3 class="font-head uppercase font-semibold text-3xl">The Breakfast Collection</h3><p class="text-ink/80 mt-2 mb-4">Pastries, bagels, sandwiches and seasonal fruit, ready before your first meeting.</p><span class="btn btn-navy !py-2.5 !px-6">Discover</span></div>
+        <div class="relative overflow-hidden h-56"><img src="images/slide-coffee.jpg" alt="Coffee, croissant and orange juice breakfast" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call [Phone number]</div></div>
       </a>
-      <a href="#space" class="zoom card block bg-white rounded-3xl overflow-hidden shadow">
-        <div class="overflow-hidden h-[380px]"><img src="images/events.jpg" alt="Colourful canapés and mini desserts displayed for a party" class="w-full h-full object-cover"></div>
-        <div class="p-8">
-          <span class="inline-block bg-mint text-ink text-[.65rem] font-bold uppercase tracking-[.2em] px-3 py-1 rounded-full mb-3">Private</span>
-          <h3 class="font-serif font-bold text-3xl md:text-4xl mb-2">Parties &amp; Special Events</h3>
-          <p class="text-mute mb-4">Birthdays, parties and celebrations, with an event space available for your day.</p>
-          <span class="text-tomato text-xs uppercase tracking-[.2em] font-bold">See the Event Space &rarr;</span>
-        </div>
+      <a href="category.html?c=salads" class="peek-wrap zoom card rounded-3xl overflow-hidden bg-mint block">
+        <div class="p-7"><h3 class="font-head uppercase font-semibold text-3xl text-branddk">Signature salads</h3><p class="text-ink/80 mt-2 mb-4">Eight composed salads, finished with salmon or chicken if you wish.</p><span class="btn btn-coral !py-2.5 !px-6">Discover</span></div>
+        <div class="relative overflow-hidden h-56"><img src="images/sal-grain.jpg" alt="Hearty grain salad bowl with avocado" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call [Phone number]</div></div>
+      </a>
+      <a href="category.html?c=sandwiches" class="peek-wrap zoom card rounded-3xl overflow-hidden bg-lilac block">
+        <div class="p-7"><h3 class="font-head uppercase font-semibold text-3xl">Sandwiches &amp; wraps</h3><p class="text-ink/80 mt-2 mb-4">Generously filled, pressed warm and packed for graceful desk-side dining.</p><span class="btn btn-navy !py-2.5 !px-6">Discover</span></div>
+        <div class="relative overflow-hidden h-56"><img src="images/sandwiches.jpg" alt="Sandwiches and paninis" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call [Phone number]</div></div>
       </a>
     </div>
   </section>
 
-  <!-- Quality -->
-  <section class="grid md:grid-cols-2">
-    <div class="zoom overflow-hidden min-h-[400px]"><img src="images/ingredients.jpg" alt="Fresh vegetables, eggs and herbs on a cutting board" class="w-full h-full object-cover"></div>
-    <div class="bg-basil text-white flex items-center">
-      <div class="p-10 md:p-20 max-w-xl">
-        <p class="label !text-sun mb-4">Our Standard</p>
-        <h2 class="font-serif font-bold text-4xl md:text-5xl mb-6">Great ingredients make great food</h2>
-        <div class="rule mb-6"></div>
-        <p class="text-white/90 leading-relaxed">We believe catering should taste like real food, not like a tray. Every dish starts with quality ingredients and is prepared with care, so your guests notice the difference from the first bite.</p>
+  <!-- Why discerning offices choose us -->
+  <section class="bg-brand text-white">
+    <div class="grid lg:grid-cols-2">
+      <div class="grid grid-cols-2">
+        <div class="zoom overflow-hidden min-h-[240px]"><img src="images/office-team.jpg" alt="Team sharing pizza and food around a table" class="w-full h-full object-cover" loading="lazy"></div>
+        <div class="zoom overflow-hidden min-h-[240px]"><img src="images/office-buffet.jpg" alt="Catered buffet in a bright office" class="w-full h-full object-cover" loading="lazy"></div>
       </div>
-    </div>
-  </section>
-
-  <!-- Salads -->
-  <section id="salads" class="bg-mint py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-14">
-        <p class="label !text-basil mb-4">Fresh &amp; crunchy</p>
-        <h2 class="font-serif font-bold text-4xl md:text-5xl">A salad for everyone</h2>
-        <div class="rule mx-auto mt-6"></div>
-        <p class="text-ink/75 max-w-2xl mx-auto mt-6">Big, generous salads built with fresh ingredients. Add grilled salmon or chicken to turn any of them into a full lunch.</p>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/3]"><img src="images/sal-caesar.jpg" alt="Caesar salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Caesar</h3><p class="text-mute text-sm mt-1">Crisp romaine, crunchy croutons, creamy dressing.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/3]"><img src="images/sal-greek.jpg" alt="Greek salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Greek</h3><p class="text-mute text-sm mt-1">Feta, olives, cucumber and ripe tomato.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/3]"><img src="images/sal-garden.jpg" alt="Garden Fresh salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Garden Fresh</h3><p class="text-mute text-sm mt-1">Mixed greens with colourful vegetables.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/3]"><img src="images/sal-rainbow.jpg" alt="Rainbow Harvest salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Rainbow Harvest</h3><p class="text-mute text-sm mt-1">A bright mix of crunchy raw vegetables.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/3]"><img src="images/sal-grain.jpg" alt="Grain Bowl salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Grain Bowl</h3><p class="text-mute text-sm mt-1">Hearty grains, avocado and fresh toppings.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/3]"><img src="images/sal-caprese.jpg" alt="Caprese salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Caprese</h3><p class="text-mute text-sm mt-1">Tomato, fresh mozzarella and basil.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/3]"><img src="images/sal-cobb.jpg" alt="Cobb salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Cobb</h3><p class="text-mute text-sm mt-1">Chicken, bacon, egg, avocado and tomato.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/3]"><img src="images/sal-berry.jpg" alt="Berry &amp; Spinach salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Berry &amp; Spinach</h3><p class="text-mute text-sm mt-1">Sweet berries on tender greens.</p></div></div>
-      </div>
-      <p class="text-center mt-10 text-ink/80">Also ask for: <span class="font-semibold">pasta salad, chicken avocado, spinach and strawberry, kale crunch, Niçoise with salmon</span> and your own favourites.</p>
-      <div class="text-center mt-6"><a href="#design" class="btn-red">Build a Salad Order</a></div>
-    </div>
-  </section>
-
-  <!-- Menus -->
-  <section id="menu" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-10">
-        <p class="label mb-4">The Menus</p>
-        <h2 class="font-serif font-bold text-4xl md:text-5xl">Something for every table</h2>
-        <div class="rule mx-auto mt-6"></div>
-      </div>
-
-      <div class="flex flex-wrap justify-center gap-3 mb-12" id="filters">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="breakfast">Breakfast &amp; Brunch</button>
-        <button class="filter" data-filter="lunch">Lunch</button>
-        <button class="filter" data-filter="italian">Italian &amp; French</button>
-        <button class="filter" data-filter="hot">Hot Favourites</button>
-        <button class="filter" data-filter="platters">Platters &amp; Meze</button>
-      </div>
-
-      <div id="menu-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <a href="#design" data-cat="breakfast" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/breakfast.jpg" alt="Full English breakfast plate" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">English Breakfast</h3><p class="text-mute text-sm mt-1">A proper morning spread.</p></div></a>
-        <a href="#design" data-cat="breakfast" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/brunch.jpg" alt="Colourful brunch table" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Brunch</h3><p class="text-mute text-sm mt-1">Waffles, eggs, fruit and more.</p></div></a>
-        <a href="#design" data-cat="breakfast" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/bagels.jpg" alt="Bagel with cream cheese" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Bagels</h3><p class="text-mute text-sm mt-1">Fresh bagels with all the toppings.</p></div></a>
-        <a href="#design" data-cat="breakfast" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/croissant.jpg" alt="Golden butter croissant" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Breads &amp; Pastries</h3><p class="text-mute text-sm mt-1">Croissants, good bread and sweet treats.</p></div></a>
-
-        <a href="#design" data-cat="lunch" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/sandwiches.jpg" alt="Platter of sandwiches and paninis" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Paninis &amp; Sandwiches</h3><p class="text-mute text-sm mt-1">Warm, pressed and full of flavour.</p></div></a>
-        <a href="#design" data-cat="lunch hot" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/burgers.jpg" alt="Juicy burger with fries" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Burgers</h3><p class="text-mute text-sm mt-1">Juicy, stacked and satisfying.</p></div></a>
-
-        <a href="#design" data-cat="italian" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/italian.jpg" alt="Fresh Italian pasta" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Italian &amp; Pasta</h3><p class="text-mute text-sm mt-1">Pastas and favourites made with care.</p></div></a>
-        <a href="#design" data-cat="italian hot" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/lasagna.jpg" alt="Baked lasagna" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Lasagna</h3><p class="text-mute text-sm mt-1">Rich, layered and made to share.</p></div></a>
-        <a href="#design" data-cat="italian hot" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/pizza.jpg" alt="Colourful loaded pizza" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Pizza</h3><p class="text-mute text-sm mt-1">Hot, fresh and made for sharing.</p></div></a>
-        <a href="#design" data-cat="italian" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/french.jpg" alt="French quiche with a fresh salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">French</h3><p class="text-mute text-sm mt-1">Quiches, classics and café favourites.</p></div></a>
-
-        <a href="#design" data-cat="hot lunch" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/wings.jpg" alt="Basket of hot wings" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Wings</h3><p class="text-mute text-sm mt-1">Crispy, saucy and always first to go.</p></div></a>
-        <a href="#design" data-cat="hot" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/chicken.jpg" alt="Grilled chicken with vegetables" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Chicken</h3><p class="text-mute text-sm mt-1">Roasted, grilled or sauced to your taste.</p></div></a>
-        <a href="#design" data-cat="hot" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/salmon.jpg" alt="Lemon herb salmon" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Salmon</h3><p class="text-mute text-sm mt-1">Lemon and herb, light and filling.</p></div></a>
-        <a href="#salads" data-cat="lunch" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/sal-rainbow.jpg" alt="Rainbow salad" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Salads</h3><p class="text-mute text-sm mt-1">Many to choose from.</p></div></a>
-        <a href="#design" data-cat="lunch" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/wraps.jpg" alt="Fresh spinach wrap" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Wraps</h3><p class="text-mute text-sm mt-1">Handy, tidy and easy to eat at a desk.</p></div></a>
-
-        <a href="#design" data-cat="platters" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/meze.jpg" alt="Colourful meze spread" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Meze</h3><p class="text-mute text-sm mt-1">Dips, salads and small plates to share.</p></div></a>
-        <a href="#design" data-cat="platters" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/cheese.jpg" alt="Cheese and charcuterie platter with honey" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Cheese Platters</h3><p class="text-mute text-sm mt-1">Cheeses, meats, fruit and honey.</p></div></a>
-        <a href="#design" data-cat="platters" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/platters.jpg" alt="Large colourful sharing platter" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Sharing Platters</h3><p class="text-mute text-sm mt-1">Grazing boards for any size of group.</p></div></a>
-        <a href="#design" data-cat="platters breakfast" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-square"><img src="images/fruit.jpg" alt="Fresh fruit platter with berries" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Fruit Platters</h3><p class="text-mute text-sm mt-1">Fresh, colourful and always popular.</p></div></a>
+      <div class="p-10 md:p-16">
+        <p class="label !text-sun mb-3">Designed for the office</p>
+        <h2 class="font-head uppercase font-semibold text-3xl md:text-4xl mb-8">Why discerning offices choose us</h2>
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div><p class="text-3xl mb-1">🏷️</p><h3 class="font-head uppercase font-medium text-xl tracking-wide">Personally labelled</h3><p class="text-white/90 text-sm">Individually packed boxes with names and dietary needs, so every guest is looked after.</p></div>
+          <div><p class="text-3xl mb-1">🔁</p><h3 class="font-head uppercase font-medium text-xl tracking-wide">Standing arrangements</h3><p class="text-white/90 text-sm">Set a weekly team lunch once and we will take care of it, every time.</p></div>
+          <div><p class="text-3xl mb-1">🥗</p><h3 class="font-head uppercase font-medium text-xl tracking-wide">A place for every guest</h3><p class="text-white/90 text-sm">Salads, salmon, vegetarian, vegan, halal and gluten-free options.</p></div>
+          <div><p class="text-3xl mb-1">🍽️</p><h3 class="font-head uppercase font-medium text-xl tracking-wide">A tasting first</h3><p class="text-white/90 text-sm">Planning something special? Ask us about tasting the menu beforehand.</p></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Any dish banner -->
-  <section class="bg-teal text-white py-20 px-6 text-center">
-    <p class="label !text-sun mb-4">No Limits</p>
-    <h2 class="font-serif font-bold text-4xl md:text-5xl max-w-3xl mx-auto">Do not see it here? Ask for it.</h2>
-    <div class="rule mx-auto my-6"></div>
-    <p class="text-white/90 max-w-2xl mx-auto mb-8">Greek, Indian, Mexican, Thai, vegan or a family recipe you love. Tell us what you have in mind and we will deliver it just the way you like.</p>
-    <a href="#design" class="btn-ink !bg-white !text-ink hover:!bg-sun">Tell Us What You Want</a>
+  <section class="bg-sun py-16 px-6 text-center">
+    <p class="label !text-ink mb-3">No limits</p>
+    <h2 class="font-head uppercase font-semibold text-3xl md:text-5xl max-w-3xl mx-auto">Dreaming of something else? Simply ask.</h2>
+    <div class="rule !bg-ink mx-auto my-5"></div>
+    <p class="text-ink/80 max-w-2xl mx-auto mb-7">Greek, Indian, Mexican, vegan or a treasured family recipe. Tell us what you have in mind and we will create it and deliver it just as you imagined.</p>
+    <a href="#design" class="btn btn-navy">Share Your Vision</a>
   </section>
 
   <!-- Design your own -->
-  <section id="design" class="bg-peach py-24">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-14">
-        <p class="label mb-4">Design Your Own Order</p>
-        <h2 class="font-serif font-bold text-4xl md:text-5xl">Your menu, your way</h2>
-        <div class="rule mx-auto mt-6"></div>
-        <p class="text-mute max-w-2xl mx-auto mt-6">Tell us what you would like. We will shape the menu around your guests, your taste and your budget, and deliver it to you.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-6 text-center mb-14">
-        <div><p class="mx-auto w-14 h-14 rounded-full bg-tomato text-white font-serif font-bold text-3xl flex items-center justify-center">1</p><h3 class="font-serif font-bold text-2xl mt-3">Tell us your idea</h3><p class="text-mute text-sm mt-1">Date, guests and the food you have in mind.</p></div>
-        <div><p class="mx-auto w-14 h-14 rounded-full bg-sun text-ink font-serif font-bold text-3xl flex items-center justify-center">2</p><h3 class="font-serif font-bold text-2xl mt-3">We design the menu</h3><p class="text-mute text-sm mt-1">Tailored to your taste, diets and budget.</p></div>
-        <div><p class="mx-auto w-14 h-14 rounded-full bg-basil text-white font-serif font-bold text-3xl flex items-center justify-center">3</p><h3 class="font-serif font-bold text-2xl mt-3">We deliver</h3><p class="text-mute text-sm mt-1">Fresh and beautifully presented, to your door.</p></div>
-      </div>
-
-      <form id="planner" class="grid md:grid-cols-2 gap-10 bg-white rounded-3xl shadow-lg p-8 md:p-12" onsubmit="return false">
-        <div class="space-y-6">
-          <div class="grid grid-cols-2 gap-4">
-            <label class="block"><span class="label block mb-2">Date</span><input id="p-date" type="date" class="field"></label>
-            <label class="block"><span class="label block mb-2">Guests</span><input id="p-guests" type="number" min="1" placeholder="e.g. 25" class="field"></label>
-          </div>
-          <label class="block"><span class="label block mb-2">Occasion</span>
-            <select id="p-occasion" class="field">
-              <option>Team lunch</option><option>Breakfast meeting</option><option>Corporate event</option><option>Birthday or party</option><option>Celebration</option><option>Holiday gathering</option><option>Something else</option>
-            </select>
-          </label>
-          <div>
-            <span class="label block mb-3">What are you craving?</span>
-            <div class="flex flex-wrap gap-2" id="p-cuisine">
-              <label class="chip"><input type="checkbox" value="Italian"><span>Italian</span></label>
-              <label class="chip"><input type="checkbox" value="French"><span>French</span></label>
-              <label class="chip"><input type="checkbox" value="English"><span>English</span></label>
-              <label class="chip"><input type="checkbox" value="Pizza"><span>Pizza</span></label>
-              <label class="chip"><input type="checkbox" value="Wings and burgers"><span>Wings &amp; burgers</span></label>
-              <label class="chip"><input type="checkbox" value="Breakfast and brunch"><span>Breakfast &amp; brunch</span></label>
-              <label class="chip"><input type="checkbox" value="Meze and platters"><span>Meze &amp; platters</span></label>
-              <label class="chip"><input type="checkbox" value="Bagels and pastries"><span>Bagels &amp; pastries</span></label>
-              <label class="chip"><input type="checkbox" value="Drinks"><span>Drinks</span></label>
-            </div>
+  <section id="design" class="max-w-6xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <p class="label mb-3">Bespoke orders</p>
+      <h2 class="font-head uppercase font-semibold text-4xl md:text-5xl">Your menu, composed for you</h2>
+      <div class="rule mx-auto mt-5"></div>
+      <p class="text-mute max-w-2xl mx-auto mt-5">Tell us what you would like. We will compose the menu around your guests, your taste and your budget, and deliver it with care.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 text-center mb-12">
+      <div><p class="mx-auto w-14 h-14 rounded-full bg-coral text-white font-head font-semibold text-3xl flex items-center justify-center">1</p><h3 class="font-head uppercase font-medium text-2xl mt-3">Share your vision</h3><p class="text-mute text-sm mt-1">The date, your guests and the food you imagine.</p></div>
+      <div><p class="mx-auto w-14 h-14 rounded-full bg-sun text-ink font-head font-semibold text-3xl flex items-center justify-center">2</p><h3 class="font-head uppercase font-medium text-2xl mt-3">We compose the menu</h3><p class="text-mute text-sm mt-1">Tailored to your taste, dietary needs and budget.</p></div>
+      <div><p class="mx-auto w-14 h-14 rounded-full bg-brand text-white font-head font-semibold text-3xl flex items-center justify-center">3</p><h3 class="font-head uppercase font-medium text-2xl mt-3">We deliver with care</h3><p class="text-mute text-sm mt-1">Fresh and beautifully presented, to your door.</p></div>
+    </div>
+    <form id="planner" class="grid md:grid-cols-2 gap-10 bg-white rounded-3xl shadow-lg p-8 md:p-12" onsubmit="return false">
+      <div class="space-y-6">
+        <div class="grid grid-cols-2 gap-4">
+          <label class="block"><span class="label block mb-2">Date</span><input id="p-date" type="date" class="field"></label>
+          <label class="block"><span class="label block mb-2">Guests</span><input id="p-guests" type="number" min="1" placeholder="e.g. 25" class="field"></label>
+        </div>
+        <label class="block"><span class="label block mb-2">Occasion</span>
+          <select id="p-occasion" class="field"><option>Team lunch</option><option>Breakfast meeting</option><option>Client meeting</option><option>Office celebration</option><option>Holiday party</option><option>Private party</option><option>Something else</option></select>
+        </label>
+        <div>
+          <span class="label block mb-3">What are you craving?</span>
+          <div class="flex flex-wrap gap-2" id="p-cuisine">
+            <label class="chip"><input type="checkbox" value="Salads"><span>Salads</span></label>
+            <label class="chip"><input type="checkbox" value="Salmon"><span>Salmon</span></label>
+            <label class="chip"><input type="checkbox" value="Sandwiches and wraps"><span>Sandwiches &amp; wraps</span></label>
+            <label class="chip"><input type="checkbox" value="Italian"><span>Italian</span></label>
+            <label class="chip"><input type="checkbox" value="French"><span>French</span></label>
+            <label class="chip"><input type="checkbox" value="English"><span>English</span></label>
+            <label class="chip"><input type="checkbox" value="Pizza"><span>Pizza</span></label>
+            <label class="chip"><input type="checkbox" value="Wings and burgers"><span>Wings &amp; burgers</span></label>
+            <label class="chip"><input type="checkbox" value="Breakfast and brunch"><span>Breakfast &amp; brunch</span></label>
+            <label class="chip"><input type="checkbox" value="Meze and platters"><span>Meze &amp; platters</span></label>
+            <label class="chip"><input type="checkbox" value="Drinks"><span>Drinks</span></label>
           </div>
         </div>
-        <div class="space-y-6">
-          <div>
-            <span class="label block mb-3">Dietary needs</span>
-            <div class="flex flex-wrap gap-2" id="p-diet">
-              <label class="chip"><input type="checkbox" value="Vegetarian"><span>Vegetarian</span></label>
-              <label class="chip"><input type="checkbox" value="Vegan"><span>Vegan</span></label>
-              <label class="chip"><input type="checkbox" value="Halal"><span>Halal</span></label>
-              <label class="chip"><input type="checkbox" value="Gluten-free"><span>Gluten-free</span></label>
-              <label class="chip"><input type="checkbox" value="Nut allergy"><span>Nut allergy</span></label>
-              <label class="chip"><input type="checkbox" value="Dairy-free"><span>Dairy-free</span></label>
-            </div>
-          </div>
-          <label class="block"><span class="label block mb-2">Anything else? Your dream menu</span>
-            <textarea id="p-notes" rows="5" class="field" placeholder="Tell us what you crave, your area, or a budget you have in mind."></textarea>
-          </label>
-          <button type="button" id="p-build" class="btn-red w-full text-center">Create My Request</button>
-        </div>
-        <div id="p-result" class="md:col-span-2 hidden pop border-t-2 border-line pt-8">
-          <p class="label mb-3">Your request</p>
-          <textarea id="p-text" rows="7" readonly class="field bg-cream"></textarea>
-          <div class="mt-4 flex flex-wrap items-center gap-4">
-            <button type="button" id="p-copy" class="btn-line">Copy My Request</button>
-            <span id="p-msg" class="text-sm text-mute">Send this to us by phone, text or email and we will get right back to you.</span>
+      </div>
+      <div class="space-y-6">
+        <div>
+          <span class="label block mb-3">Dietary needs</span>
+          <div class="flex flex-wrap gap-2" id="p-diet">
+            <label class="chip"><input type="checkbox" value="Vegetarian"><span>Vegetarian</span></label>
+            <label class="chip"><input type="checkbox" value="Vegan"><span>Vegan</span></label>
+            <label class="chip"><input type="checkbox" value="Halal"><span>Halal</span></label>
+            <label class="chip"><input type="checkbox" value="Gluten-free"><span>Gluten-free</span></label>
+            <label class="chip"><input type="checkbox" value="Nut allergy"><span>Nut allergy</span></label>
+            <label class="chip"><input type="checkbox" value="Dairy-free"><span>Dairy-free</span></label>
           </div>
         </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Occasions -->
-  <section id="occasions" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-14">
-        <p class="label mb-4">Ideas by Occasion</p>
-        <h2 class="font-serif font-bold text-4xl md:text-5xl">Not sure where to start?</h2>
-        <div class="rule mx-auto mt-6"></div>
+        <label class="block"><span class="label block mb-2">Your dream menu</span>
+          <textarea id="p-notes" rows="5" class="field" placeholder="Tell us what you crave, your office area, or a budget you have in mind."></textarea>
+        </label>
+        <button type="button" id="p-build" class="btn btn-coral w-full">Compose My Request</button>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="card bg-suncream rounded-3xl p-8"><p class="text-4xl mb-3">🥪</p><h3 class="font-serif font-bold text-2xl mb-3">The Team Lunch</h3><p class="text-ink/75 text-sm leading-relaxed">Individually labelled boxed meals so everyone gets exactly what they ordered, with no mix-ups.</p></div>
-        <div class="card bg-peach rounded-3xl p-8"><p class="text-4xl mb-3">🥐</p><h3 class="font-serif font-bold text-2xl mb-3">The Early Meeting</h3><p class="text-ink/75 text-sm leading-relaxed">Bagels, croissants, fruit and hot coffee, delivered before your first guest arrives.</p></div>
-        <div class="card bg-mint rounded-3xl p-8"><p class="text-4xl mb-3">🧀</p><h3 class="font-serif font-bold text-2xl mb-3">The Celebration</h3><p class="text-ink/75 text-sm leading-relaxed">Pizza, wings, sharing boards and a toast for birthdays, launches and milestones.</p></div>
-        <div class="card bg-sky rounded-3xl p-8"><p class="text-4xl mb-3">🎄</p><h3 class="font-serif font-bold text-2xl mb-3">The Holiday Party</h3><p class="text-ink/75 text-sm leading-relaxed">Seasonal menus and festive drinks, planned together well before the day.</p></div>
+      <div id="p-result" class="md:col-span-2 hidden pop border-t-2 border-line pt-8">
+        <p class="label mb-3">Your request</p>
+        <textarea id="p-text" rows="7" readonly class="field bg-cream"></textarea>
+        <div class="mt-4 flex flex-wrap items-center gap-4">
+          <button type="button" id="p-copy" class="btn btn-line">Copy My Request</button>
+          <span id="p-msg" class="text-sm text-mute">Send this to us by phone, text or email and we will get right back to you.</span>
+        </div>
       </div>
-
-      <div class="mt-16 grid md:grid-cols-3 gap-8 text-center">
-        <div><p class="label mb-2">Standing orders</p><p class="font-serif font-semibold text-xl">Set a weekly team lunch once and we will take care of it every time.</p></div>
-        <div><p class="label mb-2">Tasting first</p><p class="font-serif font-semibold text-xl">Planning something big? Ask us about trying the menu beforehand.</p></div>
-        <div><p class="label mb-2">Clearly labelled</p><p class="font-serif font-semibold text-xl">Every dietary request is packaged and labelled so guests feel safe.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Drinks -->
-  <section id="drinks" class="bg-sky py-24">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-14">
-        <p class="label mb-4">Drinks</p>
-        <h2 class="font-serif font-bold text-4xl md:text-5xl">Raise a glass</h2>
-        <div class="rule mx-auto mt-6"></div>
-        <p class="text-ink/75 max-w-2xl mx-auto mt-6">Hot or cold, with or without alcohol, we can pair drinks with your menu for any occasion.</p>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/5]"><img src="images/hotdrinks.jpg" alt="Hot chocolate being poured into a cup" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Hot Drinks</h3><p class="text-mute text-sm mt-1">Coffee, tea and hot chocolate.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/5]"><img src="images/colddrinks.jpg" alt="Fresh lemonade with lemon slices" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Cold Drinks</h3><p class="text-mute text-sm mt-1">Lemonades, juices and iced coffee.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/5]"><img src="images/drinks.jpg" alt="Light cocktails with citrus and rosemary" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Cocktails</h3><p class="text-mute text-sm mt-1">Crafted for your celebration.</p></div></div>
-        <div class="zoom card bg-white rounded-2xl overflow-hidden shadow-sm"><div class="overflow-hidden aspect-[4/5]"><img src="images/champagne.jpg" alt="Glasses of champagne" class="w-full h-full object-cover" loading="lazy"></div><div class="p-5"><h3 class="font-serif font-bold text-2xl">Wine &amp; Sparkling</h3><p class="text-mute text-sm mt-1">Chosen to match your menu.</p></div></div>
-      </div>
-    </div>
+    </form>
   </section>
 
   <!-- Event space -->
   <section id="space" class="grid md:grid-cols-2">
-    <div class="bg-sun flex items-center order-2 md:order-1">
+    <div class="bg-coral text-white flex items-center order-2 md:order-1">
       <div class="p-10 md:p-20 max-w-xl ml-auto">
-        <p class="label !text-ink mb-4">Event Space</p>
-        <h2 class="font-serif font-bold text-4xl md:text-5xl mb-6">Host your next event with us</h2>
-        <div class="rule !bg-ink mb-6"></div>
-        <p class="text-ink/80 leading-relaxed mb-8">Looking for a place to hold your party, celebration or gathering? We offer an event space, and with your catering and drinks all in one place, planning is simple. Ask us about dates and availability.</p>
-        <a href="#design" class="btn-ink">Ask About the Space</a>
+        <p class="label !text-sun mb-3">Private event space</p>
+        <h2 class="font-head uppercase font-semibold text-4xl md:text-5xl mb-5">Celebrate with us</h2>
+        <div class="rule mb-5"></div>
+        <p class="text-white/90 leading-relaxed mb-7">Seeking the perfect setting for your celebration or gathering? Our event space, paired with our catering and beverages, makes planning effortless. Ask us about dates and availability.</p>
+        <a href="#design" class="btn btn-white">Enquire About the Space</a>
       </div>
     </div>
     <div class="grid grid-rows-2 order-1 md:order-2">
@@ -459,72 +237,96 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="max-w-3xl mx-auto px-6 py-24">
-    <div class="text-center mb-12">
-      <p class="label mb-4">Good to Know</p>
-      <h2 class="font-serif font-bold text-4xl md:text-5xl">Frequently asked questions</h2>
-      <div class="rule mx-auto mt-6"></div>
+  <section id="faq" class="max-w-3xl mx-auto px-6 py-20">
+    <div class="text-center mb-10">
+      <p class="label mb-3">Good to know</p>
+      <h2 class="font-head uppercase font-semibold text-4xl md:text-5xl">Frequently asked</h2>
+      <div class="rule mx-auto mt-5"></div>
     </div>
     <div class="divide-y-2 divide-line border-y-2 border-line">
-      <details class="py-6 group"><summary class="cursor-pointer font-serif font-semibold text-2xl flex justify-between items-center">Can I ask for any type of food? <span class="text-tomato text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-mute">Yes. Tell us what you have in mind and we will deliver it.</p></details>
-      <details class="py-6 group"><summary class="cursor-pointer font-serif font-semibold text-2xl flex justify-between items-center">Can I place a last-minute order? <span class="text-tomato text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-mute">[Answer to be added]</p></details>
-      <details class="py-6 group"><summary class="cursor-pointer font-serif font-semibold text-2xl flex justify-between items-center">Is there a minimum order? <span class="text-tomato text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-mute">[Answer to be added]</p></details>
-      <details class="py-6 group"><summary class="cursor-pointer font-serif font-semibold text-2xl flex justify-between items-center">How does delivery work? <span class="text-tomato text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-mute">[Answer to be added]</p></details>
-      <details class="py-6 group"><summary class="cursor-pointer font-serif font-semibold text-2xl flex justify-between items-center">Do you serve alcohol? <span class="text-tomato text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-mute">[Answer to be added]</p></details>
-      <details class="py-6 group"><summary class="cursor-pointer font-serif font-semibold text-2xl flex justify-between items-center">Do you handle allergies and dietary needs? <span class="text-tomato text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-mute">[Answer to be added]</p></details>
-      <details class="py-6 group"><summary class="cursor-pointer font-serif font-semibold text-2xl flex justify-between items-center">Can I book the event space? <span class="text-tomato text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-mute">[Answer to be added]</p></details>
+      <details class="py-5 group"><summary class="cursor-pointer font-head uppercase font-medium tracking-wide text-lg sm:text-xl flex justify-between items-center gap-4">Can I ask for any type of food? <span class="text-coral text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-mute">Yes. Tell us what you have in mind and we will deliver it.</p></details>
+      <details class="py-5 group"><summary class="cursor-pointer font-head uppercase font-medium tracking-wide text-lg sm:text-xl flex justify-between items-center gap-4">Can I place a last-minute order? <span class="text-coral text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-mute">[Answer to be added]</p></details>
+      <details class="py-5 group"><summary class="cursor-pointer font-head uppercase font-medium tracking-wide text-lg sm:text-xl flex justify-between items-center gap-4">Is there a minimum order? <span class="text-coral text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-mute">[Answer to be added]</p></details>
+      <details class="py-5 group"><summary class="cursor-pointer font-head uppercase font-medium tracking-wide text-lg sm:text-xl flex justify-between items-center gap-4">How does delivery work? <span class="text-coral text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-mute">[Answer to be added]</p></details>
+      <details class="py-5 group"><summary class="cursor-pointer font-head uppercase font-medium tracking-wide text-lg sm:text-xl flex justify-between items-center gap-4">Do you serve alcohol? <span class="text-coral text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-mute">[Answer to be added]</p></details>
+      <details class="py-5 group"><summary class="cursor-pointer font-head uppercase font-medium tracking-wide text-lg sm:text-xl flex justify-between items-center gap-4">Do you handle allergies and dietary needs? <span class="text-coral text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-mute">[Answer to be added]</p></details>
+      <details class="py-5 group"><summary class="cursor-pointer font-head uppercase font-medium tracking-wide text-lg sm:text-xl flex justify-between items-center gap-4">Can I set up a weekly office order? <span class="text-coral text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-mute">[Answer to be added]</p></details>
+      <details class="py-5 group"><summary class="cursor-pointer font-head uppercase font-medium tracking-wide text-lg sm:text-xl flex justify-between items-center gap-4">Can I book the event space? <span class="text-coral text-3xl group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-mute">[Answer to be added]</p></details>
     </div>
+  </section>
+
+  <!-- Where we deliver -->
+  <section class="bg-lilac py-14 px-6 text-center">
+    <p class="label !text-ink mb-2">Locations</p>
+    <h2 class="font-head uppercase font-semibold text-3xl md:text-4xl">North York · Toronto · the GTA</h2>
+    <p class="text-ink/75 mt-3 mb-6">Share your office address and we will gladly confirm delivery.</p>
+    <a href="locations.html" class="btn btn-navy">Delivery &amp; Locations</a>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="bg-tomato text-white py-24">
+  <section id="contact" class="bg-navy text-white py-20">
     <div class="max-w-3xl mx-auto px-6 text-center">
-      <p class="label !text-sun mb-4">Reserve Your Date</p>
-      <h2 class="font-serif font-bold text-4xl md:text-6xl mb-6">Let us plan your next occasion</h2>
-      <div class="rule mx-auto mb-6"></div>
-      <p class="text-white/90 mb-10">Tell us the date, number of guests and what you crave, and we will prepare a personalized quote.</p>
-      <p class="font-serif font-bold text-3xl">[Phone number]</p>
-      <p class="mt-2 text-white/90">[Email address]</p>
-      <a href="#design" class="btn-ink !bg-white !text-ink hover:!bg-sun mt-10">Design Your Order</a>
+      <p class="label !text-sun mb-3">Reserve your date</p>
+      <h2 class="font-head uppercase font-semibold text-4xl md:text-6xl mb-5">Allow us to plan your next occasion</h2>
+      <div class="rule mx-auto mb-5"></div>
+      <p class="text-white/85 mb-8">Share the date, your guest count and what you crave, and we will prepare a personalized quote.</p>
+      <p class="font-head font-semibold text-3xl">[Phone number]</p>
+      <p class="mt-2 text-white/85">[Email address]</p>
+      <a href="catering.html" class="btn btn-coral mt-8">Explore Catering</a>
     </div>
   </section>
 
-  <footer class="bg-ink text-white text-center py-12 px-6">
-    <img src="logo-mark.svg" alt="" class="h-16 w-auto mx-auto mb-4 bg-cream rounded-t-full px-3 pt-2">
-    <p class="font-serif font-semibold text-2xl tracking-[.2em] uppercase">North York</p>
-    <p class="label !text-sun !text-[.6rem] !tracking-[.45em] mt-2">Fine Catering</p>
-    <p class="text-white/70 text-sm mt-4">Serving North York and the GTA</p>
-    <p class="text-white/50 text-xs mt-6">&copy; 2026 North York Catering</p>
-  </footer>
+  </main>
+  <div id="site-footer"></div>
 
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
   <script>
-    // Hero slideshow: changes by itself, with arrows, dots and swipe
+    // ---------- Hero slideshow: fast, many pictures, arrows, dots, swipe ----------
     (function () {
-      var hero = document.getElementById('hero');
-      var slides = hero.querySelectorAll('.slide');
-      var dotsBox = document.getElementById('hero-dots');
-      var i = 0, timer = null, paused = false;
+      var SLIDES = [
+        ['slide-pizza.jpg',   'Colourful loaded pizza',            'Hot Entrées',       'Exquisite catering, <em class="text-coral">effortlessly</em> delivered.', 'Refined menus for boardrooms, celebrations and private events across North York and Toronto.', 'category.html?c=hot', 'Discover Entrées'],
+        ['slide-office.jpg',  'Catered buffet in a bright office', 'Grand Occasions',   'An <em class="text-coral">elevated</em> table for every occasion.',        'Beautifully presented trays and platters for meetings, luncheons and celebrations.', 'catering.html', 'Explore Catering'],
+        ['slide-boxed.jpg',   'Individual boxed lunches on a desk','Signature Lunch',   'Lunch, <em class="text-coral">personally</em> presented.',                 'Individually packed and labelled, so every guest is looked after.', 'takeout.html', 'Explore Signature Lunch'],
+        ['slide-salads.jpg',  'Bright rainbow salad',              'Salads',            'Garden freshness, <em class="text-coral">artfully</em> composed.',        'Eight signature salads. Add salmon or chicken for a complete luncheon.', 'category.html?c=salads', 'Discover Salads'],
+        ['slide-salmon.jpg',  'Lemon herb salmon on pasta',        'Salmon',            'Lemon and herb <em class="text-coral">salmon</em>, perfectly finished.',  'A light, elegant main for working luncheons.', 'product.html?id=salmon', 'Order Salmon'],
+        ['slide-brunch.jpg',  'Colourful brunch table',            'Breakfast & Brunch','Mornings, <em class="text-coral">beautifully</em> begun.',                'Fresh pastries, bagels, fruit and cooked breakfasts for early meetings.', 'category.html?c=breakfast', 'Discover Breakfast'],
+        ['slide-burger.jpg',  'Juicy burger',                      'Sandwiches & Wraps','Handcrafted favourites, <em class="text-coral">elegantly</em> served.',  'Sandwiches, wraps and burgers packed for easy enjoyment.', 'category.html?c=sandwiches', 'Discover Sandwiches'],
+        ['slide-pasta.jpg',   'Fresh Italian pasta',               'Italian',           'Pasta, made with <em class="text-coral">devotion</em>.',                  'Fresh pasta and baked lasagna, ready to be shared.', 'product.html?id=pasta', 'Order Pasta'],
+        ['slide-platter.jpg', 'Colourful grazing platter',         'Platters',          'Platters that <em class="text-coral">grace</em> every table.',            'Cheese, meze and grazing boards, arranged with care.', 'category.html?c=platters', 'Discover Platters'],
+        ['slide-wings.jpg',   'Basket of hot wings',               'Team Favourites',   'Signature wings for <em class="text-coral">spirited</em> gatherings.',    'Crisp, glossy and utterly irresistible.', 'product.html?id=wings', 'Order Wings'],
+        ['slide-meze.jpg',    'Colourful meze spread',             'Meze',              'Small plates, <em class="text-coral">generous</em> flavour.',             'Dips, salads and warm pita, made for sharing.', 'product.html?id=meze', 'Order Meze'],
+        ['slide-fruit.jpg',   'Fresh fruit platter',               'Seasonal Fruit',    'Seasonal fruit, <em class="text-coral">exquisitely</em> arranged.',       'Fruit cups and displays for every meeting.', 'product.html?id=fruit-tray', 'Order Fruit'],
+        ['slide-lasagna.jpg', 'Baked lasagna',                     'Comfort',           'Lasagna, <em class="text-coral">layered</em> to perfection.',             'Rich, golden and baked until bubbling.', 'product.html?id=lasagna', 'Order Lasagna'],
+        ['slide-cheese.jpg',  'Cheese platter with honey',         'Cheese',            'A cheese board worth <em class="text-coral">savouring</em>.',            'Fine cheeses, cured meats and fruit, beautifully presented.', 'product.html?id=cheese', 'Order Cheese'],
+        ['slide-coffee.jpg',  'Coffee, croissant and juice',       'Coffee & Pastries', 'A <em class="text-coral">graceful</em> start to the day.',                'Pastry collections, croissants and coffee service for the team.', 'product.html?id=pastry-box', 'Order Pastries']
+      ];
+      var box = document.getElementById('slides'), dotsBox = document.getElementById('hero-dots'), hero = document.getElementById('hero');
+      box.innerHTML = SLIDES.map(function (s, i) {
+        return '<div class="slide absolute inset-0 transition-opacity duration-700 ' + (i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none') + '" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + SLIDES.length + '">' +
+          '<img src="images/' + s[0] + '" alt="' + s[1] + '" class="w-full h-full object-cover"' + (i < 2 ? '' : ' loading="lazy"') + '>' +
+          '<div class="absolute inset-0 bg-gradient-to-t from-navy/55 via-transparent to-transparent"></div>' +
+          '<div class="absolute left-4 right-4 sm:left-8 bottom-14 sm:bottom-16 max-w-md bg-white rounded-2xl shadow-xl p-5 sm:p-7">' +
+          '<p class="label mb-2">' + s[2] + '</p><' + (i === 0 ? 'h1' : 'p') + ' class="font-head uppercase font-semibold text-2xl sm:text-4xl leading-tight">' + s[3] + '</' + (i === 0 ? 'h1' : 'p') + '>' +
+          '<p class="text-mute text-sm mt-3">' + s[4] + '</p><a href="' + s[5] + '" class="btn btn-coral mt-4 !py-3 !px-6">' + s[6] + '</a></div></div>';
+      }).join('');
+      var slides = box.querySelectorAll('.slide'), i = 0, timer = null, paused = false;
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       slides.forEach(function (_, n) {
-        var d = document.createElement('button');
-        d.type = 'button'; d.setAttribute('aria-label', 'Go to slide ' + (n + 1));
-        d.className = 'w-3 h-3 rounded-full bg-white/60 transition-all';
-        d.addEventListener('click', function () { go(n); restart(); });
-        dotsBox.appendChild(d);
+        var d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', 'Go to slide ' + (n + 1));
+        d.addEventListener('click', function () { go(n); restart(); }); dotsBox.appendChild(d);
       });
       var dots = dotsBox.children;
       function show() {
         slides.forEach(function (s, n) {
           var on = n === i;
-          s.classList.toggle('opacity-100', on);
-          s.classList.toggle('opacity-0', !on);
-          s.classList.toggle('pointer-events-none', !on);
+          s.classList.toggle('opacity-100', on); s.classList.toggle('opacity-0', !on); s.classList.toggle('pointer-events-none', !on);
           s.setAttribute('aria-hidden', on ? 'false' : 'true');
-          dots[n].className = 'h-3 rounded-full transition-all ' + (on ? 'w-8 bg-sun' : 'w-3 bg-white/70');
+          dots[n].className = 'h-2.5 rounded-full transition-all ' + (on ? 'w-6 bg-sun' : 'w-2.5 bg-white/70');
         });
       }
       function go(n) { i = (n + slides.length) % slides.length; show(); }
-      function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!paused) go(i + 1); }, 5500); }
+      function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!paused) go(i + 1); }, 3000); }
       document.getElementById('hero-prev').addEventListener('click', function () { go(i - 1); restart(); });
       document.getElementById('hero-next').addEventListener('click', function () { go(i + 1); restart(); });
       hero.addEventListener('mouseenter', function () { paused = true; });
@@ -534,38 +336,29 @@
       var x0 = null;
       hero.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
       hero.addEventListener('touchend', function (e) {
-        if (x0 === null) return;
-        var dx = e.changedTouches[0].clientX - x0;
-        if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); restart(); }
-        x0 = null;
+        if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); restart(); } x0 = null;
       });
       show(); restart();
     })();
 
-    // Menu filter tabs
+    // ---------- "Guest favourites" scroller (built from the menu data) ----------
     (function () {
-      var buttons = document.querySelectorAll('#filters .filter');
-      var cards = document.querySelectorAll('#menu-grid [data-cat]');
-      buttons.forEach(function (b) {
-        b.addEventListener('click', function () {
-          buttons.forEach(function (x) { x.classList.remove('active'); });
-          b.classList.add('active');
-          var f = b.getAttribute('data-filter');
-          cards.forEach(function (c) {
-            var show = f === 'all' || c.getAttribute('data-cat').split(' ').indexOf(f) !== -1;
-            c.style.display = show ? '' : 'none';
-            if (show) { c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
-          });
-        });
-      });
+      var row = document.getElementById('pop-row');
+      var picks = CATALOG.items.filter(function (i) { return i.popular; });
+      row.innerHTML = picks.map(function (it) {
+        return '<a href="product.html?id=' + it.id + '&mode=catering" class="peek-wrap zoom card snap-start shrink-0 w-56 sm:w-64 bg-white rounded-2xl overflow-hidden shadow-sm border border-line">' +
+          '<div class="relative overflow-hidden aspect-square"><img src="' + it.image + '" alt="' + it.name + '" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-xs py-3 px-2"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call [Phone number]</div></div>' +
+          '<div class="p-4"><p class="font-head uppercase font-semibold tracking-wide text-lg leading-snug">' + it.name + '</p><p class="font-head text-coral text-lg mt-1">' + (NYC.priceFrom(it, 'catering') === null ? '$' : 'From ' + NYC.money(NYC.priceFrom(it, 'catering'))) + '</p></div></a>';
+      }).join('');
+      document.getElementById('pop-prev').addEventListener('click', function () { row.scrollBy({ left: -row.clientWidth * .8, behavior: 'smooth' }); });
+      document.getElementById('pop-next').addEventListener('click', function () { row.scrollBy({ left: row.clientWidth * .8, behavior: 'smooth' }); });
     })();
 
-    // "Design your own order": builds a ready-to-send request from the choices
+    // ---------- "Design your own order": builds a ready-to-send request ----------
     (function () {
       var $ = function (id) { return document.getElementById(id); };
-      function checked(box) {
-        return Array.prototype.map.call(document.querySelectorAll('#' + box + ' input:checked'), function (i) { return i.value; });
-      }
+      function checked(box) { return Array.prototype.map.call(document.querySelectorAll('#' + box + ' input:checked'), function (i) { return i.value; }); }
       $('p-build').addEventListener('click', function () {
         var lines = ['Hello North York Catering, I would like a quote.'];
         if ($('p-date').value) lines.push('Date: ' + $('p-date').value);
