@@ -331,30 +331,45 @@
       ];
       var box = document.getElementById('slides'), dotsBox = document.getElementById('hero-dots'), hero = document.getElementById('hero');
       box.innerHTML = SLIDES.map(function (s, i) {
-        return '<div class="slide absolute inset-0 transition-opacity duration-1000 ease-in-out ' + (i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none') + '" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + SLIDES.length + '">' +
+        return '<div class="slide absolute inset-0 transition-opacity ' + (i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none') + '" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + SLIDES.length + '">' +
           '<img src="images/' + s[0] + '" alt="' + s[1] + '" class="w-full h-full object-cover"' + (i < 2 ? '' : ' loading="lazy"') + '>' +
           '<div class="absolute inset-0 bg-gradient-to-t from-navy/55 via-transparent to-transparent"></div>' +
           '<div class="absolute left-4 right-4 sm:left-8 bottom-14 sm:bottom-16 max-w-md bg-white rounded-2xl shadow-xl p-5 sm:p-7">' +
           '<p class="label mb-2">' + s[2] + '</p><' + (i === 0 ? 'h1' : 'p') + ' class="font-head uppercase font-semibold text-2xl sm:text-4xl leading-tight">' + s[3] + '</' + (i === 0 ? 'h1' : 'p') + '>' +
           '<p class="text-mute text-sm mt-3">' + s[4] + '</p><a href="' + s[5] + '" class="btn btn-coral mt-4 !py-3 !px-6">' + s[6] + '</a></div></div>';
       }).join('');
-      var slides = box.querySelectorAll('.slide'), i = 0, timer = null, paused = false;
+      var slides = box.querySelectorAll('.slide'), i = 0, prev = null, timer = null, hideTimer = null, paused = false;
+      var FADE = 1800;   // how long one picture takes to melt into the next (milliseconds)
+      var STAY = 3600;   // time between pictures (milliseconds)
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      slides.forEach(function (s) { s.style.transitionDuration = FADE + 'ms'; s.style.transitionTimingFunction = 'ease-in-out'; });
       slides.forEach(function (_, n) {
         var d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', 'Go to slide ' + (n + 1));
         d.addEventListener('click', function () { go(n); restart(); }); dotsBox.appendChild(d);
       });
       var dots = dotsBox.children;
-      function show() {
-        slides.forEach(function (s, n) {
-          var on = n === i;
-          s.classList.toggle('opacity-100', on); s.classList.toggle('opacity-0', !on); s.classList.toggle('pointer-events-none', !on);
-          s.setAttribute('aria-hidden', on ? 'false' : 'true');
-          dots[n].className = 'h-2.5 rounded-full transition-all ' + (on ? 'w-6 bg-sun' : 'w-2.5 bg-white/70');
-        });
+      // Put a picture away instantly (no fade) once it is fully covered by the next one.
+      function hide(s) {
+        var img = s.querySelector('img');
+        s.style.transition = 'none'; img.style.transition = 'none';
+        s.classList.remove('opacity-100'); s.classList.add('opacity-0', 'pointer-events-none');
+        s.style.zIndex = 0; img.style.transform = 'scale(1)';
+        void s.offsetWidth; s.style.transition = ''; s.style.transitionDuration = FADE + 'ms'; s.style.transitionTimingFunction = 'ease-in-out'; s.setAttribute('aria-hidden', 'true');
       }
-      function go(n) { i = (n + slides.length) % slides.length; show(); }
-      function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!paused) go(i + 1); }, 3200); }
+      function show() {
+        slides.forEach(function (s, n) { if (n !== i && n !== prev) hide(s); });
+        var s = slides[i], img = s.querySelector('img');
+        // The new picture fades in ON TOP of the old one, so the page never goes dark in between.
+        s.style.zIndex = 2; s.classList.remove('opacity-0', 'pointer-events-none'); s.classList.add('opacity-100'); s.setAttribute('aria-hidden', 'false');
+        if (!reduce) { img.style.transition = 'transform ' + (STAY + FADE + 800) + 'ms ease-out'; img.style.transform = 'scale(1.06)'; }
+        if (prev !== null && prev !== i) {
+          slides[prev].style.zIndex = 1; var p = prev; clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () { if (p !== i) hide(slides[p]); }, FADE + 80);
+        }
+        for (var n = 0; n < slides.length; n++) dots[n].className = 'h-2.5 rounded-full transition-all duration-700 ' + (n === i ? 'w-6 bg-sun' : 'w-2.5 bg-white/70');
+      }
+      function go(n) { prev = i; i = (n + slides.length) % slides.length; show(); }
+      function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!paused) go(i + 1); }, STAY); }
       document.getElementById('hero-prev').addEventListener('click', function () { go(i - 1); restart(); });
       document.getElementById('hero-next').addEventListener('click', function () { go(i + 1); restart(); });
       hero.addEventListener('mouseenter', function () { paused = true; });
