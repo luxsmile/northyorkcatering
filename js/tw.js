@@ -1,22 +1,22 @@
 // Colours and fonts for the whole site (Tailwind settings).
-// Palette: emerald green + coral + sunny yellow on warm cream.
+// Palette: green + dark orange + light tints, with black ink for text.
 tailwind.config = {
   theme: { extend: {
     colors: {
-      brand: '#0B7A57',    /* emerald green: header, big bands */
+      brand: '#0B7A57',    /* green accent */
       branddk: '#08603F',
-      navy: '#14213D',     /* deep navy: top bar, footer */
-      coral: '#FF5A4E',    /* buttons and highlights */
-      coraldk: '#E2443A',
-      sun: '#E8C468',      /* sunny yellow accents */
-      cream: '#FFF7EA',    /* page background */
-      peach: '#FFD9CC',
-      mint: '#C3F0D8',
-      lilac: '#E4DAFF',
-      sky: '#CDEBFA',
-      ink: '#221F1D',
-      mute: '#5F5851',
-      line: '#F2E3C9'
+      navy: '#0F2A1F',     /* very dark green: top bar and footer */
+      coral: '#C8561A',    /* dark orange accent */
+      coraldk: '#A94613',
+      sun: '#E9B872',      /* champagne tone (on dark backgrounds) */
+      cream: '#FFFFFF',    /* page background: white */
+      peach: '#F8F3EC',    /* warm ivory panel */
+      mint: '#F0F6F1',    /* whisper of green */
+      lilac: '#F8F3EC',
+      sky: '#F0F6F1',
+      ink: '#0A0A0A',      /* black ink for text */
+      mute: '#444444',
+      line: '#E6E0D6'
     },
     fontFamily: { brandname: ['"Playfair Display"', 'serif'], head: ['"Cormorant Garamond"', 'serif'], sans: ['Poppins', 'sans-serif'] }
   } }

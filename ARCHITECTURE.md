@@ -8,8 +8,8 @@ Plain HTML, JavaScript and CSS. No build step. Styling uses Tailwind (loaded fro
 | `index.html` | Home: fast slideshow, two ways to dine, guest favourites, bespoke order form, event space, questions |
 | `catering.html` | Catering shop: browse the collections, then "the full collection" |
 | `takeout.html` | Signature Lunch shop (individually presented lunches) |
-| `category.html` | One collection (e.g. Breakfast), split into sections (Sandwiches, Bagels, Pastries, Fruit) |
-| `product.html` | One item: choose size, add extras (fruit cups, drinks), quantity, special requests |
+| `category.html` | One collection (e.g. Platters & Meze), split into sections, with a filter sidebar (Vegan, Vegetarian, Gluten-free, Dairy-free, Nut-free) |
+| `product.html` | One item: serving sizes, extras (fruit cups, drinks), what's included, dietary and allergen details, serving guide |
 | `cart.html` | The cart |
 | `checkout.html` | Demonstration checkout (no real payment) |
 | `login.html` | Demonstration login, account and past orders |
@@ -20,7 +20,8 @@ Plain HTML, JavaScript and CSS. No build step. Styling uses Tailwind (loaded fro
 - **Photos:** `images/`. Replace a file with your own photo using the same name.
 - **Header, footer, cart, login logic:** `js/app.js`
 - **Shop page behaviour:** `js/pages.js`
-- **Colours and fonts:** `js/tw.js` and `css/site.css`
+- **Colours and fonts:** `js/tw.js` and `css/site.css`. The look is white pages and black ink, with green and dark orange used only as accents.
+- **Dietary labels, serving sizes and "What's included":** also in `js/data.js` (`diet`, `serves`, `includes`). These are best guesses and need checking before the site goes live.
 
 ## Decisions
 - **Same header and footer on every page** are written once in `js/app.js`.

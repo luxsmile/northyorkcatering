@@ -23,16 +23,24 @@
     var s = it.sizes.filter(function (x) { return x.kind === want; });
     return s.length ? s : it.sizes;
   };
+  NYC.serves = function (it, mode) {
+    var sizes = NYC.sizesFor(it, mode);
+    if (!sizes.length) return '';
+    if (mode === 'lunch') return 'Individual portion';
+    var nums = sizes.map(function (s) { return (s.serves.match(/\d+/g) || []).map(Number); }).reduce(function (a, b) { return a.concat(b); }, []);
+    return nums.length ? 'Serves ' + Math.min.apply(null, nums) + ' to ' + Math.max.apply(null, nums) + ' guests' : '';
+  };
   NYC.card = function (it, mode) {
     var from = NYC.priceFrom(it, mode);
     var tags = it.tags.map(function (t) { return '<span class="text-[.6rem] font-semibold uppercase tracking-wider bg-mint text-branddk rounded-full px-2 py-0.5">' + t + '</span>'; }).join(' ');
     return '<a href="product.html?id=' + it.id + '&mode=' + mode + '" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm">' +
       '<div class="overflow-hidden aspect-square"><img src="' + it.image + '" alt="' + it.name + '" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src=\'images/placeholder.svg\'"></div>' +
       '<div class="p-4"><h3 class="font-head uppercase font-semibold text-lg tracking-wide leading-snug">' + it.name + '</h3>' +
+      '<p class="text-xs text-coral font-semibold mt-1">' + NYC.serves(it, mode) + '</p>' +
       '<p class="text-mute text-sm mt-1 line-clamp-2">' + it.desc + '</p>' +
       '<div class="mt-2 flex flex-wrap gap-1">' + tags + '</div>' +
       '<p class="mt-3 flex items-center justify-between"><span class="font-head font-semibold text-xl text-coral">' + (from === null ? '$' : 'From ' + NYC.money(from)) + '</span>' +
-      '<span class="text-[.68rem] uppercase tracking-[.15em] font-semibold text-navy">Choose &rsaquo;</span></p></div></a>';
+      '<span class="text-[.68rem] uppercase tracking-[.15em] font-semibold text-ink">Choose &rsaquo;</span></p></div></a>';
   };
 
   // ---------- cart ----------
@@ -80,7 +88,7 @@
   // ---------- header / footer ----------
   function nav(label, href, key, current) {
     var on = current === key;
-    return '<a href="' + href + '" class="py-2 border-b-4 ' + (on ? 'border-sun' : 'border-transparent hover:border-white/60') + '">' + label + '</a>';
+    return '<a href="' + href + '" class="py-2 whitespace-nowrap border-b-2 ' + (on ? 'border-ink' : 'border-transparent hover:border-coral') + '">' + label + '</a>';
   }
   function header() {
     var cur = document.body.getAttribute('data-nav') || '';
@@ -90,18 +98,18 @@
     '<div class="bg-navy text-white text-xs sm:text-sm font-medium py-2 px-4 tracking-wide"><div class="max-w-7xl mx-auto flex items-center justify-between gap-4">' +
       '<a href="index.html#design" class="hover:text-sun"><span class="hidden sm:inline">Planning a holiday celebration? Ask us about festive menus and beverages.</span><span class="sm:hidden">Holiday celebration? Ask us.</span></a>' +
       '<a href="locations.html" class="font-semibold whitespace-nowrap hover:text-sun">Call [Phone number]</a></div></div>' +
-    '<div class="bg-brand text-white shadow-md"><div class="max-w-7xl mx-auto flex items-center gap-4 px-4 sm:px-6 py-3">' +
-      '<a href="index.html" class="flex items-center gap-3 shrink-0" aria-label="North York Catering, home"><img src="images/logo-mark-light.svg" alt="" class="h-11 w-auto">' +
-        '<span class="leading-none"><span class="block font-head font-semibold text-xl sm:text-2xl md:text-[1.7rem] tracking-[.18em] uppercase">North York</span><span class="block font-head font-semibold text-[.6rem] sm:text-[.68rem] tracking-[.4em] uppercase mt-1.5 text-sun">Fine Catering</span></span></a>' +
-      '<nav class="hidden lg:flex items-center gap-8 font-head text-[1.05rem] uppercase tracking-[.1em] font-medium ml-8">' +
+    '<div class="bg-white text-ink border-b border-line shadow-sm"><div class="max-w-7xl mx-auto flex items-center gap-4 px-4 sm:px-6 py-3">' +
+      '<a href="index.html" class="flex items-center gap-3 shrink-0" aria-label="North York Catering, home"><img src="logo-mark.svg" alt="" class="h-11 w-auto">' +
+        '<span class="leading-none"><span class="block font-head font-bold text-xl sm:text-2xl md:text-[1.7rem] tracking-[.18em] uppercase">North York</span><span class="block font-head font-semibold text-[.6rem] sm:text-[.68rem] tracking-[.4em] uppercase mt-1.5 text-coral">Fine Catering</span></span></a>' +
+      '<nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-head text-[1.05rem] uppercase tracking-[.12em] font-semibold ml-8">' +
         nav('Catering', 'catering.html', 'catering', cur) + nav('Signature Lunch', 'takeout.html', 'lunch', cur) + nav('Locations', 'locations.html', 'locations', cur) + '</nav>' +
-      '<form action="category.html" method="get" class="ml-auto hidden md:flex items-center bg-white rounded-full overflow-hidden w-56 lg:w-64"><input name="q" type="search" placeholder="Search the menu" aria-label="Search the menu" class="w-full px-4 py-2 text-ink text-sm outline-none"><button class="px-3 text-brand" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></form>' +
-      '<a href="login.html" class="ml-auto md:ml-0 flex items-center gap-2 font-head uppercase tracking-[.08em] text-sm sm:text-base hover:text-sun"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span class="hidden sm:inline">' + acct + '</span></a>' +
-      '<a href="cart.html" class="relative flex items-center gap-2 font-head uppercase tracking-[.08em] text-sm sm:text-base hover:text-sun" aria-label="Cart"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span class="hidden sm:inline">Cart</span><span data-cart-count class="hidden absolute -top-2 -right-3 sm:right-auto sm:left-4 bg-coral text-white text-[.65rem] font-bold rounded-full min-w-[1.25rem] h-5 px-1 flex items-center justify-center">0</span></a>' +
-      '<button type="button" id="menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full bg-white/15" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>' +
+      '<form action="category.html" method="get" class="ml-auto hidden md:flex items-center border border-line rounded-full overflow-hidden w-56 lg:w-64 bg-white"><input name="q" type="search" placeholder="Search the menu" aria-label="Search the menu" class="w-full px-4 py-2 text-ink text-sm outline-none"><button class="px-3 text-ink" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></form>' +
+      '<a href="login.html" class="ml-auto md:ml-0 flex items-center gap-2 font-head font-semibold uppercase tracking-[.1em] text-sm sm:text-base hover:text-coral"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span class="hidden sm:inline">' + acct + '</span></a>' +
+      '<a href="cart.html" class="relative flex items-center gap-2 font-head font-semibold uppercase tracking-[.1em] text-sm sm:text-base hover:text-coral" aria-label="Cart"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span class="hidden sm:inline">Cart</span><span data-cart-count class="hidden absolute -top-2 -right-3 sm:right-auto sm:left-4 bg-coral text-white text-[.65rem] font-bold rounded-full min-w-[1.25rem] h-5 px-1 flex items-center justify-center">0</span></a>' +
+      '<button type="button" id="menu-btn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-line" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>' +
     '</div>' +
-    '<div id="mobile-menu" class="hidden lg:hidden bg-branddk px-6 pb-5 pt-2 font-head uppercase tracking-[.1em] text-lg space-y-3">' +
-      '<form action="category.html" method="get" class="flex bg-white rounded-full overflow-hidden"><input name="q" type="search" placeholder="Search the menu" class="w-full px-4 py-2 text-ink text-sm outline-none"><button class="px-4 text-brand font-bold">Go</button></form>' +
+    '<div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-line px-6 pb-5 pt-3 font-head font-semibold uppercase tracking-[.12em] text-lg space-y-3">' +
+      '<form action="category.html" method="get" class="flex border border-line rounded-full overflow-hidden"><input name="q" type="search" placeholder="Search the menu" class="w-full px-4 py-2 text-ink text-sm outline-none font-sans normal-case tracking-normal"><button class="px-4 font-bold">Go</button></form>' +
       '<a class="block" href="catering.html">Catering</a><a class="block" href="takeout.html">Signature Lunch</a><a class="block" href="locations.html">Locations</a><a class="block" href="index.html#design">Design Your Order</a></div></div>';
   }
   function footer() {
