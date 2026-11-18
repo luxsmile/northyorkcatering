@@ -97,7 +97,7 @@
     return '' +
     '<div class="bg-navy text-white text-xs sm:text-sm font-medium py-2 px-4 tracking-wide border-b border-sun/40"><div class="max-w-7xl mx-auto flex items-center justify-between gap-4">' +
       '<a href="build.html" class="hover:text-sun"><span class="hidden sm:inline">Planning a holiday celebration? Ask us about festive menus and beverages.</span><span class="sm:hidden">Holiday celebration? Ask us.</span></a>' +
-      '<a href="locations.html" class="font-semibold whitespace-nowrap hover:text-sun">Call [Phone number]</a></div></div>' +
+      '<a href="tel:+16472133355" class="font-semibold whitespace-nowrap hover:text-sun">Call (647) 213-3355</a></div></div>' +
     '<div class="bg-white text-ink border-b border-line shadow-sm"><div class="max-w-7xl mx-auto flex items-center gap-4 px-4 sm:px-6 py-3">' +
       '<a href="index.html" class="flex items-center gap-3 shrink-0" aria-label="North York Catering, home"><img src="logo-mark.svg" alt="" class="h-11 w-auto">' +
         '<span class="leading-none"><span class="block font-head font-bold text-xl sm:text-2xl md:text-[1.7rem] tracking-[.18em] uppercase">North York</span><span class="block font-head font-semibold text-[.6rem] sm:text-[.68rem] tracking-[.4em] uppercase mt-1.5 text-coral">Fine Catering</span></span></a>' +
@@ -165,7 +165,7 @@
         '<div class="p-7 sm:p-10"><p class="label mb-2">' + e.kicker + '</p><h2 class="font-head font-bold text-3xl sm:text-4xl uppercase tracking-wide leading-tight">' + e.title + '</h2><div class="rule my-5"></div>' +
           '<ol class="space-y-5">' + e.steps.map(function (s, i) { return '<li class="flex gap-4"><span class="shrink-0 font-head text-4xl text-coral leading-none w-10">0' + (i + 1) + '</span><span><b class="block font-head uppercase tracking-wide text-xl">' + s[0] + '</b><span class="text-mute text-sm leading-relaxed">' + s[1] + '</span></span></li>'; }).join('') + '</ol>' +
           '<ul class="mt-7 grid gap-2 text-sm border-t border-line pt-5">' + e.notes.map(function (n) { return '<li class="flex gap-2"><span class="text-coral">&#10003;</span><span>' + n + '</span></li>'; }).join('') + '</ul>' +
-          '<p class="mt-5 text-sm">Questions? Call <b>[Phone number]</b></p>' +
+          '<p class="mt-5 text-sm">Questions? Call <b>(647) 213-3355</b></p>' +
           '<div class="mt-6 flex flex-wrap gap-3">' + e.cta.map(function (c) { return '<a href="' + c[1] + '" class="btn ' + c[2] + '">' + c[0] + '</a>'; }).join('') + '</div></div></div>';
     document.body.appendChild(wrap); document.body.style.overflow = 'hidden';
     function close() { wrap.remove(); document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); if (prev && prev.focus) prev.focus(); }

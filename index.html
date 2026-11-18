@@ -101,15 +101,15 @@
     <div class="grid md:grid-cols-3 gap-6">
       <a href="category.html?c=breakfast" class="peek-wrap zoom card rounded-3xl overflow-hidden bg-peach block">
         <div class="p-7"><h3 class="font-head uppercase font-semibold text-3xl">The Breakfast Collection</h3><p class="text-ink/80 mt-2 mb-4">Pastries, bagels, sandwiches and seasonal fruit, ready before your first meeting.</p><span class="btn btn-navy !py-2.5 !px-6">Discover</span></div>
-        <div class="relative overflow-hidden h-56"><img src="images/slide-coffee.jpg" alt="Coffee, croissant and orange juice breakfast" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call [Phone number]</div></div>
+        <div class="relative overflow-hidden h-56"><img src="images/slide-coffee.jpg" alt="Coffee, croissant and orange juice breakfast" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call (647) 213-3355</div></div>
       </a>
       <a href="category.html?c=salads" class="peek-wrap zoom card rounded-3xl overflow-hidden bg-mint block">
         <div class="p-7"><h3 class="font-head uppercase font-semibold text-3xl text-branddk">Signature salads</h3><p class="text-ink/80 mt-2 mb-4">Eight composed salads, finished with salmon or chicken if you wish.</p><span class="btn btn-coral !py-2.5 !px-6">Discover</span></div>
-        <div class="relative overflow-hidden h-56"><img src="images/sal-grain.jpg" alt="Hearty grain salad bowl with avocado" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call [Phone number]</div></div>
+        <div class="relative overflow-hidden h-56"><img src="images/sal-grain.jpg" alt="Hearty grain salad bowl with avocado" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call (647) 213-3355</div></div>
       </a>
       <a href="category.html?c=sandwiches" class="peek-wrap zoom card rounded-3xl overflow-hidden bg-peach block">
         <div class="p-7"><h3 class="font-head uppercase font-semibold text-3xl">Sandwiches &amp; wraps</h3><p class="text-ink/80 mt-2 mb-4">Generously filled, pressed warm and packed for graceful desk-side dining.</p><span class="btn btn-navy !py-2.5 !px-6">Discover</span></div>
-        <div class="relative overflow-hidden h-56"><img src="images/sandwiches.jpg" alt="Sandwiches and paninis" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call [Phone number]</div></div>
+        <div class="relative overflow-hidden h-56"><img src="images/sandwiches.jpg" alt="Sandwiches and paninis" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-sm py-3"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call (647) 213-3355</div></div>
       </a>
     </div>
   </section>
@@ -197,7 +197,7 @@
       <div><p class="mx-auto w-14 h-14 rounded-full bg-ink text-white font-head font-semibold text-3xl flex items-center justify-center">2</p><h3 class="font-head uppercase font-medium text-2xl mt-3">Pick your dishes</h3><p class="text-mute text-sm mt-1">Go step by step and choose exactly what you want.</p></div>
       <div><p class="mx-auto w-14 h-14 rounded-full bg-ink text-white font-head font-semibold text-3xl flex items-center justify-center">3</p><h3 class="font-head uppercase font-medium text-2xl mt-3">Order it</h3><p class="text-mute text-sm mt-1">Add your menu to the cart. We prepare it fresh and deliver.</p></div>
     </div>
-    <p class="text-center text-mute mt-10">Looking for something that is not on the menu? Call <b>[Phone number]</b> and we will create it for you.</p>
+    <p class="text-center text-mute mt-10">Looking for something that is not on the menu? Call <a href="tel:+16472133355" class="font-bold underline">(647) 213-3355</a> and we will create it for you.</p>
   </section>
 
   <!-- Event space -->
@@ -253,8 +253,8 @@
       <h2 class="font-head uppercase font-semibold text-4xl md:text-6xl mb-5">Allow us to plan your next occasion</h2>
       <div class="rule mx-auto mb-5"></div>
       <p class="text-white/85 mb-8">Share the date, your guest count and what you crave, and we will prepare a personalized quote.</p>
-      <p class="font-head font-semibold text-3xl">[Phone number]</p>
-      <p class="mt-2 text-white/85">[Email address]</p>
+      <p class="font-head font-semibold text-3xl"><a href="tel:+16472133355" class="hover:text-sun">(647) 213-3355</a></p>
+      <p class="mt-2 text-white/85"><a href="mailto:ardestani@yahoo.com" class="hover:text-sun underline">ardestani@yahoo.com</a></p>
       <a href="catering.html" class="btn btn-white mt-8">Explore Catering</a>
     </div>
   </section>
@@ -346,7 +346,7 @@
       var picks = CATALOG.items.filter(function (i) { return i.popular; });
       row.innerHTML = picks.map(function (it) {
         return '<a href="product.html?id=' + it.id + '&mode=catering" class="peek-wrap zoom card snap-start shrink-0 w-56 sm:w-64 bg-white rounded-2xl overflow-hidden shadow-sm border border-line">' +
-          '<div class="relative overflow-hidden aspect-square"><img src="' + it.image + '" alt="' + it.name + '" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-xs py-3 px-2"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call [Phone number]</div></div>' +
+          '<div class="relative overflow-hidden aspect-square"><img src="' + it.image + '" alt="' + it.name + '" class="w-full h-full object-cover" loading="lazy"><div class="peek absolute inset-x-0 bottom-0 bg-navy/90 text-white text-center text-xs py-3 px-2"><span class="uppercase tracking-[.15em] text-sun font-semibold">Order now</span><br>Call (647) 213-3355</div></div>' +
           '<div class="p-4"><p class="font-head uppercase font-semibold tracking-wide text-lg leading-snug">' + it.name + '</p><p class="font-head text-coral text-lg mt-1">' + (NYC.priceFrom(it, 'catering') === null ? '$' : 'From ' + NYC.money(NYC.priceFrom(it, 'catering'))) + '</p></div></a>';
       }).join('');
       document.getElementById('pop-prev').addEventListener('click', function () { row.scrollBy({ left: -row.clientWidth * .8, behavior: 'smooth' }); });

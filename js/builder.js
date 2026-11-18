@@ -87,7 +87,7 @@
             '<div class="pointer-events-none absolute inset-3 border border-sun/50"></div>' +
             '<div class="absolute bottom-0 p-8 text-white"><p class="label !text-sun mb-2">' + n + ' steps</p><h3 class="font-head uppercase font-semibold text-3xl md:text-4xl tracking-wide">' + b.title + '</h3><p class="text-white/85 text-sm mt-2 max-w-md">' + b.blurb + '</p><span class="inline-block mt-4 text-xs uppercase tracking-[.2em] font-semibold border-b border-sun pb-1">Start building &rarr;</span></div></a>';
         }).join('') + '</div>' +
-        '<p class="text-center text-mute mt-12">Looking for something that is not on the menu? Call us on <b>[Phone number]</b> and we will create it for you.</p>' +
+        '<p class="text-center text-mute mt-12">Looking for something that is not on the menu? Call us on <a href="tel:+16472133355" class="font-bold underline">(647) 213-3355</a> and we will create it for you.</p>' +
       '</section>';
   }
 
