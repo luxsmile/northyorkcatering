@@ -96,13 +96,13 @@
     var acct = u ? 'Hi, ' + (u.name || 'friend').split(' ')[0] : 'Login';
     return '' +
     '<div class="bg-navy text-white text-xs sm:text-sm font-medium py-2 px-4 tracking-wide"><div class="max-w-7xl mx-auto flex items-center justify-between gap-4">' +
-      '<a href="index.html#design" class="hover:text-sun"><span class="hidden sm:inline">Planning a holiday celebration? Ask us about festive menus and beverages.</span><span class="sm:hidden">Holiday celebration? Ask us.</span></a>' +
+      '<a href="build.html" class="hover:text-sun"><span class="hidden sm:inline">Planning a holiday celebration? Ask us about festive menus and beverages.</span><span class="sm:hidden">Holiday celebration? Ask us.</span></a>' +
       '<a href="locations.html" class="font-semibold whitespace-nowrap hover:text-sun">Call [Phone number]</a></div></div>' +
     '<div class="bg-white text-ink border-b border-line shadow-sm"><div class="max-w-7xl mx-auto flex items-center gap-4 px-4 sm:px-6 py-3">' +
       '<a href="index.html" class="flex items-center gap-3 shrink-0" aria-label="North York Catering, home"><img src="logo-mark.svg" alt="" class="h-11 w-auto">' +
         '<span class="leading-none"><span class="block font-head font-bold text-xl sm:text-2xl md:text-[1.7rem] tracking-[.18em] uppercase">North York</span><span class="block font-head font-semibold text-[.6rem] sm:text-[.68rem] tracking-[.4em] uppercase mt-1.5 text-coral">Fine Catering</span></span></a>' +
       '<nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-head text-[1.05rem] uppercase tracking-[.12em] font-semibold ml-8">' +
-        nav('Catering', 'catering.html', 'catering', cur) + nav('Signature Lunch', 'takeout.html', 'lunch', cur) + nav('Locations', 'locations.html', 'locations', cur) + '</nav>' +
+        nav('Catering', 'catering.html', 'catering', cur) + nav('Signature Lunch', 'takeout.html', 'lunch', cur) + nav('Build Your Menu', 'build.html', 'build', cur) + nav('Locations', 'locations.html', 'locations', cur) + '</nav>' +
       '<form action="category.html" method="get" class="ml-auto hidden md:flex items-center border border-line rounded-full overflow-hidden w-56 lg:w-64 bg-white"><input name="q" type="search" placeholder="Search the menu" aria-label="Search the menu" class="w-full px-4 py-2 text-ink text-sm outline-none"><button class="px-3 text-ink" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></form>' +
       '<a href="login.html" class="ml-auto md:ml-0 flex items-center gap-2 font-head font-semibold uppercase tracking-[.1em] text-sm sm:text-base hover:text-coral"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span class="hidden sm:inline">' + acct + '</span></a>' +
       '<a href="cart.html" class="relative flex items-center gap-2 font-head font-semibold uppercase tracking-[.1em] text-sm sm:text-base hover:text-coral" aria-label="Cart"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span class="hidden sm:inline">Cart</span><span data-cart-count class="hidden absolute -top-2 -right-3 sm:right-auto sm:left-4 bg-coral text-white text-[.65rem] font-bold rounded-full min-w-[1.25rem] h-5 px-1 flex items-center justify-center">0</span></a>' +
@@ -110,14 +110,14 @@
     '</div>' +
     '<div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-line px-6 pb-5 pt-3 font-head font-semibold uppercase tracking-[.12em] text-lg space-y-3">' +
       '<form action="category.html" method="get" class="flex border border-line rounded-full overflow-hidden"><input name="q" type="search" placeholder="Search the menu" class="w-full px-4 py-2 text-ink text-sm outline-none font-sans normal-case tracking-normal"><button class="px-4 font-bold">Go</button></form>' +
-      '<a class="block" href="catering.html">Catering</a><a class="block" href="takeout.html">Signature Lunch</a><a class="block" href="locations.html">Locations</a><a class="block" href="index.html#design">Design Your Order</a></div></div>';
+      '<a class="block" href="catering.html">Catering</a><a class="block" href="takeout.html">Signature Lunch</a><a class="block" href="locations.html">Locations</a><a class="block" href="build.html">Build Your Menu</a></div></div>';
   }
   function footer() {
     return '' +
     '<div class="relative overflow-hidden bg-navy text-white"><img src="images/slide-brunch.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy"><div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/88 to-black"></div><div class="relative h-px bg-gradient-to-r from-transparent via-sun to-transparent"></div><div class="relative max-w-7xl mx-auto px-6 py-14 grid gap-10 md:grid-cols-4">' +
       '<div class="md:col-span-2"><div class="flex items-center gap-3"><img src="images/logo-mark-light.svg" alt="" class="h-14 w-auto"><div><p class="font-head font-semibold text-2xl md:text-3xl tracking-[.2em] uppercase leading-none">North York</p><p class="font-head font-semibold text-xs tracking-[.4em] uppercase text-sun mt-2">Fine Catering</p></div></div>' +
         '<p class="text-white/70 text-sm mt-5 max-w-sm">Exceptional food for offices, celebrations and private events. Thoughtfully designed around you and delivered across North York, Toronto and the GTA.</p></div>' +
-      '<div><p class="font-head uppercase tracking-[.15em] text-sun mb-3">Order</p><ul class="space-y-2 text-sm text-white/80"><li><a class="hover:text-sun" href="catering.html">Catering</a></li><li><a class="hover:text-sun" href="takeout.html">Signature Lunch</a></li><li><a class="hover:text-sun" href="index.html#design">Design Your Order</a></li><li><a class="hover:text-sun" href="cart.html">Your Cart</a></li></ul></div>' +
+      '<div><p class="font-head uppercase tracking-[.15em] text-sun mb-3">Order</p><ul class="space-y-2 text-sm text-white/80"><li><a class="hover:text-sun" href="catering.html">Catering</a></li><li><a class="hover:text-sun" href="takeout.html">Signature Lunch</a></li><li><a class="hover:text-sun" href="build.html">Build Your Menu</a></li><li><a class="hover:text-sun" href="cart.html">Your Cart</a></li></ul></div>' +
       '<div><p class="font-head uppercase tracking-[.15em] text-sun mb-3">Help</p><ul class="space-y-2 text-sm text-white/80"><li><a class="hover:text-sun" href="locations.html">Locations &amp; Delivery</a></li><li><a class="hover:text-sun" href="index.html#faq">Questions</a></li><li><a class="hover:text-sun" href="login.html">Login</a></li><li><a class="hover:text-sun" href="index.html#space">Event Space</a></li></ul></div>' +
     '</div><div class="relative border-t border-white/10 text-center text-xs text-white/50 py-5 px-4">&copy; 2026 North York Catering &nbsp;·&nbsp; Prices and checkout on this preview are for demonstration only.</div></div>';
   }
@@ -135,7 +135,7 @@
         ['Delivered to your door', 'We deliver to your office or venue across North York and Toronto. Ask us about options for larger events.']
       ],
       notes: ['Standing weekly arrangements are available. Just ask.', 'A tasting beforehand can be arranged for special events.', 'Dietary needs are always welcome.'],
-      cta: [['Explore Catering', 'catering.html', 'btn-coral'], ['Request a Quote', 'index.html#design', 'btn-line']]
+      cta: [['Explore Catering', 'catering.html', 'btn-coral'], ['Build Your Menu', 'build.html', 'btn-line']]
     },
     lunch: {
       kicker: 'For intimate gatherings', title: 'The Signature Lunch Experience', image: 'images/slide-lunch.jpg',
@@ -147,7 +147,7 @@
         ['Savour it', 'Your lunches arrive fresh and ready to enjoy. Ask us about delivery or pickup.']
       ],
       notes: ['Labelled with names on request.', 'Perfect for desks, meeting rooms and small tables.', 'Set up a weekly arrangement and we will take care of it.'],
-      cta: [['Explore Signature Lunch', 'takeout.html', 'btn-coral'], ['Request a Quote', 'index.html#design', 'btn-line']]
+      cta: [['Explore Signature Lunch', 'takeout.html', 'btn-coral'], ['Build Your Menu', 'build.html', 'btn-line']]
     }
   };
   NYC.experience = function (kind) {

@@ -44,7 +44,7 @@
   }
   function collapseOnPhones() { var d = document.getElementById('fpanel'); if (d && window.innerWidth < 1024) d.removeAttribute('open'); }
   function count(n) { return n + ' item' + (n === 1 ? '' : 's'); }
-  function empty() { return '<div class="bg-white rounded-2xl p-10 text-center text-mute">No items match those filters. <button type="button" class="text-coral underline" data-clear>Clear filters</button>, or <a class="text-coral underline" href="index.html#design">ask us to create it for you</a>.</div>'; }
+  function empty() { return '<div class="bg-white rounded-2xl p-10 text-center text-mute">No items match those filters. <button type="button" class="text-coral underline" data-clear>Clear filters</button>, or <a class="text-coral underline" href="build.html">ask us to create it for you</a>.</div>'; }
 
   function shop() {
     var mode = document.body.getAttribute('data-mode');
@@ -69,7 +69,7 @@
         }).join('') + '</div></section>' +
       '<section id="all" class="bg-white border-y border-line"><div class="max-w-7xl mx-auto px-6 py-12"><h2 class="font-head uppercase font-semibold text-3xl tracking-wide mb-6">The full collection</h2>' +
         '<div class="grid lg:grid-cols-[260px_1fr] gap-8"><div id="side"></div><div id="results"></div></div></div></section>' +
-      '<section class="max-w-4xl mx-auto px-6 py-14 text-center"><h2 class="font-head uppercase font-semibold text-3xl tracking-wide">Dreaming of something else?</h2><p class="text-mute mt-3 mb-6">Tell us what you have in mind and we will create it, then deliver it just as you imagined.</p><a href="index.html#design" class="btn btn-coral">Create a Bespoke Order</a></section>';
+      '<section class="max-w-4xl mx-auto px-6 py-14 text-center"><h2 class="font-head uppercase font-semibold text-3xl tracking-wide">Dreaming of something else?</h2><p class="text-mute mt-3 mb-6">Compose your own menu, dish by dish, or call us and we will create it for you.</p><a href="build.html" class="btn btn-coral">Build Your Own Menu</a></section>';
 
     function drawSide() {
       var sel = selectedDiets();
@@ -111,7 +111,7 @@
       var res = CATALOG.items.filter(function (i) { return (i.name + ' ' + i.desc + ' ' + i.tags.join(' ') + ' ' + i.includes.join(' ')).toLowerCase().indexOf(q) !== -1; });
       app.innerHTML = banner('bg-navy', 'Search results', res.length + ' result' + (res.length === 1 ? '' : 's') + ' for &ldquo;' + q.replace(/</g, '') + '&rdquo;') +
         '<section class="max-w-7xl mx-auto px-6 py-10">' + (res.length ? '<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">' + res.map(function (i) { return NYC.card(i, 'catering'); }).join('') + '</div>' :
-          '<p class="text-mute">Nothing matched. Try another word, or <a class="text-coral underline" href="index.html#design">tell us what you would like</a> and we will make it.</p>') + '</section>';
+          '<p class="text-mute">Nothing matched. Try another word, or <a class="text-coral underline" href="build.html">tell us what you would like</a> and we will make it.</p>') + '</section>';
       return;
     }
     var cat = NYC.category(params.get('c')) || CATALOG.categories[0];
@@ -263,6 +263,8 @@
         lines.map(function (l) { var un = NYC.cart.unit(l); return '<li class="py-3 flex justify-between gap-3"><span><b>' + l.qty + ' &times; ' + l.name + '</b><br><span class="text-mute">' + l.size + (l.addons.length ? ' + ' + l.addons.length + ' extra' + (l.addons.length > 1 ? 's' : '') : '') + '</span></span><span class="font-semibold">' + (un > 0 ? money(un * l.qty) : '$') + '</span></li>'; }).join('') +
         '</ul><div class="border-t-2 border-line mt-3 pt-3 space-y-1 text-sm"><div class="flex justify-between"><span>Subtotal</span><span>' + (t.priced ? money(t.sub) : '$') + '</span></div><div class="flex justify-between"><span>HST (13%)</span><span>' + (t.priced ? money(t.tax) : '$') + '</span></div><div class="flex justify-between font-head text-2xl pt-2"><span>Total</span><span class="text-coral">' + (t.priced ? money(t.total) : '$') + '</span></div></div><a href="cart.html" class="block text-center text-sm text-coral underline mt-4">Edit cart</a></aside></section>';
 
+    try { var meta = JSON.parse(localStorage.getItem('nyc_meta') || 'null'); var cf0 = $('#cf');
+      if (meta && cf0) { if (meta.guests) cf0.elements.guests.value = meta.guests; if (meta.date && meta.date >= tomorrow) cf0.elements.date.value = meta.date; } } catch (e) {}
     document.querySelectorAll('input[name=pay]').forEach(function (r) { r.addEventListener('change', function () { $('#cardbox').classList.toggle('hidden', r.value.indexOf('invoice') !== -1 && r.checked); }); });
     $('#cf').addEventListener('submit', function (e) {
       e.preventDefault();
