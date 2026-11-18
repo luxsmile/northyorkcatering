@@ -15,7 +15,11 @@
   }
   var CAT_BANNER = { breakfast: 'slide-brunch.jpg', salads: 'slide-salads.jpg', sandwiches: 'slide-burger.jpg', hot: 'slide-salmon.jpg', platters: 'slide-platter.jpg', drinks: 'champagne.jpg' };
   // Elegant page banner: photo (optional), soft dark veil, thin gold frame, ornament line.
+  // Pages without their own photo get an elegant one chosen for the page.
+  var BANNER_FOR = { 'Your cart': 'banner-cart.jpg', 'Checkout': 'banner-checkout.jpg', 'Thank you!': 'banner-thanks.jpg', 'Login': 'banner-login.jpg', 'Create account': 'banner-login.jpg', 'Search results': 'banner-search.jpg' };
+  function bannerFor(title) { return String(title).indexOf('Hello') === 0 ? 'banner-account.jpg' : (BANNER_FOR[title] || 'banner-login.jpg'); }
   function banner(color, title, sub, extra, image, kicker) {
+    image = image || bannerFor(title);
     return '<section class="lux-banner ' + (image ? '' : 'lux-plain') + ' relative overflow-hidden text-white">' +
       (image ? '<img src="images/' + image + '" alt="" class="absolute inset-0 w-full h-full object-cover">' +
         '<div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/55 to-black/85"></div>' : '') +

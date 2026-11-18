@@ -95,7 +95,7 @@
     var u = NYC.user.get();
     var acct = u ? 'Hi, ' + (u.name || 'friend').split(' ')[0] : 'Login';
     return '' +
-    '<div class="bg-navy text-white text-xs sm:text-sm font-medium py-2 px-4 tracking-wide"><div class="max-w-7xl mx-auto flex items-center justify-between gap-4">' +
+    '<div class="bg-navy text-white text-xs sm:text-sm font-medium py-2 px-4 tracking-wide border-b border-sun/40"><div class="max-w-7xl mx-auto flex items-center justify-between gap-4">' +
       '<a href="build.html" class="hover:text-sun"><span class="hidden sm:inline">Planning a holiday celebration? Ask us about festive menus and beverages.</span><span class="sm:hidden">Holiday celebration? Ask us.</span></a>' +
       '<a href="locations.html" class="font-semibold whitespace-nowrap hover:text-sun">Call [Phone number]</a></div></div>' +
     '<div class="bg-white text-ink border-b border-line shadow-sm"><div class="max-w-7xl mx-auto flex items-center gap-4 px-4 sm:px-6 py-3">' +
