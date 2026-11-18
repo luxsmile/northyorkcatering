@@ -174,7 +174,7 @@
           '<div><h2 class="font-head uppercase font-semibold text-xl tracking-wide mb-3">3. Special requests</h2><textarea id="note" rows="3" class="field" placeholder="Dietary needs, labels with names, or anything we should know."></textarea></div>' +
           '<div class="flex flex-wrap items-center gap-4 border-t-2 border-line pt-6"><div class="flex items-center border-2 border-line rounded-full bg-white"><button type="button" id="minus" class="w-11 h-11 text-2xl font-bold" aria-label="Fewer">&minus;</button><input id="qty" type="number" min="1" value="1" class="w-14 text-center font-semibold outline-none bg-transparent" aria-label="Quantity"><button type="button" id="plus" class="w-11 h-11 text-2xl font-bold" aria-label="More">+</button></div>' +
             '<button class="btn btn-coral flex-1 min-w-[220px]" type="submit">Add to cart &nbsp;·&nbsp; <span id="lineTotal">$</span></button></div>' +
-          '<p class="text-xs text-mute">Prices, taxes and delivery are confirmed on your order.</p></form></section>' +
+          '<p class="text-xs text-mute">Prices, taxes and delivery are confirmed on your order.</p>' + NYC.help() + '</form></section>' +
       '<section class="bg-white border-t border-line"><div class="max-w-7xl mx-auto px-6 py-12"><h2 class="font-head uppercase font-semibold text-3xl tracking-wide mb-6">Pairs beautifully with</h2><div id="related" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div></div></section>';
     var rel = itemsFor(mode).filter(function (i) { return i.cat === it.cat && i.id !== it.id && i.group === it.group; });
     rel = rel.concat(itemsFor(mode).filter(function (i) { return i.cat === it.cat && i.id !== it.id && i.group !== it.group; }));
@@ -222,7 +222,7 @@
           '<aside class="bg-white rounded-3xl shadow-md p-6 h-fit lg:sticky lg:top-32"><h2 class="font-head uppercase text-2xl tracking-wide mb-4">Order summary</h2>' +
             '<dl class="space-y-2 text-sm"><div class="flex justify-between"><dt>Subtotal</dt><dd class="font-semibold">' + (t.priced ? money(t.sub) : '$') + '</dd></div><div class="flex justify-between"><dt>Delivery</dt><dd class="text-mute">Confirmed on order</dd></div><div class="flex justify-between"><dt>HST (13%)</dt><dd class="font-semibold">' + (t.priced ? money(t.tax) : '$') + '</dd></div></dl>' +
             '<div class="border-t-2 border-line mt-4 pt-4 flex justify-between font-head text-2xl"><span>Total</span><span class="text-coral">' + (t.priced ? money(t.total) : '$') + '</span></div>' +
-            '<a href="checkout.html" class="btn btn-coral w-full mt-6">Checkout</a><p class="text-xs text-mute mt-3 text-center">Checkout here is a demonstration. No payment is taken.</p></aside></section>';
+            '<a href="checkout.html" class="btn btn-coral w-full mt-6">Checkout</a><p class="text-xs text-mute mt-3 text-center">Checkout here is a demonstration. No payment is taken.</p><div class="mt-5">' + NYC.help() + '</div></aside></section>';
     }
     draw();
     app.addEventListener('click', function (e) {
@@ -265,7 +265,7 @@
         '<button class="btn btn-coral w-full text-lg" type="submit">Place order (demo)</button></form>' +
       '<aside class="bg-white rounded-3xl shadow-md p-6 h-fit lg:sticky lg:top-32"><h2 class="font-head uppercase text-2xl tracking-wide mb-4">Your order</h2><ul class="divide-y divide-line text-sm">' +
         lines.map(function (l) { var un = NYC.cart.unit(l); return '<li class="py-3 flex justify-between gap-3"><span><b>' + l.qty + ' &times; ' + l.name + '</b><br><span class="text-mute">' + l.size + (l.addons.length ? ' + ' + l.addons.length + ' extra' + (l.addons.length > 1 ? 's' : '') : '') + '</span></span><span class="font-semibold">' + (un > 0 ? money(un * l.qty) : '$') + '</span></li>'; }).join('') +
-        '</ul><div class="border-t-2 border-line mt-3 pt-3 space-y-1 text-sm"><div class="flex justify-between"><span>Subtotal</span><span>' + (t.priced ? money(t.sub) : '$') + '</span></div><div class="flex justify-between"><span>HST (13%)</span><span>' + (t.priced ? money(t.tax) : '$') + '</span></div><div class="flex justify-between font-head text-2xl pt-2"><span>Total</span><span class="text-coral">' + (t.priced ? money(t.total) : '$') + '</span></div></div><a href="cart.html" class="block text-center text-sm text-coral underline mt-4">Edit cart</a></aside></section>';
+        '</ul><div class="border-t-2 border-line mt-3 pt-3 space-y-1 text-sm"><div class="flex justify-between"><span>Subtotal</span><span>' + (t.priced ? money(t.sub) : '$') + '</span></div><div class="flex justify-between"><span>HST (13%)</span><span>' + (t.priced ? money(t.tax) : '$') + '</span></div><div class="flex justify-between font-head text-2xl pt-2"><span>Total</span><span class="text-coral">' + (t.priced ? money(t.total) : '$') + '</span></div></div><a href="cart.html" class="block text-center text-sm text-coral underline mt-4">Edit cart</a><div class="mt-5">' + NYC.help() + '</div></aside></section>';
 
     try { var meta = JSON.parse(localStorage.getItem('nyc_meta') || 'null'); var cf0 = $('#cf');
       if (meta && cf0) { if (meta.guests) cf0.elements.guests.value = meta.guests; if (meta.date && meta.date >= tomorrow) cf0.elements.date.value = meta.date; } } catch (e) {}
@@ -285,7 +285,7 @@
           '<section class="max-w-3xl mx-auto px-6 py-12"><div class="bg-white rounded-3xl shadow-md p-8 text-center"><p class="label mb-1">Order number</p><p class="font-head text-4xl tracking-wide">' + order.id + '</p>' +
             '<p class="text-mute mt-4">A confirmation would be emailed to <b>' + order.contact.email + '</b>. Delivery to <b>' + order.delivery.address + '</b> on <b>' + order.delivery.date + '</b>, ' + order.delivery.window + '.</p>' +
             '<p class="mt-4 text-sm bg-sun/30 border border-sun rounded-xl px-4 py-3">This was a demonstration. No payment was taken and no food has been ordered.</p>' +
-            '<div class="mt-6 flex flex-wrap gap-3 justify-center"><a href="login.html" class="btn btn-line">See my orders</a><a href="catering.html" class="btn btn-coral">Keep shopping</a></div></div></section>';
+            '<div class="mt-6 flex flex-wrap gap-3 justify-center"><a href="login.html" class="btn btn-line">See my orders</a><a href="catering.html" class="btn btn-coral">Keep shopping</a></div><div class="mt-6 text-left max-w-md mx-auto">' + NYC.help() + '</div></div></section>';
         window.scrollTo(0, 0);
       }, 1100);
     });
@@ -311,7 +311,7 @@
           '<label class="block"><span class="label block mb-1">Email</span><input required type="email" name="email" class="field" autocomplete="email"></label>' +
           '<label class="block"><span class="label block mb-1">Password</span><input required type="password" name="pw" class="field" autocomplete="' + (signup ? 'new-password' : 'current-password') + '"></label>' +
           '<button class="btn btn-coral w-full" type="submit">' + (signup ? 'Create account' : 'Log in') + '</button>' +
-          '<p class="text-xs text-mute text-center">Demonstration only. Passwords are not saved or checked.</p></form></section>';
+          '<p class="text-xs text-mute text-center">Demonstration only. Passwords are not saved or checked.</p></form><div class="mt-6">' + NYC.help() + '</div></section>';
       document.querySelectorAll('[data-t]').forEach(function (b) { b.addEventListener('click', function () { draw(b.dataset.t); }); });
       $('#lf').addEventListener('submit', function (e) {
         e.preventDefault(); var f = new FormData(e.target), email = f.get('email');

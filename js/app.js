@@ -85,6 +85,13 @@
     setTimeout(function () { t.remove(); }, 4500);
   };
 
+  // "Need help?" box shown on cart, checkout, item and builder pages
+  NYC.help = function () {
+    return '<div class="border border-line bg-peach p-4 text-sm leading-relaxed"><p class="font-head uppercase font-semibold tracking-wide text-lg">Need help?</p>' +
+      '<p class="text-mute">If you need anything, just call <a href="tel:+16472133355" class="font-semibold text-ink underline">(647) 213-3355</a> or email <a href="mailto:ardestani@yahoo.com" class="font-semibold text-ink underline">ardestani@yahoo.com</a>. We are happy to help.</p>' +
+      '<p class="text-xs text-mute mt-1">Monday to Saturday, 7:00 am to 9:00 pm</p></div>';
+  };
+
   // ---------- header / footer ----------
   function nav(label, href, key, current) {
     var on = current === key;
@@ -115,10 +122,11 @@
   function footer() {
     return '' +
     '<div class="relative overflow-hidden bg-navy text-white"><img src="images/slide-brunch.jpg" alt="" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="lazy"><div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/88 to-black"></div><div class="relative h-px bg-gradient-to-r from-transparent via-sun to-transparent"></div><div class="relative max-w-7xl mx-auto px-6 py-14 grid gap-10 md:grid-cols-4">' +
-      '<div class="md:col-span-2"><div class="flex items-center gap-3"><img src="images/logo-mark-light.svg" alt="" class="h-14 w-auto"><div><p class="font-head font-semibold text-2xl md:text-3xl tracking-[.2em] uppercase leading-none">North York</p><p class="font-head font-semibold text-xs tracking-[.4em] uppercase text-sun mt-2">Fine Catering</p></div></div>' +
+      '<div><div class="flex items-center gap-3"><img src="images/logo-mark-light.svg" alt="" class="h-14 w-auto"><div><p class="font-head font-semibold text-2xl md:text-3xl tracking-[.2em] uppercase leading-none">North York</p><p class="font-head font-semibold text-xs tracking-[.4em] uppercase text-sun mt-2">Fine Catering</p></div></div>' +
         '<p class="text-white/70 text-sm mt-5 max-w-sm">Exceptional food for offices, celebrations and private events. Thoughtfully designed around you and delivered across North York, Toronto and the GTA.</p></div>' +
       '<div><p class="font-head uppercase tracking-[.15em] text-sun mb-3">Order</p><ul class="space-y-2 text-sm text-white/80"><li><a class="hover:text-sun" href="catering.html">Catering</a></li><li><a class="hover:text-sun" href="takeout.html">Signature Lunch</a></li><li><a class="hover:text-sun" href="build.html">Build Your Menu</a></li><li><a class="hover:text-sun" href="cart.html">Your Cart</a></li></ul></div>' +
       '<div><p class="font-head uppercase tracking-[.15em] text-sun mb-3">Help</p><ul class="space-y-2 text-sm text-white/80"><li><a class="hover:text-sun" href="locations.html">Locations &amp; Delivery</a></li><li><a class="hover:text-sun" href="index.html#faq">Questions</a></li><li><a class="hover:text-sun" href="login.html">Login</a></li><li><a class="hover:text-sun" href="index.html#space">Event Space</a></li></ul></div>' +
+      '<div><p class="font-head uppercase tracking-[.15em] text-sun mb-3">Contact</p><ul class="space-y-2 text-sm text-white/80">' +'<li><a class="hover:text-sun" href="tel:+16472133355">(647) 213-3355</a></li>' +'<li><a class="hover:text-sun" href="mailto:ardestani@yahoo.com">ardestani@yahoo.com</a></li>' +'<li>5650 Yonge Street<br>North York, Toronto, ON M2M 4G3</li>' +'<li>Monday to Saturday<br>7:00 am to 9:00 pm</li></ul></div>' +
     '</div><div class="relative border-t border-white/10 text-center text-xs text-white/50 py-5 px-4">&copy; 2026 North York Catering &nbsp;·&nbsp; Prices and checkout on this preview are for demonstration only.</div></div>';
   }
 

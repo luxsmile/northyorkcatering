@@ -157,7 +157,7 @@
         '<label class="block mt-4"><span class="label block mb-1">Special requests</span><textarea id="n" rows="3" class="field" placeholder="Dietary needs, names on labels, delivery notes">' + state.note.replace(/</g, '') + '</textarea></label>' +
         '<button type="button" id="add" class="btn btn-coral w-full mt-4" ' + (L.length ? '' : 'disabled style="opacity:.45;cursor:not-allowed"') + '>Add menu to cart</button>' +
         '<p id="msg" class="text-sm text-coral mt-2 hidden"></p>' +
-        (L.length ? '<button type="button" id="clear" class="block mx-auto mt-3 text-xs text-mute underline">Clear my menu</button>' : '') + '</div>';
+        (L.length ? '<button type="button" id="clear" class="block mx-auto mt-3 text-xs text-mute underline">Clear my menu</button>' : '') + '<div class="mt-5">' + NYC.help() + '</div></div>';
       var bar = $('#bar');
       if (L.length) { bar.classList.remove('hidden'); $('#bar-text').innerHTML = '<b>' + count + '</b> item' + (count === 1 ? '' : 's') + ' in your menu'; } else bar.classList.add('hidden');
     }

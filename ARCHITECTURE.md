@@ -35,3 +35,5 @@ Plain HTML, JavaScript and CSS. No build step. Styling uses Tailwind (loaded fro
 - **Wording and layout** follow the structure of a lively catering site (slideshow, two ways to order, shop by category) with original wording, photos and colours.
 
 - **Customers compose their own menus.** The old request form is gone. Each builder page lets guests pick dishes, sizes and quantities; the choices go into the cart with the guest count, date and notes, and the checkout pre-fills the guest count and date.
+
+- **Cache stamp:** every page loads its scripts and styles with a version tag (for example `js/app.js?v=20261118b`). When the code changes, change that tag on every page so visitors get the newest version at once instead of an old saved copy.
