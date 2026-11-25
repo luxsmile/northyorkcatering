@@ -163,7 +163,7 @@
           '<div class="mt-6">' + acc('What’s included', it.includes.length ? '<ul class="list-disc pl-5 space-y-1">' + it.includes.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' : 'Ask us for details.', true) +
             acc('Dietary &amp; allergens', dietBody) +
             acc('Serving guide', '<table class="w-full text-left"><tbody>' + sizes.map(function (s) { return '<tr class="border-b border-line"><td class="py-2 font-semibold text-ink">' + s.name + '</td><td class="py-2">' + (s.note || 'Ask us') + '</td></tr>'; }).join('') + '</tbody></table><p class="mt-2">Serving sizes are a guide. If your guests have big appetites, choose the next size up.</p>') +
-            acc('Good to know', '<ul class="list-disc pl-5 space-y-1"><li>Ordering lead time: [to be added]</li><li>Delivery: 10% of your order, up to a maximum of $50. Pickup has no delivery fee.</li><li>Served fresh. Cutlery and plates can be added as an extra.</li><li>Prices, taxes and delivery are confirmed on your order.</li></ul>') + '</div></div>' +
+            acc('Good to know', '<ul class="list-disc pl-5 space-y-1"><li>Please order at least 24 hours ahead.</li><li>Delivery: 10% of your order, up to a maximum of $50. The minimum for delivery is $200. Pickup has no fee and no minimum.</li><li>' + NYC.CANCEL + '</li><li>Served fresh. Cutlery and plates can be added as an extra.</li><li>Prices, taxes and delivery are confirmed on your order.</li></ul>') + '</div></div>' +
         '<form id="pf" class="space-y-7"><div><p class="label mb-2">' + cat.name + ' &nbsp;·&nbsp; ' + modeName(mode) + '</p><h1 class="font-head uppercase font-semibold text-4xl md:text-5xl tracking-wide leading-tight">' + it.name + '</h1>' +
           '<div class="mt-3 flex flex-wrap gap-2">' + it.tags.map(badge).join('') + '</div>' +
           '<p class="text-mute mt-4 text-lg">' + it.desc + '</p></div>' +
@@ -224,6 +224,7 @@
             '<div class="mb-4">' + NYC.fulfilPicker() + '</div>' +
             '<dl class="space-y-2 text-sm"><div class="flex justify-between"><dt>Subtotal</dt><dd class="font-semibold">' + (t.priced ? money(t.sub) : '$') + '</dd></div><div class="flex justify-between"><dt>' + (t.method === 'pickup' ? 'Pickup' : 'Delivery fee') + '</dt><dd class="font-semibold">' + (t.method === 'pickup' ? 'No fee' : (t.priced ? money(t.fee) : '$')) + '</dd></div><div class="flex justify-between"><dt>HST (13%)</dt><dd class="font-semibold">' + (t.priced ? money(t.tax) : '$') + '</dd></div></dl>' +
             '<div class="border-t-2 border-line mt-4 pt-4 flex justify-between font-head text-2xl"><span>Total</span><span class="text-coral">' + (t.priced ? money(t.total) : '$') + '</span></div>' +
+            (NYC.shortfall() ? '<p class="mt-4 text-sm bg-sun/30 border border-sun rounded-xl px-4 py-3">' + NYC.shortfall() + '</p>' : '') +
             '<a href="checkout.html" class="btn btn-coral w-full mt-6">Checkout</a><p class="text-xs text-mute mt-3 text-center">Checkout here is a demonstration. No payment is taken.</p><div class="mt-5">' + NYC.help() + '</div></aside></section>';
     }
     draw();
@@ -243,7 +244,13 @@
     if (!lines.length) {
       app.innerHTML = banner('bg-brand', 'Checkout', 'Your cart is empty.') + '<section class="max-w-3xl mx-auto px-6 py-16 text-center"><a href="catering.html" class="btn btn-coral">Shop Catering</a></section>'; return;
     }
-    var tomorrow = new Date(Date.now() + 86400000).toISOString().slice(0, 10);
+    // 24 hours notice: find the first date that still has a time window far enough ahead
+    var WINDOWS = [['7:30 am to 9:00 am', 7.5], ['9:00 am to 11:00 am', 9], ['11:00 am to 12:30 pm', 11], ['12:30 pm to 2:00 pm', 12.5], ['2:00 pm to 4:00 pm', 14]];
+    var soonest = new Date(Date.now() + NYC.NOTICE_HOURS * 3600000);
+    var ymd = function (d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); };
+    var soonestHour = soonest.getHours() + soonest.getMinutes() / 60;
+    if (soonestHour > WINDOWS[WINDOWS.length - 1][1]) { soonest.setDate(soonest.getDate() + 1); soonestHour = 0; }
+    var tomorrow = ymd(soonest); // earliest date that can be chosen
     app.innerHTML = banner('bg-brand', 'Checkout', 'Just a few details and your order is on its way.') +
       '<section class="max-w-6xl mx-auto px-6 pt-8"><div class="bg-sun/30 border-2 border-sun rounded-2xl px-5 py-4 text-sm"><b>Demonstration only.</b> This checkout is a practice run. No payment is taken and nothing is sent to a bank. Please do not type real card numbers.</div></section>' +
       '<section class="max-w-6xl mx-auto px-6 py-8 grid lg:grid-cols-[1fr_360px] gap-8">' +
@@ -258,13 +265,16 @@
           '<label data-del><span class="label block mb-1">Postal code</span><input required name="postal" class="field" autocomplete="postal-code"></label>' +
           '<label><span class="label block mb-1">Number of guests</span><input type="number" min="1" name="guests" class="field"></label>' +
           '<label><span class="label block mb-1">Date</span><input required type="date" name="date" min="' + tomorrow + '" class="field"></label>' +
-          '<label><span class="label block mb-1">Time window</span><select name="window" class="field"><option>7:30 am to 9:00 am</option><option>9:00 am to 11:00 am</option><option selected>11:00 am to 12:30 pm</option><option>12:30 pm to 2:00 pm</option><option>2:00 pm to 4:00 pm</option></select></label>' +
+          '<label><span class="label block mb-1">Time window</span><select name="window" required class="field">' + WINDOWS.map(function (w) { return '<option' + (w[1] === 11 ? ' selected' : '') + '>' + w[0] + '</option>'; }).join('') + '</select></label>' +
+          '<p class="sm:col-span-2 text-xs text-mute">Please order at least 24 hours ahead.</p>' +
           '<label class="sm:col-span-2"><span class="label block mb-1">Order notes</span><textarea name="notes" rows="2" class="field" placeholder="Front desk, buzzer code, who to ask for"></textarea></label></div></div>' +
         '<div class="bg-white rounded-3xl shadow-sm p-6"><h2 class="font-head uppercase text-2xl tracking-wide mb-4"><span class="text-coral">3.</span> Payment <span class="text-xs font-sans normal-case tracking-normal bg-sun rounded-full px-2 py-1 ml-2">Demo</span></h2>' +
           '<div class="space-y-2 mb-4"><label class="opt"><span class="flex items-center gap-3"><input type="radio" name="pay" value="Card (demo)" checked class="accent-[#0E9F6E] w-5 h-5"> Pay by card</span><span class="text-xs text-mute">Practice only</span></label>' +
           '<label class="opt"><span class="flex items-center gap-3"><input type="radio" name="pay" value="Company invoice (demo)" class="accent-[#0E9F6E] w-5 h-5"> Invoice my company</span><span class="text-xs text-mute">Practice only</span></label></div>' +
           '<div id="cardbox" class="grid sm:grid-cols-2 gap-4"><label class="sm:col-span-2"><span class="label block mb-1">Card number</span><input id="cn" class="field" placeholder="Practice only: leave blank or use 4242 4242 4242 4242" inputmode="numeric" autocomplete="off"></label>' +
             '<label><span class="label block mb-1">Expiry</span><input class="field" placeholder="MM / YY" autocomplete="off"></label><label><span class="label block mb-1">Security code</span><input class="field" placeholder="CVC" autocomplete="off"></label></div></div>' +
+        '<p class="text-sm border border-line bg-peach p-4"><b>Cancellation policy.</b> ' + NYC.CANCEL + '</p>' +
+        '<p id="short" class="hidden text-sm bg-sun/30 border border-sun rounded-xl px-4 py-3"></p>' +
         '<button class="btn btn-coral w-full text-lg" type="submit">Place order (demo)</button></form>' +
       '<aside class="bg-white rounded-3xl shadow-md p-6 h-fit lg:sticky lg:top-32"><h2 class="font-head uppercase text-2xl tracking-wide mb-4">Your order</h2><ul class="divide-y divide-line text-sm">' +
         lines.map(function (l) { var un = NYC.cart.unit(l); return '<li class="py-3 flex justify-between gap-3"><span><b>' + l.qty + ' &times; ' + l.name + '</b><br><span class="text-mute">' + l.size + (l.addons.length ? ' + ' + l.addons.length + ' extra' + (l.addons.length > 1 ? 's' : '') : '') + '</span></span><span class="font-semibold">' + (un > 0 ? money(un * l.qty) : '$') + '</span></li>'; }).join('') +
@@ -278,15 +288,27 @@
       $('#sum-tax').textContent = t.priced ? money(t.tax) : '$';
       $('#sum-total').textContent = t.priced ? money(t.total) : '$';
       $('#pickup-at').classList.toggle('hidden', !pick);
+      var short = NYC.shortfall(), go = $('#cf button[type=submit]');
+      $('#short').textContent = short; $('#short').classList.toggle('hidden', !short);
+      go.disabled = !!short; go.style.opacity = short ? '.45' : '';
       document.querySelectorAll('[data-del]').forEach(function (l) { l.classList.toggle('hidden', pick); l.querySelector('input').required = !pick; });
     }
     document.querySelectorAll('input[name=fulfil]').forEach(function (r) { r.addEventListener('change', function () { NYC.fulfil.set(r.value); fulfilment(); }); });
     fulfilment();
+    function windows() {
+      var f = $('#cf'), early = f.elements.date.value === tomorrow, sel = f.elements.window;
+      Array.prototype.forEach.call(sel.options, function (o, i) { o.disabled = early && WINDOWS[i][1] < soonestHour; });
+      if (sel.selectedOptions[0] && sel.selectedOptions[0].disabled) { var ok = Array.prototype.filter.call(sel.options, function (o) { return !o.disabled; })[0]; if (ok) sel.value = ok.value; }
+    }
+    $('#cf').elements.date.addEventListener('change', windows);
+    setTimeout(windows, 0);
     try { var meta = JSON.parse(localStorage.getItem('nyc_meta') || 'null'); var cf0 = $('#cf');
       if (meta && cf0) { if (meta.guests) cf0.elements.guests.value = meta.guests; if (meta.date && meta.date >= tomorrow) cf0.elements.date.value = meta.date; } } catch (e) {}
     document.querySelectorAll('input[name=pay]').forEach(function (r) { r.addEventListener('change', function () { $('#cardbox').classList.toggle('hidden', r.value.indexOf('invoice') !== -1 && r.checked); }); });
     $('#cf').addEventListener('submit', function (e) {
       e.preventDefault();
+      if (NYC.shortfall()) return;
+      windows();
       var f = new FormData(e.target), btn = e.target.querySelector('button[type=submit]');
       btn.disabled = true; btn.textContent = 'Processing (demo)…';
       setTimeout(function () {

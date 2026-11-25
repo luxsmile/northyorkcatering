@@ -2,6 +2,7 @@
 (function () {
   var KEYS = { cart: 'nyc_cart', user: 'nyc_user', orders: 'nyc_orders', fulfil: 'nyc_fulfil' };
   var HST = 0.13; // Ontario sales tax
+  var DELIVERY_MIN = 200; // smallest food order we deliver (pickup has no minimum)
   var DELIVERY_RATE = 0.10, DELIVERY_MAX = 50; // delivery fee: 10% of the food, capped
 
   function read(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v === null ? d : v; } catch (e) { return d; } }
@@ -77,6 +78,17 @@
     }
   };
 
+  // ---------- order rules ----------
+  NYC.CANCEL = 'Cancel 4 or more days before your order date at no charge. Cancellations within 4 days are charged 30% of the order.';
+  NYC.NOTICE_HOURS = 24;
+  // Message when a delivery order is too small, otherwise an empty string.
+  NYC.shortfall = function () {
+    var t = NYC.cart.totals();
+    // an item without a price yet cannot be counted, so we confirm those orders ourselves
+    if (t.method === 'pickup' || NYC.cart.get().some(function (l) { return !l.sizePrice; })) return '';
+    return t.sub < DELIVERY_MIN ? 'Delivery needs a minimum order of ' + NYC.money(DELIVERY_MIN) + '. Add ' + NYC.money(DELIVERY_MIN - t.sub) + ' more, or choose pickup.' : '';
+  };
+
   // ---------- delivery or pickup ----------
   NYC.fulfil = {
     get: function () { return read(KEYS.fulfil, 'delivery') === 'pickup' ? 'pickup' : 'delivery'; },
@@ -85,7 +97,7 @@
   NYC.fulfilPicker = function () {
     var cur = NYC.fulfil.get();
     return '<fieldset class="space-y-2"><legend class="label mb-1">Delivery or pickup</legend>' +
-      [['delivery', 'Delivery', '10% of order, max $50'], ['pickup', 'Pickup', 'No delivery fee']].map(function (o) {
+      [['delivery', 'Delivery', '$200 minimum · fee 10%, max $50'], ['pickup', 'Pickup', 'No fee, no minimum']].map(function (o) {
         return '<label class="opt"><span class="flex items-center gap-3"><input type="radio" name="fulfil" value="' + o[0] + '" ' + (cur === o[0] ? 'checked' : '') + ' class="accent-[#9C7424] w-5 h-5"> ' + o[1] + '</span><span class="text-xs text-mute">' + o[2] + '</span></label>';
       }).join('') + '</fieldset>';
   };

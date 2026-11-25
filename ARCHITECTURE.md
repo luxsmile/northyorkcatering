@@ -43,3 +43,4 @@ Plain HTML, JavaScript and CSS. No build step. Styling uses Tailwind (loaded fro
 - **Menu replaced 25 Nov 2026** with the owner's list and prices. Pasta tray price is waiting for confirmation.
 - **Bank account details** are never put on the site or in these files.
 - **Delivery fee** (owner, 25 Nov 2026): 10% of the food subtotal, capped at $50; pickup free. HST is charged on food plus delivery. Rates are at the top of `js/app.js`.
+- **Order rules** (owner, 25 Nov 2026): delivery minimum $200 on food (none for pickup); 24 hours notice (date and time window at checkout); cancellation free 4 or more days before, 30% within 4 days; 13% HST added to prices. Settings and wording are at the top of `js/app.js`; the same wording is repeated in the questions on `home.html`.
