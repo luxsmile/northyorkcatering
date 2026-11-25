@@ -163,7 +163,7 @@
           '<div class="mt-6">' + acc('What’s included', it.includes.length ? '<ul class="list-disc pl-5 space-y-1">' + it.includes.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' : 'Ask us for details.', true) +
             acc('Dietary &amp; allergens', dietBody) +
             acc('Serving guide', '<table class="w-full text-left"><tbody>' + sizes.map(function (s) { return '<tr class="border-b border-line"><td class="py-2 font-semibold text-ink">' + s.name + '</td><td class="py-2">' + (s.note || 'Ask us') + '</td></tr>'; }).join('') + '</tbody></table><p class="mt-2">Serving sizes are a guide. If your guests have big appetites, choose the next size up.</p>') +
-            acc('Good to know', '<ul class="list-disc pl-5 space-y-1"><li>Ordering lead time: [to be added]</li><li>Delivery fee and minimum order: confirmed with your order</li><li>Served fresh. Cutlery and plates can be added as an extra.</li><li>Prices, taxes and delivery are confirmed on your order.</li></ul>') + '</div></div>' +
+            acc('Good to know', '<ul class="list-disc pl-5 space-y-1"><li>Ordering lead time: [to be added]</li><li>Delivery: 10% of your order, up to a maximum of $50. Pickup has no delivery fee.</li><li>Served fresh. Cutlery and plates can be added as an extra.</li><li>Prices, taxes and delivery are confirmed on your order.</li></ul>') + '</div></div>' +
         '<form id="pf" class="space-y-7"><div><p class="label mb-2">' + cat.name + ' &nbsp;·&nbsp; ' + modeName(mode) + '</p><h1 class="font-head uppercase font-semibold text-4xl md:text-5xl tracking-wide leading-tight">' + it.name + '</h1>' +
           '<div class="mt-3 flex flex-wrap gap-2">' + it.tags.map(badge).join('') + '</div>' +
           '<p class="text-mute mt-4 text-lg">' + it.desc + '</p></div>' +
@@ -221,11 +221,13 @@
               '<div class="mt-3 flex items-center gap-4"><div class="flex items-center border-2 border-line rounded-full"><button data-dec="' + l.key + '" class="w-9 h-9 text-xl font-bold" aria-label="Fewer">&minus;</button><span class="w-8 text-center font-semibold">' + l.qty + '</span><button data-inc="' + l.key + '" class="w-9 h-9 text-xl font-bold" aria-label="More">+</button></div><button data-rm="' + l.key + '" class="text-sm text-coral underline">Remove</button></div></div></div>';
           }).join('') + '<a href="catering.html" class="inline-block text-coral underline mt-2">&larr; Keep shopping</a></div>' +
           '<aside class="bg-white rounded-3xl shadow-md p-6 h-fit lg:sticky lg:top-32"><h2 class="font-head uppercase text-2xl tracking-wide mb-4">Order summary</h2>' +
-            '<dl class="space-y-2 text-sm"><div class="flex justify-between"><dt>Subtotal</dt><dd class="font-semibold">' + (t.priced ? money(t.sub) : '$') + '</dd></div><div class="flex justify-between"><dt>Delivery</dt><dd class="text-mute">Confirmed on order</dd></div><div class="flex justify-between"><dt>HST (13%)</dt><dd class="font-semibold">' + (t.priced ? money(t.tax) : '$') + '</dd></div></dl>' +
+            '<div class="mb-4">' + NYC.fulfilPicker() + '</div>' +
+            '<dl class="space-y-2 text-sm"><div class="flex justify-between"><dt>Subtotal</dt><dd class="font-semibold">' + (t.priced ? money(t.sub) : '$') + '</dd></div><div class="flex justify-between"><dt>' + (t.method === 'pickup' ? 'Pickup' : 'Delivery fee') + '</dt><dd class="font-semibold">' + (t.method === 'pickup' ? 'No fee' : (t.priced ? money(t.fee) : '$')) + '</dd></div><div class="flex justify-between"><dt>HST (13%)</dt><dd class="font-semibold">' + (t.priced ? money(t.tax) : '$') + '</dd></div></dl>' +
             '<div class="border-t-2 border-line mt-4 pt-4 flex justify-between font-head text-2xl"><span>Total</span><span class="text-coral">' + (t.priced ? money(t.total) : '$') + '</span></div>' +
             '<a href="checkout.html" class="btn btn-coral w-full mt-6">Checkout</a><p class="text-xs text-mute mt-3 text-center">Checkout here is a demonstration. No payment is taken.</p><div class="mt-5">' + NYC.help() + '</div></aside></section>';
     }
     draw();
+    app.addEventListener('change', function (e) { if (e.target.name === 'fulfil') { NYC.fulfil.set(e.target.value); draw(); } });
     app.addEventListener('click', function (e) {
       var inc = e.target.closest('[data-inc]'), dec = e.target.closest('[data-dec]'), rm = e.target.closest('[data-rm]');
       var cur = function (k) { return NYC.cart.get().filter(function (x) { return x.key === k; })[0]; };
@@ -251,13 +253,13 @@
           '<label><span class="label block mb-1">Company</span><input name="company" class="field" autocomplete="organization"></label>' +
           '<label><span class="label block mb-1">Email</span><input required type="email" name="email" class="field" value="' + (u.email || '') + '" autocomplete="email"></label>' +
           '<label><span class="label block mb-1">Phone</span><input required type="tel" name="phone" class="field" autocomplete="tel"></label></div></div>' +
-        '<div class="bg-white rounded-3xl shadow-sm p-6"><h2 class="font-head uppercase text-2xl tracking-wide mb-4"><span class="text-coral">2.</span> Delivery</h2><div class="grid sm:grid-cols-2 gap-4">' +
-          '<label class="sm:col-span-2"><span class="label block mb-1">Delivery address</span><input required name="address" class="field" placeholder="Street, suite or floor, city" autocomplete="street-address"></label>' +
-          '<label><span class="label block mb-1">Postal code</span><input required name="postal" class="field" autocomplete="postal-code"></label>' +
+        '<div class="bg-white rounded-3xl shadow-sm p-6"><h2 class="font-head uppercase text-2xl tracking-wide mb-4"><span class="text-coral">2.</span> Delivery or pickup</h2><div class="mb-4">' + NYC.fulfilPicker() + '</div><p id="pickup-at" class="text-sm mb-4 hidden">Pick up at <b>5650 Yonge Street, North York</b>.</p><div class="grid sm:grid-cols-2 gap-4">' +
+          '<label data-del class="sm:col-span-2"><span class="label block mb-1">Delivery address</span><input required name="address" class="field" placeholder="Street, suite or floor, city" autocomplete="street-address"></label>' +
+          '<label data-del><span class="label block mb-1">Postal code</span><input required name="postal" class="field" autocomplete="postal-code"></label>' +
           '<label><span class="label block mb-1">Number of guests</span><input type="number" min="1" name="guests" class="field"></label>' +
           '<label><span class="label block mb-1">Date</span><input required type="date" name="date" min="' + tomorrow + '" class="field"></label>' +
-          '<label><span class="label block mb-1">Delivery window</span><select name="window" class="field"><option>7:30 am to 9:00 am</option><option>9:00 am to 11:00 am</option><option selected>11:00 am to 12:30 pm</option><option>12:30 pm to 2:00 pm</option><option>2:00 pm to 4:00 pm</option></select></label>' +
-          '<label class="sm:col-span-2"><span class="label block mb-1">Delivery notes</span><textarea name="notes" rows="2" class="field" placeholder="Front desk, buzzer code, who to ask for"></textarea></label></div></div>' +
+          '<label><span class="label block mb-1">Time window</span><select name="window" class="field"><option>7:30 am to 9:00 am</option><option>9:00 am to 11:00 am</option><option selected>11:00 am to 12:30 pm</option><option>12:30 pm to 2:00 pm</option><option>2:00 pm to 4:00 pm</option></select></label>' +
+          '<label class="sm:col-span-2"><span class="label block mb-1">Order notes</span><textarea name="notes" rows="2" class="field" placeholder="Front desk, buzzer code, who to ask for"></textarea></label></div></div>' +
         '<div class="bg-white rounded-3xl shadow-sm p-6"><h2 class="font-head uppercase text-2xl tracking-wide mb-4"><span class="text-coral">3.</span> Payment <span class="text-xs font-sans normal-case tracking-normal bg-sun rounded-full px-2 py-1 ml-2">Demo</span></h2>' +
           '<div class="space-y-2 mb-4"><label class="opt"><span class="flex items-center gap-3"><input type="radio" name="pay" value="Card (demo)" checked class="accent-[#0E9F6E] w-5 h-5"> Pay by card</span><span class="text-xs text-mute">Practice only</span></label>' +
           '<label class="opt"><span class="flex items-center gap-3"><input type="radio" name="pay" value="Company invoice (demo)" class="accent-[#0E9F6E] w-5 h-5"> Invoice my company</span><span class="text-xs text-mute">Practice only</span></label></div>' +
@@ -266,8 +268,20 @@
         '<button class="btn btn-coral w-full text-lg" type="submit">Place order (demo)</button></form>' +
       '<aside class="bg-white rounded-3xl shadow-md p-6 h-fit lg:sticky lg:top-32"><h2 class="font-head uppercase text-2xl tracking-wide mb-4">Your order</h2><ul class="divide-y divide-line text-sm">' +
         lines.map(function (l) { var un = NYC.cart.unit(l); return '<li class="py-3 flex justify-between gap-3"><span><b>' + l.qty + ' &times; ' + l.name + '</b><br><span class="text-mute">' + l.size + (l.addons.length ? ' + ' + l.addons.length + ' extra' + (l.addons.length > 1 ? 's' : '') : '') + '</span></span><span class="font-semibold">' + (un > 0 ? money(un * l.qty) : '$') + '</span></li>'; }).join('') +
-        '</ul><div class="border-t-2 border-line mt-3 pt-3 space-y-1 text-sm"><div class="flex justify-between"><span>Subtotal</span><span>' + (t.priced ? money(t.sub) : '$') + '</span></div><div class="flex justify-between"><span>HST (13%)</span><span>' + (t.priced ? money(t.tax) : '$') + '</span></div><div class="flex justify-between font-head text-2xl pt-2"><span>Total</span><span class="text-coral">' + (t.priced ? money(t.total) : '$') + '</span></div></div><a href="cart.html" class="block text-center text-sm text-coral underline mt-4">Edit cart</a><div class="mt-5">' + NYC.help() + '</div></aside></section>';
+        '</ul><div class="border-t-2 border-line mt-3 pt-3 space-y-1 text-sm"><div class="flex justify-between"><span>Subtotal</span><span>' + (t.priced ? money(t.sub) : '$') + '</span></div><div class="flex justify-between"><span id="sum-fee-label"></span><span id="sum-fee"></span></div><div class="flex justify-between"><span>HST (13%)</span><span id="sum-tax">' + (t.priced ? money(t.tax) : '$') + '</span></div><div class="flex justify-between font-head text-2xl pt-2"><span>Total</span><span id="sum-total" class="text-coral">' + (t.priced ? money(t.total) : '$') + '</span></div></div><a href="cart.html" class="block text-center text-sm text-coral underline mt-4">Edit cart</a><div class="mt-5">' + NYC.help() + '</div></aside></section>';
 
+    function fulfilment() {
+      t = NYC.cart.totals();
+      var pick = t.method === 'pickup';
+      $('#sum-fee-label').textContent = pick ? 'Pickup' : 'Delivery fee';
+      $('#sum-fee').textContent = pick ? 'No fee' : (t.priced ? money(t.fee) : '$');
+      $('#sum-tax').textContent = t.priced ? money(t.tax) : '$';
+      $('#sum-total').textContent = t.priced ? money(t.total) : '$';
+      $('#pickup-at').classList.toggle('hidden', !pick);
+      document.querySelectorAll('[data-del]').forEach(function (l) { l.classList.toggle('hidden', pick); l.querySelector('input').required = !pick; });
+    }
+    document.querySelectorAll('input[name=fulfil]').forEach(function (r) { r.addEventListener('change', function () { NYC.fulfil.set(r.value); fulfilment(); }); });
+    fulfilment();
     try { var meta = JSON.parse(localStorage.getItem('nyc_meta') || 'null'); var cf0 = $('#cf');
       if (meta && cf0) { if (meta.guests) cf0.elements.guests.value = meta.guests; if (meta.date && meta.date >= tomorrow) cf0.elements.date.value = meta.date; } } catch (e) {}
     document.querySelectorAll('input[name=pay]').forEach(function (r) { r.addEventListener('change', function () { $('#cardbox').classList.toggle('hidden', r.value.indexOf('invoice') !== -1 && r.checked); }); });
@@ -279,12 +293,12 @@
         // Card details are deliberately NOT saved anywhere.
         var order = { id: 'NYC-' + Math.floor(100000 + Math.random() * 900000), placed: new Date().toLocaleString(), lines: lines, totals: t,
           contact: { name: f.get('name'), company: f.get('company'), email: f.get('email'), phone: f.get('phone') },
-          delivery: { address: f.get('address'), postal: f.get('postal'), date: f.get('date'), window: f.get('window'), guests: f.get('guests'), notes: f.get('notes') },
+          delivery: { method: t.method, address: t.method === 'pickup' ? '' : f.get('address'), postal: f.get('postal'), date: f.get('date'), window: f.get('window'), guests: f.get('guests'), notes: f.get('notes') },
           payment: f.get('pay') };
         NYC.orders.add(order); NYC.cart.clear();
         app.innerHTML = banner('bg-brand', 'Thank you!', 'Your demo order has been placed.') +
           '<section class="max-w-3xl mx-auto px-6 py-12"><div class="bg-white rounded-3xl shadow-md p-8 text-center"><p class="label mb-1">Order number</p><p class="font-head text-4xl tracking-wide">' + order.id + '</p>' +
-            '<p class="text-mute mt-4">A confirmation would be emailed to <b>' + order.contact.email + '</b>. Delivery to <b>' + order.delivery.address + '</b> on <b>' + order.delivery.date + '</b>, ' + order.delivery.window + '.</p>' +
+            '<p class="text-mute mt-4">A confirmation would be emailed to <b>' + order.contact.email + '</b>. ' + (t.method === 'pickup' ? 'Pickup at <b>5650 Yonge Street, North York' : 'Delivery to <b>' + order.delivery.address) + '</b> on <b>' + order.delivery.date + '</b>, ' + order.delivery.window + '.</p>' +
             '<p class="mt-4 text-sm bg-sun/30 border border-sun rounded-xl px-4 py-3">This was a demonstration. No payment was taken and no food has been ordered.</p>' +
             '<div class="mt-6 flex flex-wrap gap-3 justify-center"><a href="login.html" class="btn btn-line">See my orders</a><a href="catering.html" class="btn btn-coral">Keep shopping</a></div><div class="mt-6 text-left max-w-md mx-auto">' + NYC.help() + '</div></div></section>';
         window.scrollTo(0, 0);
@@ -300,7 +314,7 @@
         var orders = NYC.orders.get();
         app.innerHTML = banner('bg-brand', 'Hello, ' + (u.name || 'friend'), u.email) +
           '<section class="max-w-4xl mx-auto px-6 py-10"><div class="flex items-center justify-between mb-6"><h2 class="font-head uppercase text-3xl tracking-wide">Your orders</h2><button id="out" class="btn btn-line !py-2 !px-5">Log out</button></div>' +
-          (orders.length ? orders.map(function (o) { return '<div class="bg-white rounded-2xl shadow-sm p-5 mb-4"><div class="flex flex-wrap justify-between gap-2"><b class="font-head text-xl tracking-wide">' + o.id + '</b><span class="text-sm text-mute">' + o.placed + '</span></div><p class="text-sm text-mute mt-1">' + o.lines.length + ' item' + (o.lines.length === 1 ? '' : 's') + ' &nbsp;·&nbsp; Delivery ' + o.delivery.date + ' &nbsp;·&nbsp; ' + o.payment + '</p></div>'; }).join('') : '<p class="text-mute">No orders yet. <a class="text-coral underline" href="catering.html">Start shopping</a>.</p>') +
+          (orders.length ? orders.map(function (o) { return '<div class="bg-white rounded-2xl shadow-sm p-5 mb-4"><div class="flex flex-wrap justify-between gap-2"><b class="font-head text-xl tracking-wide">' + o.id + '</b><span class="text-sm text-mute">' + o.placed + '</span></div><p class="text-sm text-mute mt-1">' + o.lines.length + ' item' + (o.lines.length === 1 ? '' : 's') + ' &nbsp;·&nbsp; ' + (o.delivery.method === 'pickup' ? 'Pickup ' : 'Delivery ') + o.delivery.date + ' &nbsp;·&nbsp; ' + o.payment + '</p></div>'; }).join('') : '<p class="text-mute">No orders yet. <a class="text-coral underline" href="catering.html">Start shopping</a>.</p>') +
           '<p class="text-xs text-mute mt-6">This account is a demonstration and is saved only in this browser.</p></section>';
         $('#out').addEventListener('click', function () { NYC.user.clear(); location.href = 'index.html'; });
         return;

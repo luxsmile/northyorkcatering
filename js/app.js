@@ -1,7 +1,8 @@
 // Shared parts of the site: header, footer, cart, login, small helpers.
 (function () {
-  var KEYS = { cart: 'nyc_cart', user: 'nyc_user', orders: 'nyc_orders' };
+  var KEYS = { cart: 'nyc_cart', user: 'nyc_user', orders: 'nyc_orders', fulfil: 'nyc_fulfil' };
   var HST = 0.13; // Ontario sales tax
+  var DELIVERY_RATE = 0.10, DELIVERY_MAX = 50; // delivery fee: 10% of the food, capped
 
   function read(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v === null ? d : v; } catch (e) { return d; } }
   function write(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
@@ -68,9 +69,25 @@
     unit: function (l) { return (l.sizePrice || 0) + l.addons.reduce(function (n, a) { return n + (a.price || 0); }, 0); },
     totals: function () {
       var c = NYC.cart.get(), sub = c.reduce(function (n, l) { return n + NYC.cart.unit(l) * l.qty; }, 0);
-      var priced = sub > 0;
-      return { sub: sub, tax: sub * HST, total: sub * (1 + HST), priced: priced };
+      var cents = function (n) { return Math.round(n * 100) / 100; };
+      var method = NYC.fulfil.get();
+      var fee = method === 'pickup' ? 0 : cents(Math.min(sub * DELIVERY_RATE, DELIVERY_MAX));
+      var tax = cents((sub + fee) * HST);
+      return { sub: sub, method: method, fee: fee, tax: tax, total: sub + fee + tax, priced: sub > 0 };
     }
+  };
+
+  // ---------- delivery or pickup ----------
+  NYC.fulfil = {
+    get: function () { return read(KEYS.fulfil, 'delivery') === 'pickup' ? 'pickup' : 'delivery'; },
+    set: function (v) { write(KEYS.fulfil, v); }
+  };
+  NYC.fulfilPicker = function () {
+    var cur = NYC.fulfil.get();
+    return '<fieldset class="space-y-2"><legend class="label mb-1">Delivery or pickup</legend>' +
+      [['delivery', 'Delivery', '10% of order, max $50'], ['pickup', 'Pickup', 'No delivery fee']].map(function (o) {
+        return '<label class="opt"><span class="flex items-center gap-3"><input type="radio" name="fulfil" value="' + o[0] + '" ' + (cur === o[0] ? 'checked' : '') + ' class="accent-[#9C7424] w-5 h-5"> ' + o[1] + '</span><span class="text-xs text-mute">' + o[2] + '</span></label>';
+      }).join('') + '</fieldset>';
   };
   NYC.badge = function () {
     var n = NYC.cart.count();
