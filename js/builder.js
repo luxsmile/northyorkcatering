@@ -74,7 +74,7 @@
     var order = ['breakfast', 'lunch', 'party', 'full'];
     app.innerHTML =
       banner('Build Your Menu', 'Choose what you would like, dish by dish. Your menu, entirely your way.', 'slide-meze.jpg', 'Compose it yourself') +
-      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'index.html'], ['Build Your Menu']]) + '</section>' +
+      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'home.html'], ['Build Your Menu']]) + '</section>' +
       '<section class="max-w-7xl mx-auto px-6 py-12">' +
         '<div class="grid md:grid-cols-3 gap-6 text-center mb-14">' +
           [['1', 'Choose your occasion', 'Breakfast, lunch, a celebration, or the full menu.'], ['2', 'Pick your dishes', 'Go step by step and choose exactly what you want, in the size you want.'], ['3', 'Order it', 'Add your menu to the cart and check out. We prepare it fresh and deliver.']].map(function (s) {
@@ -105,7 +105,7 @@
 
     app.innerHTML =
       banner(b.title, b.blurb, b.image, 'Step by step') +
-      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'index.html'], ['Build Your Menu', 'build.html'], [b.short]]) + '</section>' +
+      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'home.html'], ['Build Your Menu', 'build.html'], [b.short]]) + '</section>' +
       '<section class="max-w-7xl mx-auto px-6 py-8">' +
         '<div class="bg-peach border border-line p-5 grid sm:grid-cols-2 lg:grid-cols-[1fr_1fr_2fr] gap-5 items-end">' +
           '<label class="block"><span class="label block mb-1">Number of guests</span><input id="g" type="number" min="1" class="field" placeholder="e.g. 25" value="' + state.guests + '"></label>' +

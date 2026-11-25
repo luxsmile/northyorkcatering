@@ -62,7 +62,7 @@
       banner(isL ? 'bg-ink' : 'bg-brand', isL ? 'Signature Lunch' : 'Catering',
         isL ? 'Individually presented lunches for private tables and close-knit teams, effortless to order.' : 'Boardroom luncheons, celebrations and private events, with beautifully presented trays and platters delivered to your door.',
         '<ol class="mt-10 grid sm:grid-cols-3 gap-4 text-sm text-white/95">' + how.map(function (h, i) { return '<li class="flex gap-3 items-start text-left border border-white/25 bg-white/10 backdrop-blur-sm p-4"><span class="shrink-0 w-7 h-7 rounded-full bg-sun text-ink font-bold flex items-center justify-center">' + (i + 1) + '</span><span>' + h + '</span></li>'; }).join('') + '</ol>', isL ? 'slide-lunch.jpg' : 'slide-office.jpg', isL ? 'For intimate gatherings' : 'For grand occasions') +
-      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'index.html'], [modeName(mode)]]) + '</section>' +
+      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'home.html'], [modeName(mode)]]) + '</section>' +
       '<section class="max-w-7xl mx-auto px-6 py-10"><h2 class="font-head uppercase font-semibold text-3xl tracking-wide mb-6">Browse the collections</h2>' +
         '<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">' + cats.map(function (c) {
           var n = items.filter(function (i) { return i.cat === c.id; }).length;
@@ -124,7 +124,7 @@
     var others = CATALOG.categories.filter(function (c) { return c.id !== cat.id; });
     app.innerHTML =
       banner('', cat.name, cat.blurb, '', CAT_BANNER[cat.id], 'A collection') +
-      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'index.html'], [modeName(mode), modeHref(mode)], [cat.name]]) + '</section>' +
+      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'home.html'], [modeName(mode), modeHref(mode)], [cat.name]]) + '</section>' +
       '<section class="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-[260px_1fr] gap-8"><div id="side"></div><div id="results"></div></section>';
     $('#side').innerHTML = panel(
       '<div><p class="font-head uppercase font-semibold text-xl tracking-wide mb-2">In ' + cat.name + '</p><div class="space-y-1 text-sm">' +
@@ -157,7 +157,7 @@
     var acc = function (title, body, open) { return '<details ' + (open ? 'open' : '') + ' class="group border-b-2 border-line py-4"><summary class="cursor-pointer font-head uppercase font-semibold text-xl tracking-wide flex justify-between items-center">' + title + ' <span class="text-coral text-2xl group-open:rotate-45 transition">+</span></summary><div class="mt-3 text-mute text-sm leading-relaxed">' + body + '</div></details>'; };
     var dietBody = (it.tags.length ? '<div class="flex flex-wrap gap-2 mb-3">' + it.tags.map(badge).join('') + '</div><p class="mb-3">Labels are a guide only. Please confirm with us if you have a strict dietary need.</p>' : '<p class="mb-3">This item has no dietary labels. Ask us about adjustments for your guests.</p>') + '<p>' + CATALOG.allergenNote + '</p>';
     app.innerHTML =
-      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'index.html'], [modeName(mode), modeHref(mode)], [cat.name, 'category.html?c=' + cat.id + '&mode=' + mode], [it.name]]) + '</section>' +
+      '<section class="max-w-7xl mx-auto px-6 pt-8">' + crumbs([['Home', 'home.html'], [modeName(mode), modeHref(mode)], [cat.name, 'category.html?c=' + cat.id + '&mode=' + mode], [it.name]]) + '</section>' +
       '<section class="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-2 gap-10">' +
         '<div class="lg:sticky lg:top-32 self-start"><div class="rounded-3xl overflow-hidden shadow-lg bg-white aspect-square lg:aspect-[4/3]"><img src="' + it.image + '" alt="' + it.name + '" class="w-full h-full object-cover" onerror="this.onerror=null;this.src=\'images/placeholder.svg\'"></div>' +
           '<div class="mt-6">' + acc('What’s included', it.includes.length ? '<ul class="list-disc pl-5 space-y-1">' + it.includes.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' : 'Ask us for details.', true) +
