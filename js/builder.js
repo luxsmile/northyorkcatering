@@ -14,34 +14,34 @@
   var BUILDERS = {
     breakfast: {
       file: 'build-breakfast.html', title: 'Build Your Breakfast', short: 'Breakfast', occasion: 'Breakfast meeting', image: 'slide-brunch.jpg',
-      blurb: 'Sandwiches, bagels, pastries, fruit and fresh coffee for early meetings. Choose every part of your morning.',
+      blurb: 'Omelette croissants, wraps, bagels, pastries and fresh coffee for early meetings. Choose every part of your morning.',
       steps: [
-        { name: 'Something savoury', desc: 'Breakfast sandwiches, wraps and cooked breakfasts.', items: ['egg-sandwich', 'bacon-sandwich', 'veg-wrap', 'lox-bagel', 'english', 'brunch'] },
-        { name: 'Bagels and bakery', desc: 'Fresh bagels, croissants and pastries.', items: ['bagel-box', 'croissants', 'pastry-box'] },
-        { name: 'Fresh fruit', desc: 'Fruit cups and platters.', items: ['fruit-cups', 'fruit-tray', 'fruit-berries', 'fruit-citrus'] },
-        { name: 'Beverages', desc: 'Coffee, tea and juices.', items: ['coffee-box', 'juice', 'lemonade'] }
+        { name: 'Something savoury', desc: 'Breakfast sandwiches, croissants and wraps.', items: ['egg-salad-wrap', 'ham-muffin', 'ham-cheese-croissant', 'bacon-cheese-croissant', 'spinach-croissant', 'cheese-croissant', 'salmon-danish'] },
+        { name: 'Bagels and bakery', desc: 'Fresh bagels and pastries.', items: ['bagel-box', 'pastry-box'] },
+        { name: 'Fresh fruit', desc: 'Fruit platter.', items: ['fruit-p'] },
+        { name: 'Drinks', desc: 'Coffee, tea, juice and more.', items: ['coffee-carafe', 'tea-carafe', 'coffee-thermos', 'juice', 'water', 'pop', 'lemonade'] }
       ]
     },
     lunch: {
       file: 'build-lunch.html', title: 'Build Your Lunch', short: 'Lunch', occasion: 'Team lunch', image: 'slide-salads.jpg',
-      blurb: 'Salads, sandwiches, wraps and hot entrées for the team. Choose what goes on the table.',
+      blurb: 'Salads, sandwiches, wraps and hot food for the team. Choose what goes on the table.',
       steps: [
-        { name: 'Salads', desc: 'Fresh, generous salads.', items: ['caesar', 'greek', 'garden', 'caprese', 'rainbow', 'grain', 'cobb', 'berry'] },
-        { name: 'Sandwiches and wraps', desc: 'Sandwiches, paninis, wraps and burgers.', items: ['sand-plat', 'panini', 'wraps', 'burgers'] },
-        { name: 'Hot entrées', desc: 'Salmon, chicken, pasta, pizza and more.', items: ['salmon', 'chicken', 'pasta', 'lasagna', 'pizza', 'quiche', 'wings'] },
-        { name: 'Platters and sides', desc: 'Sharing platters, meze and fruit.', items: ['cheese', 'meze', 'hummus', 'dips', 'fruit-p', 'fruit-cups'] },
-        { name: 'Beverages', desc: 'Hot and cold drinks.', items: ['coffee-box', 'lemonade', 'juice'] }
+        { name: 'Salads', desc: 'Individual containers or bowls.', items: ['caesar', 'greek', 'garden', 'kale-beet', 'pasta-pesto-salad', 'pizza-salad', 'thai-salad', 'coleslaw', 'potato-egg'] },
+        { name: 'Sandwiches and wraps', desc: 'Sandwiches and wraps.', items: ['chicken-pesto', 'spicy-chicken', 'ham-brie', 'turkey-swiss', 'chicken-avocado', 'chicken-bacon', 'tuna-salad-sandwich', 'beef-pepper', 'tomato-bocconcini', 'asian-chicken', 'chicken-salad-wrap', 'chicken-caesar-wrap'] },
+        { name: 'Hot food', desc: 'Salmon, pasta, pizza and wings.', items: ['salmon', 'pasta-meatball', 'pasta-ravioli', 'pasta-tortellini', 'lasagna', 'mac-cheese', 'pizza', 'wings'] },
+        { name: 'Platters', desc: 'Cheese, charcuterie and fruit.', items: ['cheese', 'charcuterie', 'cheese-fruit', 'fruit-p'] },
+        { name: 'Drinks', desc: 'Hot and cold drinks.', items: ['coffee-carafe', 'tea-carafe', 'coffee-thermos', 'juice', 'water', 'pop', 'lemonade'] }
       ]
     },
     party: {
       file: 'build-party.html', title: 'Build Your Celebration', short: 'Platters & Party', occasion: 'Celebration', image: 'slide-platter.jpg',
-      blurb: 'Boards, meze, canapés, hot bites, sweets and drinks for parties and receptions. Compose the whole spread.',
+      blurb: 'Platters, salads, pizza, wings, pastries and drinks for parties and receptions. Compose the whole spread.',
       steps: [
-        { name: 'Boards and platters', desc: 'Cheese, charcuterie and grazing boards.', items: ['cheese', 'charcuterie', 'cheese-fruit', 'sharing', 'grazing-harvest'] },
-        { name: 'Meze and dips', desc: 'Dips, meze and warm pita.', items: ['meze', 'meze-garden', 'meze-grand', 'hummus', 'dips'] },
-        { name: 'Hot bites', desc: 'Pizza, wings, skewers and canapés.', items: ['pizza', 'wings', 'skewers', 'canape', 'panini'] },
-        { name: 'Fruit and sweets', desc: 'Fruit platters and dessert boards.', items: ['fruit-p', 'fruit-berries', 'fruit-citrus', 'sweet-board', 'pastry-box'] },
-        { name: 'Beverages and bar', desc: 'Soft drinks, cocktails, wine and sparkling.', items: ['lemonade', 'juice', 'coffee-box', 'cocktails', 'wine'] }
+        { name: 'Platters', desc: 'Cheese, charcuterie and fruit.', items: ['cheese', 'charcuterie', 'cheese-fruit', 'fruit-p'] },
+        { name: 'Salads', desc: 'Individual containers or bowls.', items: ['caesar', 'greek', 'garden', 'kale-beet', 'pasta-pesto-salad', 'pizza-salad', 'thai-salad', 'coleslaw', 'potato-egg'] },
+        { name: 'Hot food', desc: 'Salmon, pasta, pizza and wings.', items: ['salmon', 'pasta-meatball', 'pasta-ravioli', 'pasta-tortellini', 'lasagna', 'mac-cheese', 'pizza', 'wings'] },
+        { name: 'Pastries', desc: 'Fresh-baked pastries.', items: ['pastry-box'] },
+        { name: 'Drinks', desc: 'Hot and cold drinks.', items: ['coffee-carafe', 'tea-carafe', 'coffee-thermos', 'juice', 'water', 'pop', 'lemonade'] }
       ]
     },
     full: {
@@ -132,7 +132,7 @@
         '<div class="p-4 flex-1 flex flex-col"><h3 class="font-head uppercase font-semibold text-lg tracking-wide leading-snug">' + it.name + '</h3>' +
         '<p class="text-mute text-sm mt-1">' + it.desc + '</p><div class="mt-2 flex flex-wrap gap-1">' + tags + '</div>' +
         '<div class="mt-auto pt-4"><select data-size class="field !py-2 !text-xs" aria-label="Size for ' + it.name + '">' +
-          sz.map(function (s, i) { return '<option value="' + i + '" ' + (cur.size === i ? 'selected' : '') + '>' + s.name + ' · serves ' + s.serves + ' · ' + money(s.price) + '</option>'; }).join('') + '</select>' +
+          sz.map(function (s, i) { return '<option value="' + i + '" ' + (cur.size === i ? 'selected' : '') + '>' + s.name + (s.note ? ' · ' + s.note : '') + ' · ' + money(s.price) + '</option>'; }).join('') + '</select>' +
         '<div class="mt-3 flex items-center justify-between"><div class="flex items-center border-2 border-line rounded-full bg-white"><button type="button" data-dec class="w-10 h-10 text-xl font-bold" aria-label="Fewer">&minus;</button><span data-qty class="w-8 text-center font-semibold">' + cur.qty + '</span><button type="button" data-inc class="w-10 h-10 text-xl font-bold" aria-label="More">+</button></div>' +
         '<a class="text-[.65rem] uppercase tracking-[.15em] font-semibold border-b border-ink" href="product.html?id=' + it.id + '&mode=catering" target="_blank" rel="noopener">Details</a></div></div></div></div>';
     }
@@ -150,7 +150,7 @@
       $('#summary').innerHTML =
         '<div class="bg-white border border-ink p-6"><p class="label mb-1">' + b.short + '</p><h3 class="font-head uppercase font-semibold text-3xl tracking-wide">Your menu</h3><p class="text-xs text-mute mt-1">' + guests + ' &nbsp;·&nbsp; ' + date + '</p><div class="rule my-4"></div>' +
         (L.length ? '<ul class="divide-y divide-line">' + L.map(function (l) {
-          return '<li class="py-3 flex gap-3 justify-between text-sm"><span><b>' + l.c.qty + ' &times; ' + l.it.name + '</b><br><span class="text-mute">' + l.size.name + ' · serves ' + l.size.serves + '</span></span><span class="text-right shrink-0"><span class="font-semibold">' + ((l.size.price || 0) > 0 ? money(l.size.price * l.c.qty) : '$') + '</span><br><button type="button" data-remove="' + l.it.id + '" class="text-xs text-coral underline">Remove</button></span></li>';
+          return '<li class="py-3 flex gap-3 justify-between text-sm"><span><b>' + l.c.qty + ' &times; ' + l.it.name + '</b><br><span class="text-mute">' + l.size.name + (l.size.note ? ' · ' + l.size.note : '') + '</span></span><span class="text-right shrink-0"><span class="font-semibold">' + ((l.size.price || 0) > 0 ? money(l.size.price * l.c.qty) : '$') + '</span><br><button type="button" data-remove="' + l.it.id + '" class="text-xs text-coral underline">Remove</button></span></li>';
         }).join('') + '</ul>' :
         '<p class="text-mute text-sm">Nothing chosen yet. Start with step 1 and add the dishes you would like.</p>') +
         '<div class="flex justify-between font-head text-2xl mt-4 pt-4 border-t-2 border-line"><span>Subtotal</span><span class="text-coral">' + (sub > 0 ? money(sub) : '$') + '</span></div>' +
@@ -172,14 +172,15 @@
     $('#steps').addEventListener('click', function (e) {
       var card = e.target.closest('.pick'); if (!card) return; var id = card.getAttribute('data-id');
       var c = state.sel[id] || (state.sel[id] = { qty: 0, size: +$('[data-size]', card).value });
-      if (e.target.closest('[data-inc]')) c.qty += 1;
-      else if (e.target.closest('[data-dec]')) c.qty = Math.max(0, c.qty - 1);
+      var min = (sizesOf(NYC.item(id))[c.size] || {}).min || 1;
+      if (e.target.closest('[data-inc]')) c.qty = c.qty ? c.qty + 1 : min;
+      else if (e.target.closest('[data-dec]')) c.qty = c.qty > min ? c.qty - 1 : 0;
       else return;
       save(); setCard(id); renderSummary();
     });
     $('#steps').addEventListener('change', function (e) {
       var sel = e.target.closest('[data-size]'); if (!sel) return; var card = sel.closest('.pick'), id = card.getAttribute('data-id');
-      var c = state.sel[id] || (state.sel[id] = { qty: 0, size: 0 }); c.size = +sel.value; save(); renderSummary();
+      var c = state.sel[id] || (state.sel[id] = { qty: 0, size: 0 }); c.size = +sel.value; var min = (sizesOf(NYC.item(id))[c.size] || {}).min || 1; if (c.qty && c.qty < min) c.qty = min; save(); setCard(id); renderSummary();
     });
     $('#g').addEventListener('input', function () { state.guests = this.value; save(); renderSummary(); });
     $('#d').addEventListener('change', function () { state.date = this.value; save(); renderSummary(); });
@@ -196,7 +197,7 @@
         var L = lines(); if (!L.length) return;
         state.note = ($('#n') || {}).value || ''; save();
         var head = 'Menu: ' + b.short + (state.guests ? ' · ' + state.guests + ' guests' : '') + (state.date ? ' · ' + state.date : '') + (state.note ? ' · ' + state.note : '');
-        L.forEach(function (l) { NYC.cart.add({ id: l.it.id, name: l.it.name, image: l.it.image, mode: 'catering', size: l.size.name, sizePrice: l.size.price, addons: [], qty: l.c.qty, note: head }); });
+        L.forEach(function (l) { NYC.cart.add({ id: l.it.id, name: l.it.name, image: l.it.image, mode: 'catering', size: l.size.name, sizePrice: l.size.price, addons: [], qty: l.c.qty, min: l.size.min, note: head }); });
         localStorage.setItem('nyc_meta', JSON.stringify({ guests: state.guests, date: state.date, occasion: b.occasion }));
         sessionStorage.removeItem(KEY);
         location.href = 'cart.html';

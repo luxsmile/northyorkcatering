@@ -13,7 +13,7 @@
     return '<nav class="text-xs sm:text-sm text-mute flex flex-wrap gap-2 items-center" aria-label="Breadcrumb">' +
       list.map(function (c, i) { return c[1] ? '<a class="hover:text-coral underline-offset-2 hover:underline" href="' + c[1] + '">' + c[0] + '</a>' : '<span class="text-ink font-semibold">' + c[0] + '</span>'; }).join('<span>&rsaquo;</span>') + '</nav>';
   }
-  var CAT_BANNER = { breakfast: 'slide-brunch.jpg', salads: 'slide-salads.jpg', sandwiches: 'slide-burger.jpg', hot: 'slide-salmon.jpg', platters: 'slide-platter.jpg', drinks: 'champagne.jpg' };
+  var CAT_BANNER = { breakfast: 'slide-brunch.jpg', salads: 'slide-salads.jpg', sandwiches: 'sandwiches.jpg', hot: 'slide-salmon.jpg', platters: 'slide-platter.jpg', drinks: 'champagne.jpg' };
   // Elegant page banner: photo (optional), soft dark veil, thin gold frame, ornament line.
   // Pages without their own photo get an elegant one chosen for the page.
   var BANNER_FOR = { 'Your cart': 'banner-cart.jpg', 'Checkout': 'banner-checkout.jpg', 'Thank you!': 'banner-thanks.jpg', 'Login': 'banner-login.jpg', 'Create account': 'banner-login.jpg', 'Search results': 'banner-search.jpg' };
@@ -56,7 +56,7 @@
     var cats = CATALOG.categories.filter(function (c) { return items.some(function (i) { return i.cat === c.id; }); });
     var how = isL
       ? ['Select the dishes you desire, one or several.', 'Tell us where and when to arrive.', 'Savour fresh, beautifully packed lunches.']
-      : ['Select your menu and finishing touches, such as fruit cups and beverages.', 'Confirm your date, time and guest count.', 'We prepare everything fresh and deliver with care.'];
+      : ['Select your menu and finishing touches, such as fruit platters and drinks.', 'Confirm your date, time and guest count.', 'We prepare everything fresh and deliver with care.'];
     var state = { cat: 'all' };
     app.innerHTML =
       banner(isL ? 'bg-ink' : 'bg-brand', isL ? 'Signature Lunch' : 'Catering',
@@ -162,16 +162,16 @@
         '<div class="lg:sticky lg:top-32 self-start"><div class="rounded-3xl overflow-hidden shadow-lg bg-white aspect-square lg:aspect-[4/3]"><img src="' + it.image + '" alt="' + it.name + '" class="w-full h-full object-cover" onerror="this.onerror=null;this.src=\'images/placeholder.svg\'"></div>' +
           '<div class="mt-6">' + acc('What’s included', it.includes.length ? '<ul class="list-disc pl-5 space-y-1">' + it.includes.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>' : 'Ask us for details.', true) +
             acc('Dietary &amp; allergens', dietBody) +
-            acc('Serving guide', '<table class="w-full text-left"><tbody>' + sizes.map(function (s) { return '<tr class="border-b border-line"><td class="py-2 font-semibold text-ink">' + s.name + '</td><td class="py-2">Serves ' + s.serves + '</td></tr>'; }).join('') + '</tbody></table><p class="mt-2">Serving sizes are a guide. If your guests have big appetites, choose the next size up.</p>') +
+            acc('Serving guide', '<table class="w-full text-left"><tbody>' + sizes.map(function (s) { return '<tr class="border-b border-line"><td class="py-2 font-semibold text-ink">' + s.name + '</td><td class="py-2">' + (s.note || 'Ask us') + '</td></tr>'; }).join('') + '</tbody></table><p class="mt-2">Serving sizes are a guide. If your guests have big appetites, choose the next size up.</p>') +
             acc('Good to know', '<ul class="list-disc pl-5 space-y-1"><li>Ordering lead time: [to be added]</li><li>Delivery fee and minimum order: confirmed with your order</li><li>Served fresh. Cutlery and plates can be added as an extra.</li><li>Prices, taxes and delivery are confirmed on your order.</li></ul>') + '</div></div>' +
         '<form id="pf" class="space-y-7"><div><p class="label mb-2">' + cat.name + ' &nbsp;·&nbsp; ' + modeName(mode) + '</p><h1 class="font-head uppercase font-semibold text-4xl md:text-5xl tracking-wide leading-tight">' + it.name + '</h1>' +
           '<div class="mt-3 flex flex-wrap gap-2">' + it.tags.map(badge).join('') + '</div>' +
           '<p class="text-mute mt-4 text-lg">' + it.desc + '</p></div>' +
           '<div><h2 class="font-head uppercase font-semibold text-xl tracking-wide mb-3">1. Select your size</h2><div class="space-y-2" id="sizes">' +
-            sizes.map(function (s, n) { return '<label class="opt"><span class="flex items-center gap-3"><input type="radio" name="size" value="' + n + '" ' + (n === 0 ? 'checked' : '') + ' class="accent-[#9C7424] w-5 h-5"><span><span class="font-medium block">' + s.name + '</span><span class="text-xs text-mute">Serves ' + s.serves + '</span></span></span><span class="font-head font-semibold text-xl text-coral">' + money(s.price) + '</span></label>'; }).join('') + '</div></div>' +
-          '<div><h2 class="font-head uppercase font-semibold text-xl tracking-wide mb-3">2. Add extras <span class="text-sm text-mute normal-case tracking-normal font-sans">(optional)</span></h2><div class="space-y-2" id="addons">' +
+            sizes.map(function (s, n) { return '<label class="opt"><span class="flex items-center gap-3"><input type="radio" name="size" value="' + n + '" ' + (n === 0 ? 'checked' : '') + ' class="accent-[#9C7424] w-5 h-5"><span><span class="font-medium block">' + s.name + '</span><span class="text-xs text-mute">' + s.note + '</span></span></span><span class="font-head font-semibold text-xl text-coral">' + money(s.price) + '</span></label>'; }).join('') + '</div></div>' +
+          '<div class="' + (it.addons.length ? '' : 'hidden') + '"><h2 class="font-head uppercase font-semibold text-xl tracking-wide mb-3">2. Add extras <span class="text-sm text-mute normal-case tracking-normal font-sans">(optional)</span></h2><div class="space-y-2" id="addons">' +
             it.addons.map(function (a) { var ad = CATALOG.addons[a]; return '<label class="opt"><span class="flex items-center gap-3"><input type="checkbox" value="' + a + '" class="accent-[#9C7424] w-5 h-5"><span class="font-medium">' + ad.name + '</span></span><span class="font-head font-semibold text-xl text-coral">+ ' + money(ad.price) + '</span></label>'; }).join('') + '</div></div>' +
-          '<div><h2 class="font-head uppercase font-semibold text-xl tracking-wide mb-3">3. Special requests</h2><textarea id="note" rows="3" class="field" placeholder="Dietary needs, labels with names, or anything we should know."></textarea></div>' +
+          '<div><h2 class="font-head uppercase font-semibold text-xl tracking-wide mb-3">' + (it.addons.length ? '3' : '2') + '. Special requests</h2><textarea id="note" rows="3" class="field" placeholder="Dietary needs, labels with names, or anything we should know."></textarea></div>' +
           '<div class="flex flex-wrap items-center gap-4 border-t-2 border-line pt-6"><div class="flex items-center border-2 border-line rounded-full bg-white"><button type="button" id="minus" class="w-11 h-11 text-2xl font-bold" aria-label="Fewer">&minus;</button><input id="qty" type="number" min="1" value="1" class="w-14 text-center font-semibold outline-none bg-transparent" aria-label="Quantity"><button type="button" id="plus" class="w-11 h-11 text-2xl font-bold" aria-label="More">+</button></div>' +
             '<button class="btn btn-coral flex-1 min-w-[220px]" type="submit">Add to cart &nbsp;·&nbsp; <span id="lineTotal">$</span></button></div>' +
           '<p class="text-xs text-mute">Prices, taxes and delivery are confirmed on your order.</p>' + NYC.help() + '</form></section>' +
@@ -184,18 +184,19 @@
     function calc() {
       var s = sizes[+($('input[name=size]:checked').value)];
       var adds = Array.prototype.map.call(document.querySelectorAll('#addons input:checked'), function (x) { var a = CATALOG.addons[x.value]; return { id: x.value, name: a.name, price: a.price }; });
-      var q = Math.max(1, parseInt($('#qty').value, 10) || 1);
+      var q = Math.max(s.min, parseInt($('#qty').value, 10) || s.min);
       var unit = (s.price || 0) + adds.reduce(function (n, a) { return n + (a.price || 0); }, 0);
       $('#lineTotal').textContent = unit > 0 ? money(unit * q) : '$';
       return { s: s, adds: adds, q: q };
     }
-    $('#pf').addEventListener('change', calc); $('#qty').addEventListener('input', calc);
-    $('#minus').addEventListener('click', function () { $('#qty').value = Math.max(1, (parseInt($('#qty').value, 10) || 1) - 1); calc(); });
+    function minimum() { var s = sizes[+($('input[name=size]:checked').value)]; $('#qty').min = s.min; if ((parseInt($('#qty').value, 10) || 0) < s.min) $('#qty').value = s.min; }
+    $('#pf').addEventListener('change', function () { minimum(); calc(); }); $('#qty').addEventListener('input', calc);
+    $('#minus').addEventListener('click', function () { $('#qty').value = Math.max(+$('#qty').min, (parseInt($('#qty').value, 10) || 1) - 1); calc(); });
     $('#plus').addEventListener('click', function () { $('#qty').value = (parseInt($('#qty').value, 10) || 1) + 1; calc(); });
-    calc();
+    minimum(); calc();
     $('#pf').addEventListener('submit', function (e) {
       e.preventDefault(); var c = calc();
-      NYC.cart.add({ id: it.id, name: it.name, image: it.image, mode: mode, size: c.s.name, sizePrice: c.s.price, addons: c.adds, qty: c.q, note: $('#note').value.trim() });
+      NYC.cart.add({ id: it.id, name: it.name, image: it.image, mode: mode, size: c.s.name, sizePrice: c.s.price, addons: c.adds, qty: c.q, min: c.s.min, note: $('#note').value.trim() });
       NYC.toast('<span>Added <b>' + it.name + '</b> to your cart.</span><a href="cart.html" class="btn btn-sun !py-2 !px-4 !text-xs">View cart</a>');
     });
   }
@@ -206,7 +207,7 @@
       var lines = NYC.cart.get(), t = NYC.cart.totals();
       if (!lines.length) {
         app.innerHTML = banner('bg-brand', 'Your cart', 'Nothing here yet.') +
-          '<section class="max-w-3xl mx-auto px-6 py-16 text-center"><p class="text-mute mb-6">Your cart is empty. Add a salad, a platter or a breakfast collection to begin.</p><a href="catering.html" class="btn btn-coral">Shop Catering</a> <a href="takeout.html" class="btn btn-line">Shop Signature Lunch</a></section>';
+          '<section class="max-w-3xl mx-auto px-6 py-16 text-center"><p class="text-mute mb-6">Your cart is empty. Add a salad, a platter or something for breakfast to begin.</p><a href="catering.html" class="btn btn-coral">Shop Catering</a> <a href="takeout.html" class="btn btn-line">Shop Signature Lunch</a></section>';
         return;
       }
       app.innerHTML = banner('bg-brand', 'Your cart', NYC.cart.count() + ' item' + (NYC.cart.count() === 1 ? '' : 's') + ' ready to order.') +

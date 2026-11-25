@@ -23,15 +23,19 @@
     var s = it.sizes.filter(function (x) { return x.kind === want; });
     return s.length ? s : it.sizes;
   };
+  // Short line shown on menu cards, e.g. "Serves 1 to 20 people" or "Price per bottle".
   NYC.serves = function (it, mode) {
     var sizes = NYC.sizesFor(it, mode);
-    if (!sizes.length) return '';
-    if (mode === 'lunch') return 'Individual portion';
-    var nums = sizes.map(function (s) { return (s.serves.match(/\d+/g) || []).map(Number); }).reduce(function (a, b) { return a.concat(b); }, []);
-    return nums.length ? 'Serves ' + Math.min.apply(null, nums) + ' to ' + Math.max.apply(null, nums) + ' guests' : '';
+    if (sizes.length === 1) return sizes[0].note;
+    var nums = sizes.map(function (s) { return (s.note.match(/\d+/g) || []).map(Number); }).reduce(function (a, b) { return a.concat(b); }, []);
+    return nums.length ? 'Serves ' + Math.min.apply(null, nums) + ' to ' + Math.max.apply(null, nums) + ' people' : '';
+  };
+  NYC.priceLabel = function (it, mode) {
+    var from = NYC.priceFrom(it, mode);
+    if (from === null) return '$';
+    return (NYC.sizesFor(it, mode).length > 1 ? 'From ' : '') + NYC.money(from);
   };
   NYC.card = function (it, mode) {
-    var from = NYC.priceFrom(it, mode);
     var tags = it.tags.map(function (t) { return '<span class="text-[.6rem] font-semibold uppercase tracking-wider bg-mint text-branddk rounded-full px-2 py-0.5">' + t + '</span>'; }).join(' ');
     return '<a href="product.html?id=' + it.id + '&mode=' + mode + '" class="zoom card block bg-white rounded-2xl overflow-hidden shadow-sm">' +
       '<div class="overflow-hidden aspect-square"><img src="' + it.image + '" alt="' + it.name + '" class="w-full h-full object-cover" loading="lazy" onerror="this.onerror=null;this.src=\'images/placeholder.svg\'"></div>' +
@@ -39,7 +43,7 @@
       '<p class="text-xs text-coral font-semibold mt-1">' + NYC.serves(it, mode) + '</p>' +
       '<p class="text-mute text-sm mt-1 line-clamp-2">' + it.desc + '</p>' +
       '<div class="mt-2 flex flex-wrap gap-1">' + tags + '</div>' +
-      '<p class="mt-3 flex items-center justify-between"><span class="font-head font-semibold text-xl text-coral">' + (from === null ? '$' : 'From ' + NYC.money(from)) + '</span>' +
+      '<p class="mt-3 flex items-center justify-between"><span class="font-head font-semibold text-xl text-coral">' + NYC.priceLabel(it, mode) + '</span>' +
       '<span class="text-[.68rem] uppercase tracking-[.15em] font-semibold text-ink">Choose &rsaquo;</span></p></div></a>';
   };
 
@@ -55,7 +59,7 @@
       NYC.cart.set(c);
     },
     setQty: function (key, q) {
-      var c = NYC.cart.get().map(function (x) { if (x.key === key) x.qty = Math.max(1, q); return x; });
+      var c = NYC.cart.get().map(function (x) { if (x.key === key) x.qty = Math.max(x.min || 1, q); return x; });
       NYC.cart.set(c);
     },
     remove: function (key) { NYC.cart.set(NYC.cart.get().filter(function (x) { return x.key !== key; })); },
@@ -137,7 +141,7 @@
       kicker: 'For grand occasions', title: 'The Catering Experience', image: 'images/slide-office.jpg',
       lead: 'Boardroom luncheons, celebrations and private events, prepared fresh and presented with care.',
       steps: [
-        ['Select your menu', 'Browse our collections or ask for something bespoke. Choose a tray size and finishing touches such as fruit cups and beverages.'],
+        ['Select your menu', 'Browse our collections or ask for something bespoke. Choose a tray size and finishing touches such as fruit platters and drinks.'],
         ['Confirm the details', 'Tell us the date, delivery window, number of guests and any dietary needs. We confirm everything with you.'],
         ['We prepare with care', 'Everything is prepared fresh and arranged beautifully. Dietary requests are packed and labelled separately.'],
         ['Delivered to your door', 'We deliver to your office or venue across North York and Toronto. Ask us about options for larger events.']
